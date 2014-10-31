@@ -37,6 +37,10 @@
     <Compile Include="ActivitySpans\FullActivitySpan.cs" />
     <Compile Include="ActivitySpans\IActivitySpan.cs" />
     <Compile Include="ActivitySpans\IWeekActivitySpan.cs" />
+    <Compile Include="DefaultCalendarGenerator.cs" />
+    <Compile Include="DefaultClassesGenerator.cs" />
+    <Compile Include="DefaultDayGenerator.cs" />
+    <Compile Include="DefaultWeekGenerator.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\IsoDayOfWeekExtension.cs" />
     <Compile Include="Finals\FinalCalendar.cs" />
