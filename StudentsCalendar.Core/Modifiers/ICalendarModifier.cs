@@ -11,7 +11,8 @@ namespace StudentsCalendar.Core.Modifiers
 		/// <summary>
 		/// Aplikuje modyfikator na danych.
 		/// </summary>
-		/// <param name="data"></param>
-		void Apply(IntermediateCalendar data);
+		/// <param name="data">Kalendarz, na którym modyfikator powinien pracować.</param>
+		/// <param name="context">Kontekst procesu generowania.</param>
+		void Apply(IntermediateCalendar data, GenerationContext context);
 	}
 }
