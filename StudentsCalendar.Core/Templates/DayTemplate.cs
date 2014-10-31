@@ -8,7 +8,7 @@ namespace StudentsCalendar.Core.Templates
 	/// </summary>
 	public sealed class DayTemplate
 	{
-		private IsoDayOfWeek _DayOfWeek;
+		private readonly IsoDayOfWeek _DayOfWeek;
 
 		/// <summary>
 		/// Pobiera dzień tygodnia, który dany szablon opisuje.
@@ -16,7 +16,6 @@ namespace StudentsCalendar.Core.Templates
 		public IsoDayOfWeek DayOfWeek
 		{
 			get { return this._DayOfWeek; }
-			set { this._DayOfWeek = value; }
 		}
 
 
