@@ -12,7 +12,7 @@ namespace StudentsCalendar.Core.Templates
 		/// Pobiera lub zmienia listę szablonów.
 		/// </summary>
 		/// <remarks>
-		/// Szablon na dany dzień znajduje się pod indeksem zwracanym przez <c>IsoDayOfWeek.ToIndex()</c>.
+		/// Szablon na dany dzień znajduje się pod indeksem zwracanym przez <see cref="IsoDayOfWeekExtension.ToIndex"/>.
 		/// </remarks>
 		public IReadOnlyList<DayTemplate> Days { get; set; }
 

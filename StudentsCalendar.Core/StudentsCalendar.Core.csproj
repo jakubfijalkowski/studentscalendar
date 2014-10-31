@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\CalendarTemplate.cs" />
     <Compile Include="Templates\DayTemplate.cs" />
+    <Compile Include="Templates\EmptyCalendar.cs" />
     <Compile Include="Templates\LecturerTemplate.cs" />
     <Compile Include="Templates\ClassesTemplate.cs" />
     <Compile Include="Templates\LocationTemplate.cs" />
