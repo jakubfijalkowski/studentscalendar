@@ -35,6 +35,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Extensions\IsoDayOfWeekExtension.cs" />
+    <Compile Include="Intermediates\IntermediateCalendar.cs" />
+    <Compile Include="Intermediates\IntermediateClasses.cs" />
+    <Compile Include="Intermediates\IntermediateDay.cs" />
+    <Compile Include="Intermediates\IntermediateLecturer.cs" />
+    <Compile Include="Intermediates\IntermediateLocation.cs" />
+    <Compile Include="Intermediates\IntermediateWeek.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\CalendarTemplate.cs" />
     <Compile Include="Templates\DayTemplate.cs" />
@@ -51,6 +57,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
