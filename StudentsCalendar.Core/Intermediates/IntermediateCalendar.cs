@@ -1,4 +1,5 @@
-﻿using NodaTime;
+﻿using System.Collections.Generic;
+using NodaTime;
 
 namespace StudentsCalendar.Core.Intermediates
 {
@@ -8,9 +9,9 @@ namespace StudentsCalendar.Core.Intermediates
 	public sealed class IntermediateCalendar
 	{
 		/// <summary>
-		/// Pobiera lub zmienia opis tygodnia.
+		/// Pobiera lub zmienia opis poszczególnych tygodni.
 		/// </summary>
-		public IntermediateWeek WeekDescription { get; set; }
+		public IReadOnlyList<IntermediateWeek> Weeks { get; set; }
 
 		/// <summary>
 		/// Pobiera lub zmienia początkową datę aktywności kalendarza.
