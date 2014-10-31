@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using NodaTime;
+using StudentsCalendar.Core.Modifiers;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -28,6 +29,11 @@ namespace StudentsCalendar.Core.Templates
 		/// Pobiera lub zmienia notatki.
 		/// </summary>
 		public string Notes { get; set; }
+
+		/// <summary>
+		/// Lista modyfikatorów przypisanych do dnia.
+		/// </summary>
+		public IList<IDayModifier> Modifiers { get; set; }
 
 		/// <summary>
 		/// Inicjalizuje szablon dzienny na konkretny dzień tygodnia.

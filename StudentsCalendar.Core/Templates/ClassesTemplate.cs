@@ -1,4 +1,6 @@
-﻿using NodaTime;
+﻿using System.Collections.Generic;
+using NodaTime;
+using StudentsCalendar.Core.Modifiers;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -44,5 +46,10 @@ namespace StudentsCalendar.Core.Templates
 		/// Pobiera lub zmienia notatki.
 		/// </summary>
 		public string Notes { get; set; }
+
+		/// <summary>
+		/// Lista modyfikatorów przypisanych do zajęć.
+		/// </summary>
+		public IList<IClassesModifier> Modifier { get; set; }
 	}
 }

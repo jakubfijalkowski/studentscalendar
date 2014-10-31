@@ -1,4 +1,6 @@
-﻿using NodaTime;
+﻿using System.Collections.Generic;
+using NodaTime;
+using StudentsCalendar.Core.Modifiers;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -21,5 +23,10 @@ namespace StudentsCalendar.Core.Templates
 		/// Pobiera lub zmienia końcową datę aktywności kalendarza.
 		/// </summary>
 		public LocalDate EndDate { get; set; }
+
+		/// <summary>
+		/// Lista modyfikatorów przypisana do całego kalendarza.
+		/// </summary>
+		public IList<ICalendarModifier> Modifiers { get; set; }
 	}
 }

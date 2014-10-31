@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using StudentsCalendar.Core.Modifiers;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -14,5 +15,10 @@ namespace StudentsCalendar.Core.Templates
 		/// Szablon na dany dzień znajduje się pod indeksem zwracanym przez <c>IsoDayOfWeek.ToIndex()</c>.
 		/// </remarks>
 		public IReadOnlyList<DayTemplate> Days { get; set; }
+
+		/// <summary>
+		/// Lista modyfikatorów przypisana do szablonu tygodnia.
+		/// </summary>
+		public IList<IWeekModifier> Modifiers { get; set; }
 	}
 }
