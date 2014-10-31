@@ -43,6 +43,11 @@
     <Compile Include="Finals\FinalLecturer.cs" />
     <Compile Include="Finals\FinalLocation.cs" />
     <Compile Include="Finals\FinalWeek.cs" />
+    <Compile Include="GenerationContext.cs" />
+    <Compile Include="ICalendarGenerator.cs" />
+    <Compile Include="IWeekGenerator.cs" />
+    <Compile Include="IDayGenerator.cs" />
+    <Compile Include="IClassesGenerator.cs" />
     <Compile Include="Intermediates\IntermediateCalendar.cs" />
     <Compile Include="Intermediates\IntermediateClasses.cs" />
     <Compile Include="Intermediates\IntermediateDay.cs" />
