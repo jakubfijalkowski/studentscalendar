@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NodaTime;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -13,12 +13,12 @@ namespace StudentsCalendar.Core.Templates
 		/// <remarks>
 		/// Nie jest sprawdzane, czy <see cref="StartTime"/> &lt; <see cref="EndTime"/>.
 		/// </remarks>
-		public DateTime StartTime { get; set; }
+		public LocalTime StartTime { get; set; }
 
 		/// <summary>
 		/// Pobiera lub zmienia godzinę zakończenia zajęć.
 		/// </summary>
-		public DateTime EndTime { get; set; }
+		public LocalTime EndTime { get; set; }
 
 		/// <summary>
 		/// Pobiera lub zmienia krótki opis zajęć.

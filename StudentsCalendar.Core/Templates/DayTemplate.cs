@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using NodaTime;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -8,12 +8,12 @@ namespace StudentsCalendar.Core.Templates
 	/// </summary>
 	public sealed class DayTemplate
 	{
-		private DayOfWeek _DayOfWeek;
+		private IsoDayOfWeek _DayOfWeek;
 
 		/// <summary>
 		/// Pobiera dzień tygodnia, który dany szablon opisuje.
 		/// </summary>
-		public DayOfWeek DayOfWeek
+		public IsoDayOfWeek DayOfWeek
 		{
 			get { return this._DayOfWeek; }
 			set { this._DayOfWeek = value; }
@@ -30,7 +30,11 @@ namespace StudentsCalendar.Core.Templates
 		/// </summary>
 		public string Notes { get; set; }
 
-		public DayTemplate(DayOfWeek dayOfWeek)
+		/// <summary>
+		/// Inicjalizuje szablon dzienny na konkretny dzień tygodnia.
+		/// </summary>
+		/// <param name="dayOfWeek"></param>
+		public DayTemplate(IsoDayOfWeek dayOfWeek)
 		{
 			this._DayOfWeek = dayOfWeek;
 		}

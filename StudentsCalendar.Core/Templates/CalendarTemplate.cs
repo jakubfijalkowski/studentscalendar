@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NodaTime;
 
 namespace StudentsCalendar.Core.Templates
 {
@@ -15,11 +15,11 @@ namespace StudentsCalendar.Core.Templates
 		/// <summary>
 		/// Pobiera lub zmienia początkową datę aktywności kalendarza.
 		/// </summary>
-		public DateTime StartDate { get; set; }
+		public LocalDate StartDate { get; set; }
 
 		/// <summary>
 		/// Pobiera lub zmienia końcową datę aktywności kalendarza.
 		/// </summary>
-		public DateTime EndDate { get; set; }
+		public LocalDate EndDate { get; set; }
 	}
 }
