@@ -34,6 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpans\IActivitySpan.cs" />
+    <Compile Include="ActivitySpans\IWeekActivitySpan.cs" />
     <Compile Include="Extensions\IsoDayOfWeekExtension.cs" />
     <Compile Include="Finals\FinalCalendar.cs" />
     <Compile Include="Finals\FinalClasses.cs" />
@@ -41,7 +43,6 @@
     <Compile Include="Finals\FinalLecturer.cs" />
     <Compile Include="Finals\FinalLocation.cs" />
     <Compile Include="Finals\FinalWeek.cs" />
-    <Compile Include="IActivitySpan.cs" />
     <Compile Include="Intermediates\IntermediateCalendar.cs" />
     <Compile Include="Intermediates\IntermediateClasses.cs" />
     <Compile Include="Intermediates\IntermediateDay.cs" />

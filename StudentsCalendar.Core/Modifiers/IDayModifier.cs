@@ -1,4 +1,5 @@
-﻿using StudentsCalendar.Core.Intermediates;
+﻿using StudentsCalendar.Core.ActivitySpans;
+using StudentsCalendar.Core.Intermediates;
 
 namespace StudentsCalendar.Core.Modifiers
 {
