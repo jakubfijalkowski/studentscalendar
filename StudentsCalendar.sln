@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsCalendar.Desktop", "StudentsCalendar.Desktop\StudentsCalendar.Desktop.csproj", "{761221FF-3034-45EE-91E3-4DE0C6F08791}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsCalendar.Core", "StudentsCalendar.Core\StudentsCalendar.Core.csproj", "{37400B0A-8081-4A43-9812-CCBE1599FD55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{761221FF-3034-45EE-91E3-4DE0C6F08791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{761221FF-3034-45EE-91E3-4DE0C6F08791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{761221FF-3034-45EE-91E3-4DE0C6F08791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{761221FF-3034-45EE-91E3-4DE0C6F08791}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
