@@ -40,7 +40,7 @@ namespace StudentsCalendar.Core.Templates
 				Lecturer = CreateLecturer(),
 				Location = CreateLocation(),
 				Notes = string.Empty,
-				Modifier = new List<IClassesModifier>()
+				Modifiers = new List<IClassesModifier>()
 			};
 		}
 

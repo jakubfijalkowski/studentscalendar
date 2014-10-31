@@ -17,8 +17,13 @@ namespace StudentsCalendar.Core.Modifiers
 		/// <summary>
 		/// Aplikuje modyfikator na danych.
 		/// </summary>
+		/// <remarks>
+		/// Metoda może pracować na danych wejściowych i zwracać obiekt przekazany
+		/// jako parametr.
+		/// </remarks>
 		/// <param name="data">Zajęcia, na którym modyfikator powinien pracować.</param>
 		/// <param name="context">Kontekst procesu generowania.</param>
-		void Apply(IntermediateClasses data, GenerationContext context);
+		/// <returns>Zmodyfikowany obiekt -lub- <c>null</c>, gdy dane zajęcia nie powinny zostać wygenerowane.</returns>
+		IntermediateClasses Apply(IntermediateClasses data, GenerationContext context);
 	}
 }

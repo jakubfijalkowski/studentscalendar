@@ -50,6 +50,6 @@ namespace StudentsCalendar.Core.Templates
 		/// <summary>
 		/// Lista modyfikatorów przypisanych do zajęć.
 		/// </summary>
-		public IList<IClassesModifier> Modifier { get; set; }
+		public IList<IClassesModifier> Modifiers { get; set; }
 	}
 }

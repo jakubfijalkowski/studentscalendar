@@ -18,6 +18,6 @@ namespace StudentsCalendar.Core
 		/// <param name="template">Szablon dnia.</param>
 		/// <param name="context">Kontekst procesu.</param>
 		/// <returns></returns>
-		IntermediateDay Generate(LocalDate date, DayTemplate template);
+		IntermediateDay Generate(LocalDate date, DayTemplate template, GenerationContext context);
 	}
 }
