@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpans\FullActivitySpan.cs" />
     <Compile Include="ActivitySpans\IActivitySpan.cs" />
     <Compile Include="ActivitySpans\IWeekActivitySpan.cs" />
     <Compile Include="Extensions\IsoDayOfWeekExtension.cs" />
