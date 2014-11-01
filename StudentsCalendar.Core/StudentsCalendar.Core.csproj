@@ -54,6 +54,7 @@
     <Compile Include="GenerationContext.cs" />
     <Compile Include="Generation\ICalendarFinalizer.cs" />
     <Compile Include="Generation\ICalendarGenerator.cs" />
+    <Compile Include="Helpers\RelativeDate.cs" />
     <Compile Include="ICalendarEngine.cs" />
     <Compile Include="Generation\IWeekGenerator.cs" />
     <Compile Include="Generation\IDayGenerator.cs" />

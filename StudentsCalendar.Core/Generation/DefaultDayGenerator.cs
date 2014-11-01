@@ -13,16 +13,17 @@ namespace StudentsCalendar.Core.Generation
 		: IDayGenerator
 	{
 		/// <inheritdoc />
-		public IntermediateDay Generate(LocalDate date, DayTemplate template, GenerationContext context)
+		public IntermediateDay Generate(LocalDate dayDate, DayTemplate template, GenerationContext context)
 		{
-			var intermediate = new IntermediateDay(date)
+			var intermediate = new IntermediateDay(dayDate)
 			{
 				Notes = template.Notes,
-				Classes = template.Classes.Select(c => context.ClassesGenerator.Generate(date, c, context)).Where(c => c != null).ToList()
+				Classes = template.Classes.Select(c => context.ClassesGenerator.Generate(dayDate, c, context)).Where(c => c != null).ToList()
 			};
+			var baseDate = intermediate.CalculateBaseDateWith(context);
 			foreach (var modifier in template.Modifiers)
 			{
-				if (modifier.ActivitySpan.IsActive(date))
+				if (modifier.ActivitySpan.IsActive(baseDate, dayDate))
 				{
 					intermediate = modifier.Apply(intermediate, context);
 				}

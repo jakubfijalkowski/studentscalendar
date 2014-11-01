@@ -13,15 +13,16 @@ namespace StudentsCalendar.Core.Generation
 		: IWeekGenerator
 	{
 		/// <inheritdoc />
-		public IntermediateWeek Generate(LocalDate baseDate, WeekTemplate template, GenerationContext context)
+		public IntermediateWeek Generate(LocalDate weekDate, WeekTemplate template, GenerationContext context)
 		{
-			var intermediate = new IntermediateWeek(baseDate)
+			var intermediate = new IntermediateWeek(weekDate)
 			{
-				Days = template.Days.Select(d => context.DayGenerator.Generate(baseDate.PlusDays(d.DayOfWeek.ToIndex()), d, context)).ToArray()
+				Days = template.Days.Select(d => context.DayGenerator.Generate(weekDate.PlusDays(d.DayOfWeek.ToIndex()), d, context)).ToArray()
 			};
+			var baseDate = intermediate.CalculateBaseDateWith(context);
 			foreach (var modifier in template.Modifiers)
 			{
-				if (modifier.ActivitySpan.IsWeekActive(baseDate))
+				if (modifier.ActivitySpan.IsWeekActive(baseDate, weekDate))
 				{
 					intermediate = modifier.Apply(intermediate, context);
 				}

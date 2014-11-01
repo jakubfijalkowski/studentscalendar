@@ -12,12 +12,12 @@ namespace StudentsCalendar.Core.Generation
 		: IClassesGenerator
 	{
 		/// <inheritdoc />
-		public IntermediateClasses Generate(LocalDate date, ClassesTemplate template, GenerationContext context)
+		public IntermediateClasses Generate(LocalDate classesDate, ClassesTemplate template, GenerationContext context)
 		{
 			var intermediate = new IntermediateClasses
 			{
-				StartDate = date.At(template.StartTime),
-				EndDate = date.At(template.EndTime),
+				StartDate = classesDate.At(template.StartTime),
+				EndDate = classesDate.At(template.EndTime),
 				ShortName = template.ShortName,
 				FullName = template.FullName,
 				Notes = template.Notes,
@@ -34,9 +34,10 @@ namespace StudentsCalendar.Core.Generation
 					Room = template.Location.Room
 				}
 			};
+			var baseDate = intermediate.CalculateBaseDateWith(context);
 			foreach (var mod in template.Modifiers)
 			{
-				if (mod.ActivitySpan.IsActive(date))
+				if (mod.ActivitySpan.IsActive(baseDate, classesDate))
 				{
 					intermediate = mod.Apply(intermediate, context);
 					if (intermediate == null)

@@ -9,13 +9,13 @@ namespace StudentsCalendar.Core.ActivitySpans
 		: IActivitySpan, IWeekActivitySpan
 	{
 		/// <inheritdoc />
-		public bool IsActive(LocalDate date)
+		public bool IsActive(LocalDate baseDate, LocalDate date)
 		{
 			return true;
 		}
 
 		/// <inheritdoc />
-		public bool IsWeekActive(LocalDate date)
+		public bool IsWeekActive(LocalDate baseDate, LocalDate date)
 		{
 			return true;
 		}
