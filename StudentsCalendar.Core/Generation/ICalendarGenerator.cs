@@ -1,7 +1,7 @@
 ﻿using StudentsCalendar.Core.Intermediates;
 using StudentsCalendar.Core.Templates;
 
-namespace StudentsCalendar.Core
+namespace StudentsCalendar.Core.Generation
 {
 
 	/// <summary>

@@ -1,4 +1,5 @@
 ﻿using NodaTime;
+using StudentsCalendar.Core.Generation;
 
 namespace StudentsCalendar.Core
 {

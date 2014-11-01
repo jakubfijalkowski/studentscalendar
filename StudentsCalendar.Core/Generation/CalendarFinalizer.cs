@@ -3,7 +3,7 @@ using System.Linq;
 using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Intermediates;
 
-namespace StudentsCalendar.Core
+namespace StudentsCalendar.Core.Generation
 {
 	/// <summary>
 	/// Domyślna implementacja finalizera.

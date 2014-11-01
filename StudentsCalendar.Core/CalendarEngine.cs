@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using NodaTime;
+using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Intermediates;
 using StudentsCalendar.Core.Templates;
 
