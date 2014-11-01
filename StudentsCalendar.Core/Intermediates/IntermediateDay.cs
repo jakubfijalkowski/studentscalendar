@@ -21,7 +21,7 @@ namespace StudentsCalendar.Core.Intermediates
 		/// <summary>
 		/// Pobiera lub zmienia listę zajęć danego dnia.
 		/// </summary>
-		public IList<IntermediateClasses> Classes { get; set; }
+		public List<IntermediateClasses> Classes { get; set; }
 
 		/// <summary>
 		/// Pobiera lub zmienia notatki.
