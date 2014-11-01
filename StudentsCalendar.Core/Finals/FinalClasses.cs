@@ -10,7 +10,7 @@ namespace StudentsCalendar.Core.Finals
 		private readonly LocalDateTime _StartDate;
 		private readonly LocalDateTime _EndDate;
 		private readonly string _ShortName;
-		private readonly string _LongName;
+		private readonly string _FullName;
 		private readonly FinalLecturer _Lecturer;
 		private readonly FinalLocation _Location;
 		private readonly string _Notes;
@@ -42,9 +42,9 @@ namespace StudentsCalendar.Core.Finals
 		/// <summary>
 		/// Pobiera pełną nazwę.
 		/// </summary>
-		public string LongName
+		public string FullName
 		{
-			get { return this._LongName; }
+			get { return this._FullName; }
 		}
 
 		/// <summary>
@@ -77,20 +77,20 @@ namespace StudentsCalendar.Core.Finals
 		/// <param name="startDate"></param>
 		/// <param name="endDate"></param>
 		/// <param name="shortName"></param>
-		/// <param name="longName"></param>
+		/// <param name="fullName"></param>
 		/// <param name="lecturer"></param>
 		/// <param name="location"></param>
 		/// <param name="notes"></param>
 		public FinalClasses(
 			LocalDateTime startDate, LocalDateTime endDate,
-			string shortName, string longName,
+			string shortName, string fullName,
 			FinalLecturer lecturer, FinalLocation location,
 			string notes)
 		{
 			this._StartDate = startDate;
 			this._EndDate = endDate;
 			this._ShortName = shortName;
-			this._LongName = longName;
+			this._FullName = fullName;
 			this._Lecturer = lecturer;
 			this._Location = location;
 			this._Notes = notes;

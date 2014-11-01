@@ -8,7 +8,7 @@ namespace StudentsCalendar.Core.Intermediates
 	/// </summary>
 	public sealed class IntermediateWeek
 	{
-		private readonly LocalDate _StartDate;
+		private readonly LocalDate _Date;
 
 		/// <summary>
 		/// Pobiera datę tygodnia, który dany obiekt opisuje.
@@ -16,9 +16,9 @@ namespace StudentsCalendar.Core.Intermediates
 		/// <remarks>
 		/// Data wskazuje na poniedziałek w danym tygodniu.
 		/// </remarks>
-		public LocalDate StartDate
+		public LocalDate Date
 		{
-			get { return this._StartDate; }
+			get { return this._Date; }
 		}
 
 		/// <summary>
@@ -32,10 +32,10 @@ namespace StudentsCalendar.Core.Intermediates
 		/// <summary>
 		/// Inicjalizuje obiekt, ustawiając tydzień, który opisuje.
 		/// </summary>
-		/// <param name="startDate"></param>
-		public IntermediateWeek(LocalDate startDate)
+		/// <param name="date"></param>
+		public IntermediateWeek(LocalDate date)
 		{
-			this._StartDate = startDate;
+			this._Date = date;
 		}
 	}
 }
