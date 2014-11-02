@@ -1,5 +1,6 @@
 ﻿using NodaTime;
 using StudentsCalendar.Core.Generation;
+using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core
 {
@@ -12,6 +13,8 @@ namespace StudentsCalendar.Core
 		private readonly IDayGenerator _DayGenerator;
 		private readonly IWeekGenerator _WeekGenerator;
 		private readonly ICalendarGenerator _CalendarGenerator;
+
+		private readonly CalendarTemplate _Template;
 
 		private readonly LocalDate _StartDate;
 		private readonly LocalDate _EndDate;
@@ -49,6 +52,14 @@ namespace StudentsCalendar.Core
 		}
 
 		/// <summary>
+		/// Pobiera szablon kalendarza, na którym operuje proces generowania. 
+		/// </summary>
+		public CalendarTemplate Template
+		{
+			get { return this._Template; }
+		}
+
+		/// <summary>
 		/// Pobiera datę rozpoczęcia aktywności kalendarza.
 		/// </summary>
 		/// <remarks>
@@ -82,12 +93,14 @@ namespace StudentsCalendar.Core
 		/// <param name="calendarGenerator"></param>
 		public GenerationContext(IClassesGenerator classesGenerator, IDayGenerator dayGenerator,
 			IWeekGenerator weekGenerator, ICalendarGenerator calendarGenerator,
-			LocalDate startDate, LocalDate endDate)
+			CalendarTemplate template, LocalDate startDate, LocalDate endDate)
 		{
 			this._ClassesGenerator = classesGenerator;
 			this._DayGenerator = dayGenerator;
 			this._WeekGenerator = weekGenerator;
 			this._CalendarGenerator = calendarGenerator;
+
+			this._Template = template;
 			this._StartDate = startDate;
 			this._EndDate = endDate;
 		}

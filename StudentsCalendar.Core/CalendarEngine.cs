@@ -61,10 +61,11 @@ namespace StudentsCalendar.Core
 			{
 				endDate = endDate.Next(IsoDayOfWeek.Sunday);
 			}
+
 			return new GenerationContext(
 				this.ClassesGenerator, this.DayGenerator,
 				this.WeekGenerator, this.CalendarGenerator,
-				startDate, endDate);
+				template, startDate, endDate);
 		}
 
 		private static void TrimExcess(CalendarTemplate template, IntermediateCalendar calendar)
