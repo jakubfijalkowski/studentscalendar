@@ -6,12 +6,12 @@
 	public sealed class IntermediateLecturer
 	{
 		/// <summary>
-		/// Pobiera lub zmienia imię wykładowcy.
+		/// Pobiera lub zmienia imię prowadzącego.
 		/// </summary>
 		public string FirstName { get; set; }
 
 		/// <summary>
-		/// Pobiera lub zmienia nazwisko wykładowcy.
+		/// Pobiera lub zmienia nazwisko prowadzącego.
 		/// </summary>
 		public string LastName { get; set; }
 

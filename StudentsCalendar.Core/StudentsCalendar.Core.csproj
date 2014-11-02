@@ -74,10 +74,15 @@
     <Compile Include="Intermediates\IntermediateLecturer.cs" />
     <Compile Include="Intermediates\IntermediateLocation.cs" />
     <Compile Include="Intermediates\IntermediateWeek.cs" />
+    <Compile Include="Modifiers\AddTestToClasses.cs" />
+    <Compile Include="Modifiers\CancelClasses.cs" />
     <Compile Include="Modifiers\ICalendarModifier.cs" />
     <Compile Include="Modifiers\IDayModifier.cs" />
     <Compile Include="Modifiers\IClassesModifier.cs" />
     <Compile Include="Modifiers\IWeekModifier.cs" />
+    <Compile Include="Modifiers\ModifyClassesInfo.cs" />
+    <Compile Include="Modifiers\ModifyLocationInfo.cs" />
+    <Compile Include="Modifiers\ModifyLecturerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Templates\CalendarTemplate.cs" />
     <Compile Include="Templates\DayTemplate.cs" />
