@@ -37,6 +37,7 @@
     <Compile Include="ActivitySpans\DateRangeActivitySpan.cs" />
     <Compile Include="ActivitySpans\EveryXMonthsActivitySpan.cs" />
     <Compile Include="ActivitySpans\EveryXWeeksActivitySpan.cs" />
+    <Compile Include="ActivitySpans\EmptyActivitySpan.cs" />
     <Compile Include="ActivitySpans\FullActivitySpan.cs" />
     <Compile Include="ActivitySpans\IActivitySpan.cs" />
     <Compile Include="ActivitySpans\IWeekActivitySpan.cs" />

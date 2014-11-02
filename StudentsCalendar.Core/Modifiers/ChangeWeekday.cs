@@ -19,6 +19,15 @@ namespace StudentsCalendar.Core.Modifiers
 		/// <inheritdoc />
 		public IActivitySpan ActivitySpan { get; set; }
 
+		/// <summary>
+		/// Inicjalizuje obiekt domyślnymi wartościami.
+		/// </summary>
+		public ChangeWeekday()
+		{
+			this.DayOfWeek = IsoDayOfWeek.Monday;
+			this.ActivitySpan = new EmptyActivitySpan();
+		}
+
 		/// <inheritdoc />
 		public IntermediateDay Apply(IntermediateDay data, GenerationContext context)
 		{

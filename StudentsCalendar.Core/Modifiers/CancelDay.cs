@@ -12,6 +12,14 @@ namespace StudentsCalendar.Core.Modifiers
 		/// <inheritdoc />
 		public IActivitySpan ActivitySpan { get; set; }
 
+		/// <summary>
+		/// Inicjalizuje obiekt domyślnymi wartościami.
+		/// </summary>
+		public CancelDay()
+		{
+			this.ActivitySpan = new EmptyActivitySpan();
+		}
+
 		/// <inheritdoc />
 		public IntermediateDay Apply(IntermediateDay data, GenerationContext context)
 		{

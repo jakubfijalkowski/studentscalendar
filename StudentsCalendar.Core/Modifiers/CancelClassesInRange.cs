@@ -20,6 +20,15 @@ namespace StudentsCalendar.Core.Modifiers
 		/// </summary>
 		public LocalDate EndDate { get; set; }
 
+		/// <summary>
+		/// Inicjalizuje obiekt domyślnymi wartościami.
+		/// </summary>
+		public CancelClassesInRange()
+		{
+			this.StartDate = DateHelper.Today;
+			this.EndDate = DateHelper.Today;
+		}
+
 		/// <inheritdoc />
 		public IntermediateCalendar Apply(IntermediateCalendar data, GenerationContext context)
 		{

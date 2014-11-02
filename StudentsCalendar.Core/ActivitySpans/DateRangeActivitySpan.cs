@@ -25,7 +25,6 @@ namespace StudentsCalendar.Core.ActivitySpans
 			set { this._Beginning = value < this.End ? value : this.End; }
 		}
 
-
 		/// <summary>
 		/// Pobiera lub zmienia datę końca aktywności.
 		/// </summary>
@@ -33,6 +32,15 @@ namespace StudentsCalendar.Core.ActivitySpans
 		{
 			get { return this._End; }
 			set { this._End = value > this.Beginning ? value : this.Beginning; }
+		}
+
+		/// <summary>
+		/// Inicjalizuje obiekt domyślnymi wartościami.
+		/// </summary>
+		public DateRangeActivitySpan()
+		{
+			this.Beginning = DateHelper.Today;
+			this.End = DateHelper.Today;
 		}
 
 		/// <inheritdoc />
