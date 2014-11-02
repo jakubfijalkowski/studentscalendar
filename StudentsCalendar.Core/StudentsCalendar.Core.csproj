@@ -76,6 +76,7 @@
     <Compile Include="Intermediates\IntermediateWeek.cs" />
     <Compile Include="Modifiers\AddTestToClasses.cs" />
     <Compile Include="Modifiers\CancelClasses.cs" />
+    <Compile Include="Modifiers\CancelClassesInRange.cs" />
     <Compile Include="Modifiers\CancelWeek.cs" />
     <Compile Include="Modifiers\CancelDay.cs" />
     <Compile Include="Modifiers\ChangeWeekday.cs" />
