@@ -78,6 +78,7 @@
     <Compile Include="Modifiers\CancelClasses.cs" />
     <Compile Include="Modifiers\CancelWeek.cs" />
     <Compile Include="Modifiers\CancelDay.cs" />
+    <Compile Include="Modifiers\ChangeWeekday.cs" />
     <Compile Include="Modifiers\ICalendarModifier.cs" />
     <Compile Include="Modifiers\IDayModifier.cs" />
     <Compile Include="Modifiers\IClassesModifier.cs" />
