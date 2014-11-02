@@ -34,9 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpans\DateRangeActivitySpan.cs" />
+    <Compile Include="ActivitySpans\EveryXMonthsActivitySpan.cs" />
+    <Compile Include="ActivitySpans\EveryXWeeksActivitySpan.cs" />
     <Compile Include="ActivitySpans\FullActivitySpan.cs" />
     <Compile Include="ActivitySpans\IActivitySpan.cs" />
     <Compile Include="ActivitySpans\IWeekActivitySpan.cs" />
+    <Compile Include="ActivitySpans\SpecificWeeksActivitySpan.cs" />
+    <Compile Include="ActivitySpans\SpecificDatesActivitySpan.cs" />
+    <Compile Include="ActivitySpans\ActivitySpanProduct.cs" />
+    <Compile Include="ActivitySpans\WeekActivitySpanProduct.cs" />
+    <Compile Include="ActivitySpans\WeekActivitySpanSum.cs" />
+    <Compile Include="ActivitySpans\ActivitySpanSum.cs" />
     <Compile Include="CalendarEngine.cs" />
     <Compile Include="Generation\CalendarFinalizer.cs" />
     <Compile Include="Generation\DefaultCalendarGenerator.cs" />
