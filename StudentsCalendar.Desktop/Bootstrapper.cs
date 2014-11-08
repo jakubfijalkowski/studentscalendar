@@ -11,7 +11,7 @@ namespace StudentsCalendar.Desktop
 	/// Bootstrapper wiążący Caliburn.Micro, Autofaca i MahApps.Metro.
 	/// </summary>
 	sealed class Bootstrapper
-		: CaliburnMetroAutofacBootstrapper<MainViewModel>
+		: CaliburnMetroAutofacBootstrapper<IShell>
 	{
 		protected override void ConfigureContainer(Autofac.ContainerBuilder builder)
 		{
@@ -20,8 +20,11 @@ namespace StudentsCalendar.Desktop
 					(c.IsInNamespaceOf<IActivitySpan>() || c.IsInNamespaceOf<IClassesModifier>() || c == typeof(CalendarEngine)))
 				.AsImplementedInterfaces().AsSelf();
 
-			builder.RegisterAssemblyTypes(typeof(MainViewModel).Assembly)
+			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"));
+
+			builder.RegisterType<ShellViewModel>().As<IShell>();
+			builder.RegisterType<TabsViewModel>().AsSelf();
 
 			base.ConfigureContainer(builder);
 		}
