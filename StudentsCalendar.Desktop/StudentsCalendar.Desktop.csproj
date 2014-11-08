@@ -84,6 +84,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="WindowsView.xaml.cs">
       <DependentUpon>WindowsView.xaml</DependentUpon>
     </Compile>
