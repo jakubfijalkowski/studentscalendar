@@ -23,8 +23,9 @@ namespace StudentsCalendar.Desktop
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"));
 
-			builder.RegisterType<ShellViewModel>().As<IShell>();
-			builder.RegisterType<TabsViewModel>().AsSelf();
+			builder.RegisterAssemblyTypes(typeof(ShellViewModel).Assembly)
+				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"))
+				.AsImplementedInterfaces().AsSelf();
 
 			base.ConfigureContainer(builder);
 		}

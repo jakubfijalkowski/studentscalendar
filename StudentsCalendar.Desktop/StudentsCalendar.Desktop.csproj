@@ -84,6 +84,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="WindowsView.xaml.cs">
+      <DependentUpon>WindowsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsViewModel.cs" />
     <Compile Include="TabsView.xaml.cs">
       <DependentUpon>TabsView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +150,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TabsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WindowsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

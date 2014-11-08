@@ -13,6 +13,7 @@
 		/// "okno", które przykrywa główne okno.
 		/// </remarks>
 		/// <typeparam name="TViewModel"></typeparam>
-		void NavigateTo<TViewModel>();
+		/// <returns>Utworzony ViewModel.</returns>
+		TViewModel NavigateTo<TViewModel>();
 	}
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using StudentsCalendar.UI;
 
 namespace StudentsCalendar.Desktop
@@ -21,18 +20,30 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <summary>
+		/// Pobiera kontrolkę obsługującą okna aplikacji.
+		/// </summary>
+		public WindowsViewModel WindowsControl
+		{
+			get { return (WindowsViewModel)this.Items[1]; }
+		}
+
+		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
 		/// <param name="tabs"></param>
-		public ShellViewModel(TabsViewModel tabs)
+		/// <param name="windows"></param>
+		public ShellViewModel(TabsViewModel tabs, WindowsViewModel windows)
 		{
 			this.ActivateItem(tabs);
+			this.ActivateItem(windows);
 		}
 
 		/// <inheritdoc />
-		public void NavigateTo<TViewModel>()
+		public TViewModel NavigateTo<TViewModel>()
 		{
-			throw new NotImplementedException();
+			var model = IoC.Get<TViewModel>();
+			this.WindowsControl.ActivateItem(model);
+			return model;
 		}
 	}
 }
