@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsCalendar.Desktop", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsCalendar.Core", "StudentsCalendar.Core\StudentsCalendar.Core.csproj", "{37400B0A-8081-4A43-9812-CCBE1599FD55}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentsCalendar.UI", "StudentsCalendar.UI\StudentsCalendar.UI.csproj", "{FACCF704-EB2C-4463-9831-F42B5C766374}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37400B0A-8081-4A43-9812-CCBE1599FD55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FACCF704-EB2C-4463-9831-F42B5C766374}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FACCF704-EB2C-4463-9831-F42B5C766374}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FACCF704-EB2C-4463-9831-F42B5C766374}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FACCF704-EB2C-4463-9831-F42B5C766374}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
