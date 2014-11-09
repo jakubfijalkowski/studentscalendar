@@ -2,7 +2,7 @@
 using NodaTime;
 using StudentsCalendar.Core.Finals;
 
-namespace StudentsCalendar.UI
+namespace StudentsCalendar.UI.Services
 {
 	/// <summary>
 	/// Klasa odpowiadająca za zaaranżowanie układu dnia tak, by żadne dwa zajęcia
@@ -17,7 +17,7 @@ namespace StudentsCalendar.UI
 		/// Układa zajęcia tak, by można je było bez przeszkód wyświetlić.
 		/// </summary>
 		/// <param name="day"></param>
-		DayArrangeResults Arrange(FinalDay day);
+		ArrangedDay Arrange(FinalDay day);
 
 		/// <summary>
 		/// Układa tygodniowy rozkład zajęć tak, by można go było bez przeszkód
@@ -25,7 +25,7 @@ namespace StudentsCalendar.UI
 		/// </summary>
 		/// <param name="week"></param>
 		/// <returns></returns>
-		WeekArrangeResults Arrange(FinalWeek week);
+		ArrangedWeek Arrange(FinalWeek week);
 	}
 
 	/// <summary>
@@ -78,7 +78,7 @@ namespace StudentsCalendar.UI
 	/// <summary>
 	/// Opis pełnego dnia.
 	/// </summary>
-	public sealed class DayArrangeResults
+	public sealed class ArrangedDay
 	{
 		private readonly FinalDay _Day;
 		private readonly IReadOnlyList<LocalTime> _Slots;
@@ -114,7 +114,7 @@ namespace StudentsCalendar.UI
 		/// <param name="day"></param>
 		/// <param name="slots"></param>
 		/// <param name="columns"></param>
-		public DayArrangeResults(FinalDay day, IReadOnlyList<LocalTime> slots, IReadOnlyList<IReadOnlyList<ArrangedClasses>> columns)
+		public ArrangedDay(FinalDay day, IReadOnlyList<LocalTime> slots, IReadOnlyList<IReadOnlyList<ArrangedClasses>> columns)
 		{
 			this._Day = day;
 			this._Slots = slots;
@@ -125,10 +125,10 @@ namespace StudentsCalendar.UI
 	/// <summary>
 	/// Opis pełnego tygodnia.
 	/// </summary>
-	public sealed class WeekArrangeResults
+	public sealed class ArrangedWeek
 	{
 		private readonly FinalWeek _Week;
-		private readonly IReadOnlyList<DayArrangeResults> _Days;
+		private readonly IReadOnlyList<ArrangedDay> _Days;
 
 		/// <summary>
 		/// Pobiera dane tygodnia, któru opisuje.
@@ -144,7 +144,7 @@ namespace StudentsCalendar.UI
 		/// <remarks>
 		/// Konwencja dostępu taka sama jak w <see cref="FinalWeek.Days"/>.
 		/// </remarks>
-		public IReadOnlyList<DayArrangeResults> Days
+		public IReadOnlyList<ArrangedDay> Days
 		{
 			get { return this._Days; }
 		}
@@ -154,7 +154,7 @@ namespace StudentsCalendar.UI
 		/// </summary>
 		/// <param name="week"></param>
 		/// <param name="days"></param>
-		public WeekArrangeResults(FinalWeek week, IReadOnlyList<DayArrangeResults> days)
+		public ArrangedWeek(FinalWeek week, IReadOnlyList<ArrangedDay> days)
 		{
 			this._Week = week;
 			this._Days = days;

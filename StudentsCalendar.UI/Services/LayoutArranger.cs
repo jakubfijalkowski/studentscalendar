@@ -4,7 +4,7 @@ using NodaTime;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.Finals;
 
-namespace StudentsCalendar.UI
+namespace StudentsCalendar.UI.Services
 {
 	/// <summary>
 	/// Domyślna implementacja.
@@ -16,7 +16,7 @@ namespace StudentsCalendar.UI
 		private static readonly LocalTime MinEndTime = new LocalTime(16, 0);
 
 		/// <inheritdoc />
-		public DayArrangeResults Arrange(FinalDay day)
+		public ArrangedDay Arrange(FinalDay day)
 		{
 			var startTime = DateHelper.Min(day.Classes.First().StartDate.TimeOfDay, MinStartTime);
 			var endTime = DateHelper.Max(day.Classes.Last().EndDate.TimeOfDay, MinEndTime);
@@ -24,18 +24,18 @@ namespace StudentsCalendar.UI
 		}
 
 		/// <inheritdoc />
-		public WeekArrangeResults Arrange(FinalWeek week)
+		public ArrangedWeek Arrange(FinalWeek week)
 		{
 			var startTime = DateHelper.Min(week.Days.Select(d => d.Classes.First()).Min(c => c.StartDate.TimeOfDay), MinStartTime);
 			var endTime = DateHelper.Max(week.Days.Select(d => d.Classes.Last()).Max(c => c.EndDate.TimeOfDay), MinEndTime);
-			return new WeekArrangeResults(week, week.Days.Select(d => ArrangeDay(d, startTime, endTime)).ToArray());
+			return new ArrangedWeek(week, week.Days.Select(d => ArrangeDay(d, startTime, endTime)).ToArray());
 		}
 
-		private static DayArrangeResults ArrangeDay(FinalDay day, LocalTime startTime, LocalTime endTime)
+		private static ArrangedDay ArrangeDay(FinalDay day, LocalTime startTime, LocalTime endTime)
 		{
 			var slots = GenerateSlots(startTime, endTime);
 			var columns = DivideClasses(day).Select(c => ArrangeColumn(c, startTime)).ToArray();
-			return new DayArrangeResults(day, slots, columns);
+			return new ArrangedDay(day, slots, columns);
 		}
 
 		private static List<List<FinalClasses>> DivideClasses(FinalDay day)

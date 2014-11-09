@@ -21,7 +21,8 @@ namespace StudentsCalendar.Desktop
 				.AsImplementedInterfaces().AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
-				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"));
+				.Where(c => !c.IsAbstract)
+				.AsImplementedInterfaces().AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(ShellViewModel).Assembly)
 				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"))
