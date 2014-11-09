@@ -3,7 +3,9 @@ using Caliburn.Metro.Autofac;
 using Caliburn.Micro;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.ActivitySpans;
+using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Modifiers;
+using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI;
 
 namespace StudentsCalendar.Desktop
@@ -25,7 +27,9 @@ namespace StudentsCalendar.Desktop
 		{
 			builder.RegisterAssemblyTypes(typeof(CalendarEngine).Assembly)
 				.Where(c => !c.IsAbstract &&
-					(c.IsInNamespaceOf<IActivitySpan>() || c.IsInNamespaceOf<IClassesModifier>() || c == typeof(CalendarEngine)))
+					(c.IsInNamespaceOf<IActivitySpan>() || c.IsInNamespaceOf<IClassesModifier>() ||
+					 c.IsInNamespaceOf<ICalendarGenerator>() || c.IsInNamespaceOf<Calendar>() ||
+					 c == typeof(CalendarEngine)))
 				.AsImplementedInterfaces().AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
@@ -33,7 +37,7 @@ namespace StudentsCalendar.Desktop
 				.AsImplementedInterfaces().AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(ShellViewModel).Assembly)
-				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"))
+				.Where(c => !c.IsAbstract && (c.Name.EndsWith("ViewModel") || c.IsInNamespaceOf<Platform.SampleStorage>()))
 				.AsImplementedInterfaces().AsSelf();
 
 			base.ConfigureContainer(builder);

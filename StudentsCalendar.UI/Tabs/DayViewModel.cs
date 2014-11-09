@@ -1,7 +1,8 @@
-﻿using Caliburn.Micro;
-using NodaTime;
+﻿using System.Linq;
+using System.Threading.Tasks;
+using Caliburn.Micro;
 using StudentsCalendar.Core;
-using StudentsCalendar.Core.Finals;
+using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.UI.Tabs
@@ -12,7 +13,11 @@ namespace StudentsCalendar.UI.Tabs
 	public sealed class DayViewModel
 		: Screen, IMainTab
 	{
+		private readonly ICalendarEngine CalendarEngine;
 		private readonly ILayoutArranger LayoutArranger;
+		private readonly IContentProvider ContentProvider;
+
+		private ArrangedDay _DayLayout;
 
 		/// <inheritdoc />
 		public int Priority
@@ -23,28 +28,37 @@ namespace StudentsCalendar.UI.Tabs
 		/// <summary>
 		/// Pobiera ułożony layout dzienny.
 		/// </summary>
-		public ArrangedDay DayLayout { get; private set; }
+		public ArrangedDay DayLayout
+		{
+			get { return this._DayLayout; }
+			set
+			{
+				this._DayLayout = value;
+				this.NotifyOfPropertyChange();
+			}
+		}
+
 
 		/// <summary>
 		/// Inicjalizuje obiekt.
 		/// </summary>
-		public DayViewModel(ILayoutArranger layoutArranger)
+		public DayViewModel(ICalendarEngine calendarEngine, ILayoutArranger layoutArranger, IContentProvider content)
 		{
+			this.CalendarEngine = calendarEngine;
 			this.LayoutArranger = layoutArranger;
+			this.ContentProvider = content;
 
 			this.DisplayName = "Dzień";
 		}
 
-		protected override void OnInitialize()
+		protected override async void OnInitialize()
 		{
 			base.OnInitialize();
 
-			var sampleClasses = new FinalClasses(DateHelper.Today.At(new LocalTime(9, 0)), DateHelper.Today.At(new LocalTime(10, 0)),
-				"MNII", "Metody numeryczne II", new FinalLecturer("Adam", "Grabarski", ""), new FinalLocation("MiNI", "Koszykowa 75", "123"), "");
-			this.DayLayout = this.LayoutArranger.Arrange(new FinalDay(DateHelper.Today, new FinalClasses[]
-				{
-					sampleClasses
-				}, string.Empty));
+			var calendar = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
+			var generated = await Task.Run(() => this.CalendarEngine.Generate(calendar.Template));
+			var day = generated.Calendar.Weeks.SelectMany(w => w.Days).First(d => d.Date >= DateHelper.Today && d.Date.IsoDayOfWeek == NodaTime.IsoDayOfWeek.Wednesday);
+			this.DayLayout = this.LayoutArranger.Arrange(day);
 		}
 	}
 }

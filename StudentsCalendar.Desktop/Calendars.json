@@ -1,0 +1,440 @@
+﻿[
+    {
+        "$type": "StudentsCalendar.Core.Storage.Calendar, StudentsCalendar.Core",
+        "Name": "Przykładowy kalendarz",
+        "Template": {
+            "$type": "StudentsCalendar.Core.Templates.CalendarTemplate, StudentsCalendar.Core",
+            "WeekTemplate": {
+                "$type": "StudentsCalendar.Core.Templates.WeekTemplate, StudentsCalendar.Core",
+                "Days": [
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 1,
+                        "Classes": [
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "11:00:00",
+                                "EndTime": "12:30:00",
+                                "ShortName": "W-F",
+                                "FullName": "Wychowanie fizyczne",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Paweł",
+                                    "LastName": "Cegłowski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "Riviera",
+                                    "Address": "Waryńskiego 12",
+                                    "Room": "Duża"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "14:00:00",
+                                "EndTime": "16:00:00",
+                                "ShortName": "SOP",
+                                "FullName": "Systemy Operacyjne",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Leszek",
+                                    "LastName": "Opalski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "328"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "18:00:00",
+                                "EndTime": "20:00:00",
+                                "ShortName": "SOP lab",
+                                "FullName": "Systemy Operacyjne - laboratorium",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Leszek",
+                                    "LastName": "Opalski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "218"
+                                },
+                                "Notes": "",
+                                "Modifiers": [
+                                    {
+                                        "$type": "StudentsCalendar.Core.Modifiers.CancelClasses, StudentsCalendar.Core",
+                                        "ActivitySpan": {
+                                            "$type": "StudentsCalendar.Core.ActivitySpans.ActivitySpanProduct, StudentsCalendar.Core",
+                                            "Spans": [
+                                                {
+                                                    "$type": "StudentsCalendar.Core.ActivitySpans.DateRangeActivitySpan, StudentsCalendar.Core",
+                                                    "Beginning": "2014-10-20",
+                                                    "End": "2015-02-01"
+                                                },
+                                                {
+                                                    "$type": "StudentsCalendar.Core.ActivitySpans.EveryXWeeksActivitySpan, StudentsCalendar.Core",
+                                                    "Count": 2
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    {
+                                        "$type": "StudentsCalendar.Core.Modifiers.ModifyClassesInfo, StudentsCalendar.Core",
+                                        "StartTime": "16:00:00",
+                                        "EndTime": "18:00:00",
+                                        "ShortName": null,
+                                        "FullName": null,
+                                        "Notes": null,
+                                        "ActivitySpan": {
+                                            "$type": "StudentsCalendar.Core.ActivitySpans.DateRangeActivitySpan, StudentsCalendar.Core",
+                                            "Beginning": "2014-11-09",
+                                            "End": "2014-11-09"
+                                        }
+                                    }
+                                ]
+                            }
+                        ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    },
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 2,
+                        "Classes": [
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "08:00:00",
+                                "EndTime": "10:00:00",
+                                "ShortName": "MDII",
+                                "FullName": "Matematyka Dyskretna II",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Zbigniew",
+                                    "LastName": "Lonc",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "328"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "08:00:00",
+                                "EndTime": "10:00:00",
+                                "ShortName": "MNII lab",
+                                "FullName": "Metody Numeryczne II - Laboratorium",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Adam",
+                                    "LastName": "Grabarski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "217"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "08:00:00",
+                                "EndTime": "10:00:00",
+                                "ShortName": "Ang",
+                                "FullName": "Język angielski",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Anna",
+                                    "LastName": "Krysińska",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "GG",
+                                    "Address": "Plac Politechniki 1",
+                                    "Room": "424"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            }
+                        ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    },
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 3,
+                        "Classes": [
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "09:00:00",
+                                "EndTime": "10:00:00",
+                                "ShortName": "RR",
+                                "FullName": "Równania Różniczkowe",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Sebastian",
+                                    "LastName": "Owczarek",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "329"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "10:00:00",
+                                "EndTime": "12:00:00",
+                                "ShortName": "RR ćw",
+                                "FullName": "Równania Różniczkowe - ćwiczenia",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Sebastian",
+                                    "LastName": "Owczarek",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "310"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "12:00:00",
+                                "EndTime": "14:00:00",
+                                "ShortName": "MDII ćw",
+                                "FullName": "Matematyka Dyskretna II - ćwiczenia",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Angelika",
+                                    "LastName": "Nickgorska",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "214"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "16:30:00",
+                                "EndTime": "18:00:00",
+                                "ShortName": "KP",
+                                "FullName": "Kreacja Prezentacji",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Tomasz",
+                                    "LastName": "Gęsikowski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "328"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            }
+                        ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    },
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 4,
+                        "Classes": [
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "08:00:00",
+                                "EndTime": "10:00:00",
+                                "ShortName": "AiSD",
+                                "FullName": "Algorytmy i Struktury Danych",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Paweł",
+                                    "LastName": "Kotowski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "328"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "10:00:00",
+                                "EndTime": "11:45:00",
+                                "ShortName": "Franc",
+                                "FullName": "Język fancuski",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Anna",
+                                    "LastName": "Leśniewska",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "IŚ",
+                                    "Address": "Nowowiejska 20",
+                                    "Room": "314"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "12:00:00",
+                                "EndTime": "14:00:00",
+                                "ShortName": "MNII",
+                                "FullName": "Metody Numeryczne II",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Adam",
+                                    "LastName": "Grabarski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "329"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "14:00:00",
+                                "EndTime": "16:00:00",
+                                "ShortName": "AiSD ćw",
+                                "FullName": "Algorytmy i Struktury Danych - ćwiczenia",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Paweł",
+                                    "LastName": "Kotowski",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "312"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            }
+                        ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    },
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 5,
+                        "Classes": [
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "10:00:00",
+                                "EndTime": "12:00:00",
+                                "ShortName": "PO",
+                                "FullName": "Programowanie Obiektowe",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Jan",
+                                    "LastName": "Bródka",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "328"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            },
+                            {
+                                "$type": "StudentsCalendar.Core.Templates.ClassesTemplate, StudentsCalendar.Core",
+                                "StartTime": "14:00:00",
+                                "EndTime": "16:00:00",
+                                "ShortName": "PO lab",
+                                "FullName": "Programowanie Obiektowe - laboratorium",
+                                "Lecturer": {
+                                    "$type": "StudentsCalendar.Core.Templates.LecturerTemplate, StudentsCalendar.Core",
+                                    "FirstName": "Jan",
+                                    "LastName": "Bródka",
+                                    "PhoneNumber": ""
+                                },
+                                "Location": {
+                                    "$type": "StudentsCalendar.Core.Templates.LocationTemplate, StudentsCalendar.Core",
+                                    "Name": "MiNI",
+                                    "Address": "Koszykowa 75",
+                                    "Room": "201"
+                                },
+                                "Notes": "",
+                                "Modifiers": [ ]
+                            }
+                        ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    },
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 6,
+                        "Classes": [ ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    },
+                    {
+                        "$type": "StudentsCalendar.Core.Templates.DayTemplate, StudentsCalendar.Core",
+                        "DayOfWeek": 7,
+                        "Classes": [ ],
+                        "Notes": "",
+                        "Modifiers": [ ]
+                    }
+                ],
+                "Modifiers": [ ]
+            },
+            "StartDate": "2014-09-29",
+            "EndDate": "2015-02-01",
+            "Modifiers": [ ]
+        },
+        "IsActive": true
+    }
+]
