@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NodaTime;
 
 namespace StudentsCalendar.Core
@@ -38,6 +39,26 @@ namespace StudentsCalendar.Core
 			{
 				return SystemClock.Instance.Now.InZone(SystemZone).Date;
 			}
+		}
+
+		/// <summary>
+		/// Wybiera minimalną wartość z podanych.
+		/// </summary>
+		/// <param name="dates"></param>
+		/// <returns></returns>
+		public static LocalTime Min(params LocalTime[] dates)
+		{
+			return dates.Min();
+		}
+
+		/// <summary>
+		/// Wybiera maksymalną wartość z podanych.
+		/// </summary>
+		/// <param name="dates"></param>
+		/// <returns></returns>
+		public static LocalTime Max(params LocalTime[] dates)
+		{
+			return dates.Max();
 		}
 
 		private static DateTimeZone RetrieveSystemZone()
