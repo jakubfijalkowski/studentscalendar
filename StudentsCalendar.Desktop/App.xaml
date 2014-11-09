@@ -14,7 +14,13 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
 
-                <ResourceDictionary Source="Styles/Layout.xaml" />
+                <ResourceDictionary Source="Styles/Sizes.xaml" />
+                <ResourceDictionary Source="Styles/Colors.xaml" />
+                <ResourceDictionary Source="Styles/Defaults.xaml" />
+                <ResourceDictionary Source="Styles/CalendarView.xaml" />
+                <ResourceDictionary Source="Styles/ClassesView.xaml" />
+                <ResourceDictionary Source="Styles/SlotsView.xaml" />
+                <ResourceDictionary Source="Styles/WeekView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -1,7 +1,45 @@
 ﻿<UserControl x:Class="StudentsCalendar.Desktop.Controls.ClassesView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <Border DataContext="{Binding Classes}" BorderThickness="1" BorderBrush="Blue" Padding="10" Margin="5,0">
-        <TextBlock Text="{Binding FullName}" />
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <Border DataContext="{Binding Classes}" Style="{StaticResource ClassesBorderStyle}">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition x:Name="MainColumn" Width="*" />
+                <ColumnDefinition x:Name="SecondColumn" Width="*" />
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Orientation="Vertical">
+                <TextBlock x:Name="ShortHeader" Style="{StaticResource ClassesHeaderStyle}" Text="{Binding ShortName}" />
+                <TextBlock x:Name="FullHeader" Style="{StaticResource ClassesHeaderStyle}" Text="{Binding FullName}" />
+                <TextBlock x:Name="FullNameDescription" Style="{StaticResource ClassesInfoStyle}" Text="{Binding FullName}" TextWrapping="Wrap" />
+                <TextBlock x:Name="Lecturer" Style="{StaticResource ClassesInfoStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} {1}">
+                            <Binding Path="Lecturer.FirstName" />
+                            <Binding Path="Lecturer.LastName" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Style="{StaticResource ClassesInfoStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0:h:mm} - {1:h:mm}">
+                            <Binding Path="StartDate" />
+                            <Binding Path="EndDate" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock Style="{StaticResource ClassesInfoStyle}">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}, {1}">
+                            <Binding Path="Location.Name" />
+                            <Binding Path="Location.Room" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <TextBlock x:Name="Notes" Style="{StaticResource ClassesInfoStyle}" Text="{Binding Notes}" TextWrapping="Wrap" />
+            </StackPanel>
+            <TextBlock x:Name="SecondColumnNotes" Grid.Column="1" Margin="5" Style="{StaticResource ClassesInfoStyle}" Text="{Binding Notes}" TextWrapping="Wrap" />
+        </Grid>
     </Border>
 </UserControl>

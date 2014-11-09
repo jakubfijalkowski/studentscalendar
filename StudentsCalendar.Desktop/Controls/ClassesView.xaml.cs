@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.Desktop.Controls
 {
@@ -20,9 +9,55 @@ namespace StudentsCalendar.Desktop.Controls
 	/// </summary>
 	public partial class ClassesView : UserControl
 	{
+		private readonly double MinColumnWidth;
+
+		private bool IsShort;
+		private bool IsLong;
+		private bool IsWide;
+
 		public ClassesView()
 		{
 			InitializeComponent();
+
+			this.MinColumnWidth = (double)this.FindResource("MinColumnWidth");
+
+			this.DataContextChanged += this.OnDataContextChanged;
+			this.SizeChanged += this.OnSizeChanged;
+		}
+
+		private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+		{
+			var classes = (ArrangedClasses)e.NewValue;
+			this.IsLong = classes.EndSlot - classes.StartSlot >= 1.5;
+			this.IsShort = classes.EndSlot - classes.StartSlot <= 1.0;
+			this.UpdateVisibility();
+		}
+
+		private void OnSizeChanged(object sender, SizeChangedEventArgs e)
+		{
+			this.IsWide = e.NewSize.Width >= this.MinColumnWidth * 2;
+			this.UpdateVisibility();
+		}
+
+		private void UpdateVisibility()
+		{
+			if (this.IsWide)
+			{
+				this.MainColumn.Width = new GridLength(this.MinColumnWidth * 1.5);
+				this.SecondColumn.Width = new GridLength(1, GridUnitType.Star);
+			}
+			else
+			{
+				this.MainColumn.Width = new GridLength(1, GridUnitType.Star);
+				this.SecondColumn.Width = new GridLength(0);
+			}
+
+			this.ShortHeader.Visibility = (!this.IsWide).ToVisibility();
+			this.FullHeader.Visibility = this.IsWide.ToVisibility();
+			this.FullNameDescription.Visibility = (this.IsLong && !this.IsWide).ToVisibility();
+			this.Lecturer.Visibility = (!this.IsShort).ToVisibility();
+			this.Notes.Visibility = this.IsLong.ToVisibility();
+			this.SecondColumnNotes.Visibility = (!this.IsLong && this.IsWide).ToVisibility();
 		}
 	}
 }

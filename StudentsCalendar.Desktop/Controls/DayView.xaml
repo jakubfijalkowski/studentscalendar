@@ -10,12 +10,13 @@
     <ItemsControl ItemsSource="{Binding Columns}">
         <ItemsControl.ItemTemplate>
             <DataTemplate>
-                <ItemsControl ItemsSource="{Binding}" Width="{StaticResource ColumnWidth}">
+                <ItemsControl ItemsSource="{Binding}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <controls:ClassesView DataContext="{Binding}" Width="{StaticResource ColumnWidth}"
-                                      Height="{Binding Converter={StaticResource SlotToHeight}}"
-                                      Margin="{Binding Converter={StaticResource SlotToMargin}}" />
+                            <controls:ClassesView DataContext="{Binding}"
+                                                  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                  Height="{Binding Converter={StaticResource SlotToHeight}}"
+                                                  Margin="{Binding Converter={StaticResource SlotToMargin}}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>

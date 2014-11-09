@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    
+    <sys:Double x:Key="SeparatorSize">1</sys:Double>
+
+    <GridLength x:Key="SlotsColumnGridLength">150</GridLength>
+    <sys:Double x:Key="SlotsColumnWidth">150</sys:Double>
+    <sys:Double x:Key="SlotHeight">100</sys:Double>
+    
+    <sys:Double x:Key="MinColumnWidth">200</sys:Double>
+    <sys:Double x:Key="MinWeekWidth">1400</sys:Double>
+
+    <sys:Double x:Key="DayHeaderHeight">60</sys:Double>
+    <GridLength x:Key="DayHeaderGridLength">60</GridLength>
+    <Thickness x:Key="DayHeaderContenMargin">0,60,0,0</Thickness>
+
+</ResourceDictionary>

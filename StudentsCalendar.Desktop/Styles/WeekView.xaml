@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="DayHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}">
+        <Setter Property="FontSize" Value="{StaticResource SubHeaderFontSize}" />
+        <Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
+        <Setter Property="Height" Value="{StaticResource DayHeaderHeight}" />
+    </Style>
+    
+</ResourceDictionary>

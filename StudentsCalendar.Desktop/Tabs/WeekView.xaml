@@ -4,24 +4,44 @@
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls">
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <StackPanel Orientation="Horizontal">
-            <controls:SlotsView Width="150" Margin="0,50,0,0" DataContext="{Binding WeekLayout.Days[0].Slots}" />
-            <ItemsControl ItemsSource="{Binding WeekLayout.Days}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource DayHeaderGridLength}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource SlotsColumnGridLength}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:SlotsView Grid.Row="1" Grid.Column="0" DataContext="{Binding WeekLayout.Days[0].Slots}"
+                                Width="{StaticResource SlotsColumnWidth}"/>
+            <Border Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource CalendarBackgroundBrush}" />
+            <ItemsControl Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding WeekLayout.Days}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel Orientation="Vertical" MinWidth="{StaticResource ColumnWidth}">
-                            <TextBlock Height="50"
-                                       Text="{Binding Day.Date, StringFormat=' {0:dddd}'}" />
-                            <controls:DayView DataContext="{Binding}" />
-                        </StackPanel>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Border Grid.Column="0" Grid.RowSpan="2" Width="{StaticResource SeparatorSize}"
+                                    Background="{StaticResource CalendarDaySeparatorBrush}" />
+                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DayHeaderStyle}" Padding="5,0"
+                                       Text="{Binding Day.Date, StringFormat='{}{0:dddd}'}" />
+                            <controls:DayView Grid.Row="1" Grid.Column="1" DataContext="{Binding}" />
+                        </Grid>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
+                        <UniformGrid Rows="1" MinWidth="{StaticResource MinWeekWidth}" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
             </ItemsControl>
-        </StackPanel>
+        </Grid>
     </ScrollViewer>
 </UserControl>

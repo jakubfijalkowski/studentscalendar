@@ -57,7 +57,7 @@ namespace StudentsCalendar.UI.Tabs
 
 			var calendar = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
 			var generated = await Task.Run(() => this.CalendarEngine.Generate(calendar.Template));
-			var day = generated.Calendar.Weeks.SelectMany(w => w.Days).First(d => d.Date >= DateHelper.Today && d.Date.IsoDayOfWeek == NodaTime.IsoDayOfWeek.Wednesday);
+			var day = generated.Calendar.Weeks.SelectMany(w => w.Days).First(d => d.Date >= DateHelper.Today && d.Classes.Count > 0);
 			this.DayLayout = this.LayoutArranger.Arrange(day);
 		}
 	}
