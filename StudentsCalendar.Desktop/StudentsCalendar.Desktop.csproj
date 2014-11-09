@@ -104,6 +104,9 @@
     <Compile Include="Tabs\DayView.xaml.cs">
       <DependentUpon>DayView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Tabs\WeekView.xaml.cs">
+      <DependentUpon>WeekView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WindowsView.xaml.cs">
       <DependentUpon>WindowsView.xaml</DependentUpon>
     </Compile>
@@ -193,6 +196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Tabs\DayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Tabs\WeekView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

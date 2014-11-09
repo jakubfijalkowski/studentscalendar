@@ -41,6 +41,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tabs\WeekViewModel.cs" />
     <Compile Include="Tabs\DayViewModel.cs" />
     <Compile Include="Services\ILayoutArranger.cs" />
     <Compile Include="IHaveContext.cs" />
