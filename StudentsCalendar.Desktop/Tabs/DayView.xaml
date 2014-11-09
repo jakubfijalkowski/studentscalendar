@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="StudentsCalendar.Desktop.Tabs.DayView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls">
+    <ScrollViewer>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <controls:SlotsView Grid.Column="0" DataContext="{Binding DayLayout.Slots}" />
+            <controls:DayView Grid.Column="1" DataContext="{Binding DayLayout}" />
+        </Grid>
+    </ScrollViewer>
+</UserControl>

@@ -18,16 +18,18 @@ namespace StudentsCalendar.UI.Services
 		/// <inheritdoc />
 		public ArrangedDay Arrange(FinalDay day)
 		{
-			var startTime = DateHelper.Min(day.Classes.First().StartDate.TimeOfDay, MinStartTime);
-			var endTime = DateHelper.Max(day.Classes.Last().EndDate.TimeOfDay, MinEndTime);
+			var startTime = day.Classes.Count > 0 ? DateHelper.Min(day.Classes.First().StartDate.TimeOfDay, MinStartTime) : MinStartTime;
+			var endTime = day.Classes.Count > 0 ? DateHelper.Max(day.Classes.Last().EndDate.TimeOfDay, MinEndTime) : MinEndTime;
 			return ArrangeDay(day, startTime, endTime);
 		}
 
 		/// <inheritdoc />
 		public ArrangedWeek Arrange(FinalWeek week)
 		{
-			var startTime = DateHelper.Min(week.Days.Select(d => d.Classes.First()).Min(c => c.StartDate.TimeOfDay), MinStartTime);
-			var endTime = DateHelper.Max(week.Days.Select(d => d.Classes.Last()).Max(c => c.EndDate.TimeOfDay), MinEndTime);
+			var startClasses = week.Days.Select(d => d.Classes.FirstOrDefault()).Where(d => d != null);
+			var endClasses = week.Days.Select(d => d.Classes.LastOrDefault()).Where(d => d != null);
+			var startTime = startClasses.Any() ? DateHelper.Min(startClasses.Min(c => c.StartDate.TimeOfDay), MinStartTime) : MinStartTime;
+			var endTime = endClasses.Any() ? DateHelper.Max(endClasses.Max(c => c.EndDate.TimeOfDay), MinEndTime) : MinEndTime;
 			return new ArrangedWeek(week, week.Days.Select(d => ArrangeDay(d, startTime, endTime)).ToArray());
 		}
 

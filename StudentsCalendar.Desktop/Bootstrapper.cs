@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using Caliburn.Metro.Autofac;
+using Caliburn.Micro;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.ActivitySpans;
 using StudentsCalendar.Core.Modifiers;
@@ -13,6 +14,13 @@ namespace StudentsCalendar.Desktop
 	sealed class Bootstrapper
 		: CaliburnMetroAutofacBootstrapper<IShell>
 	{
+		protected override void Configure()
+		{
+			base.Configure();
+
+			ViewLocator.AddSubNamespaceMapping(".UI", ".Desktop");
+		}
+
 		protected override void ConfigureContainer(Autofac.ContainerBuilder builder)
 		{
 			builder.RegisterAssemblyTypes(typeof(CalendarEngine).Assembly)
