@@ -12,18 +12,22 @@ namespace StudentsCalendar.UI.Handlers
 		: IHandle<ApplicationStartedEvent>
 	{
 		private readonly ICalendarsManager Calendars;
+		private readonly IShell Shell;
 		private readonly IEventAggregator EventAggregator;
 
-		public ApplicationStartupHandler(ICalendarsManager calendars, IEventAggregator eventAggregator)
+		public ApplicationStartupHandler(ICalendarsManager calendars, IShell shell, IEventAggregator eventAggregator)
 		{
 			this.Calendars = calendars;
+			this.Shell = shell;
 			this.EventAggregator = eventAggregator;
 		}
 
 		public async void Handle(ApplicationStartedEvent message)
 		{
-			//TODO: display loading screen
-			await this.Calendars.Initialize();
+			using (this.Shell.ShowLoadingScreen())
+			{
+				await this.Calendars.Initialize();
+			}
 
 			this.EventAggregator.PublishOnUIThread(NavigateRequestEvent.Create<Main.CurrentWeekViewModel>());
 		}

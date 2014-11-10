@@ -10,6 +10,8 @@ namespace StudentsCalendar.Desktop
 	sealed class ShellViewModel
 		: Conductor<object>.Collection.AllActive, IShell
 	{
+		private bool _IsLoading;
+
 		/// <summary>
 		/// Pobiera kontrolkę z głównym widokiem.
 		/// </summary>
@@ -27,6 +29,24 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <summary>
+		/// Określa, czy aplikacja jest w stanie "ładowania" i powinien
+		/// być wyświetlony odpowiedni ekran.
+		/// </summary>
+		public bool IsLoading
+		{
+			get { return this._IsLoading; }
+			private set
+			{
+				if (this._IsLoading != value)
+				{
+					this._IsLoading = value;
+					this.NotifyOfPropertyChange();
+				}
+			}
+		}
+
+
+		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
 		/// <param name="mainScreen"></param>
@@ -37,8 +57,24 @@ namespace StudentsCalendar.Desktop
 			this.ActivateItem(popups);
 		}
 
-		/// <inheritdoc />
+		/// <summary>
+		/// Wyświetla widok aktualnego tygodnia.
+		/// </summary>
+		/// TODO: consider moving to NavigationRequestEvent
+		public void ShowCurrentWeek()
+		{
+			this.ShowMainScreen(typeof(UI.Main.CurrentWeekViewModel));
+		}
 
+		/// <summary>
+		/// Wyświetla widok aktualnego miesiąca.
+		/// </summary>
+		public void ShowMonth()
+		{
+			this.ShowMainScreen(typeof(UI.Main.MonthViewModel));
+		}
+
+		/// <inheritdoc />
 		public void ShowMainScreen(Type mainScreenType)
 		{
 			var model = IoC.GetInstance(mainScreenType, null) as IMainScreen;
@@ -53,6 +89,30 @@ namespace StudentsCalendar.Desktop
 			var model = IoC.Get<TViewModel>();
 			this.PopupsControl.ActivateItem(model);
 			return model;
+		}
+
+		/// <inheritdoc />
+		public IDisposable ShowLoadingScreen()
+		{
+			//TODO: consider making it multithreaded and ref-counted
+			return new LoadingDisposable(this);
+		}
+
+		private sealed class LoadingDisposable
+			: IDisposable
+		{
+			private readonly ShellViewModel Parent;
+
+			public LoadingDisposable(ShellViewModel parent)
+			{
+				this.Parent = parent;
+				this.Parent.IsLoading = true;
+			}
+
+			public void Dispose()
+			{
+				this.Parent.IsLoading = false;
+			}
 		}
 	}
 }

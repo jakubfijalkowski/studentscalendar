@@ -27,5 +27,15 @@ namespace StudentsCalendar.UI
 		/// <returns>Utworzony ViewModel.</returns>
 		TViewModel Show<TViewModel>()
 			where TViewModel : IPopupScreen;
+
+		/// <summary>
+		/// Wyświetla ekran ładowania i wyłącza możliwość nawigacji z wewnątrz
+		/// shella.
+		/// </summary>
+		/// <returns>
+		/// Obiekt <see cref="IDisposable"/>, który przy wywołaniu <see cref="IDisposable.Dispose"/>
+		/// ukrywa ekran ładowania. Do wykorzystania z <c>using</c>.
+		/// </returns>
+		IDisposable ShowLoadingScreen();
 	}
 }

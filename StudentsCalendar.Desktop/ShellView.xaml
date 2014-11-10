@@ -3,17 +3,22 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    xmlns:cal="http://www.caliburnproject.org"
-                   xmlns:mv="clr-namespace:StudentsCalendar.UI.Main;assembly=StudentsCalendar.UI">
+                   xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
+                   x:Name="Root">
+    <metro:MetroWindow.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+        <conv:BoolToVisibilityConverter x:Key="RevBoolToVisibility" Reverse="true" />
+    </metro:MetroWindow.Resources>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
-            <Button DataContext="{x:Type mv:CurrentWeekViewModel}" cal:Message.Attach="ShowMainScreen($dataContext)">
+            <Button cal:Message.Attach="ShowCurrentWeek" Visibility="{Binding IsLoading, Converter={StaticResource RevBoolToVisibility}}">
                 <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_calendar_week}" />
                     </Rectangle.OpacityMask>
                 </Rectangle>
             </Button>
-            <Button DataContext="{x:Type mv:MonthViewModel}" cal:Message.Attach="ShowMainScreen($dataContext)">
+            <Button cal:Message.Attach="ShowMonth" Visibility="{Binding IsLoading, Converter={StaticResource RevBoolToVisibility}}">
                 <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                     <Rectangle.OpacityMask>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_calendar_month}" />
@@ -25,5 +30,8 @@
     <Grid>
         <ContentControl x:Name="MainScreen" />
         <ContentControl x:Name="PopupsControl" />
+        <Grid Background="{StaticResource WhiteBrush}" Visibility="{Binding IsLoading, Converter={StaticResource BoolToVisibility}}">
+            <metro:ProgressRing IsActive="{Binding IsLoading}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
     </Grid>
 </metro:MetroWindow>

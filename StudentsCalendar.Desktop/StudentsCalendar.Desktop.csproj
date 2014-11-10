@@ -86,6 +86,7 @@
     <Compile Include="Controls\SlotsView.xaml.cs">
       <DependentUpon>SlotsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\SlotToHeightConverter.cs" />
     <Compile Include="Converters\SlotToMarginConverter.cs" />
