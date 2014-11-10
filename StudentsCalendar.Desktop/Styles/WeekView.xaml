@@ -6,5 +6,9 @@
         <Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
         <Setter Property="Height" Value="{StaticResource DayHeaderHeight}" />
     </Style>
+
+    <Style x:Key="WeekRangeStyle" TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}">
+        <Setter Property="FontSize" Value="20" />
+    </Style>
     
 </ResourceDictionary>

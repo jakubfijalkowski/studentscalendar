@@ -97,17 +97,21 @@
     <Compile Include="Controls\SlotsView.xaml.cs">
       <DependentUpon>SlotsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Converters\DateToDayOfWeekConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\SlotToHeightConverter.cs" />
     <Compile Include="Converters\SlotToMarginConverter.cs" />
+    <Compile Include="Converters\WeekOffsetToStringConverter.cs" />
     <Compile Include="Helpers\BooleanExtensions.cs" />
+    <Compile Include="Helpers\MarkupFixes.cs" />
     <Compile Include="MainScreenView.xaml.cs">
       <DependentUpon>MainScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainScreenViewModel.cs" />
     <Compile Include="Main\CurrentWeekView.xaml.cs">
       <DependentUpon>CurrentWeekView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Main\WeekView.xaml.cs">
+      <DependentUpon>WeekView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Platform\SampleStorage.cs" />
     <Compile Include="PopupsView.xaml.cs">
@@ -183,6 +187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\CurrentWeekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\WeekView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
