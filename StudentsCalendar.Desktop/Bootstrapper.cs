@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Autofac;
 using Caliburn.Micro;
 using StudentsCalendar.Core;
@@ -67,6 +68,7 @@ namespace StudentsCalendar.Desktop
 		{
 			var builder = new ContainerBuilder();
 			this.RegisterInfrastructure(builder);
+			this.RegisterHandlers(builder);
 			this.RegisterCore(builder);
 			this.RegisterViewsAndViewModels(builder);
 			this.Container = builder.Build();
@@ -74,6 +76,9 @@ namespace StudentsCalendar.Desktop
 
 		private void RegisterInfrastructure(ContainerBuilder builder)
 		{
+			builder.RegisterType<MainWindow>()
+				.AsSelf();
+
 			builder.RegisterType<EventAggregator>()
 				.AsSelf().AsImplementedInterfaces()
 				.InstancePerLifetimeScope();
@@ -81,6 +86,24 @@ namespace StudentsCalendar.Desktop
 			builder.RegisterType<MetroWindowManager>()
 				.AsSelf().AsImplementedInterfaces()
 				.InstancePerLifetimeScope();
+
+			builder.RegisterType<ShellViewModel>()
+				.AsSelf().AsImplementedInterfaces()
+				.InstancePerLifetimeScope();
+		}
+
+		private void RegisterHandlers(ContainerBuilder builder)
+		{
+			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
+				.Where(c => !c.IsAbstract && c.GetInterfaces().Any(i => i == typeof(IHandle)) && c.Name.EndsWith("Handler"))
+				.AsImplementedInterfaces()
+				.InstancePerLifetimeScope()
+				.OnActivated(a =>
+				{
+					var handler = a.Instance as IHandle;
+					a.Context.Resolve<IEventAggregator>().Subscribe(handler);
+				})
+				.AutoActivate();
 		}
 
 		public void RegisterCore(ContainerBuilder builder)
@@ -104,7 +127,7 @@ namespace StudentsCalendar.Desktop
 				.AsImplementedInterfaces().AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(ShellViewModel).Assembly)
-				.Where(c => !c.IsAbstract && (c.Name.EndsWith("ViewModel") || c.IsInNamespaceOf<Platform.SampleStorage>()))
+				.Where(c => !c.IsAbstract && c != typeof(ShellViewModel) && (c.Name.EndsWith("ViewModel") || c.IsInNamespaceOf<Platform.SampleStorage>()))
 				.AsImplementedInterfaces().AsSelf();
 		}
 	}

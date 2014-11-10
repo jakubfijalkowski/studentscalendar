@@ -18,9 +18,9 @@ namespace StudentsCalendar.Desktop.Main
 	/// <summary>
 	/// Interaction logic for WeekViewModel.xaml
 	/// </summary>
-	public partial class WeekView : UserControl
+	public partial class MonthView : UserControl
 	{
-		public WeekView()
+		public MonthView()
 		{
 			InitializeComponent();
 		}

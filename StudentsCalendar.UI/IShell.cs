@@ -1,4 +1,6 @@
-﻿namespace StudentsCalendar.UI
+﻿using System;
+
+namespace StudentsCalendar.UI
 {
 	/// <summary>
 	/// Główny obiekt aplikacji - obsługuje nawigację w ramach aplikacji.
@@ -6,16 +8,10 @@
 	public interface IShell
 	{
 		/// <summary>
-		/// Wyświetla nowy ekran ekran główny.
+		/// Wyświetla nowy ekran główny.
 		/// </summary>
-		/// <remarks>
-		/// Jeśli <typeparamref name="TViewModel"/> implementuje interfejs <see cref="IHaveContext{TData}"/>,
-		/// obiekt wywołujący tą metodę jest odpowiedzialny za wywołanie <see cref="IHaveContext{TData}.UpdateContext"/>.
-		/// </remarks>
-		/// <typeparam name="TViewModel"></typeparam>
-		/// <returns>Utworzony ViewModel.</returns>
-		TViewModel NavigateTo<TViewModel>()
-			where TViewModel : IMainScreen;
+		/// <param name="mainScreenType"></param>
+		void ShowMainScreen(Type mainScreenType);
 
 		/// <summary>
 		/// Wyświetla "wyskakujące okienko".

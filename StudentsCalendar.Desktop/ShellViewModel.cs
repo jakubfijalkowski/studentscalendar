@@ -1,4 +1,5 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using Caliburn.Micro;
 using StudentsCalendar.UI;
 
 namespace StudentsCalendar.Desktop
@@ -37,12 +38,12 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <inheritdoc />
-		public TViewModel NavigateTo<TViewModel>()
-			where TViewModel : IMainScreen
+
+		public void ShowMainScreen(Type mainScreenType)
 		{
-			var model = IoC.Get<TViewModel>();
+			var model = IoC.GetInstance(mainScreenType, null) as IMainScreen;
 			this.MainScreen.ActivateItem(model);
-			return model;
+			//TODO: remove all popups
 		}
 
 		/// <inheritdoc />
@@ -52,13 +53,6 @@ namespace StudentsCalendar.Desktop
 			var model = IoC.Get<TViewModel>();
 			this.PopupsControl.ActivateItem(model);
 			return model;
-		}
-
-		protected override void OnActivate()
-		{
-			base.OnActivate();
-
-			this.NavigateTo<UI.Main.CurrentWeekViewModel>();
 		}
 	}
 }

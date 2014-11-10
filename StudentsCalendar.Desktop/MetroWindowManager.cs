@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using Caliburn.Micro;
 using MahApps.Metro.Controls;
 
@@ -10,12 +11,20 @@ namespace StudentsCalendar.Desktop
 	sealed class MetroWindowManager
 		: WindowManager
 	{
+		private readonly Func<MainWindow> WindowCreator;
+
+		public MetroWindowManager(Func<MainWindow> windowCreator)
+		{
+			this.WindowCreator = windowCreator;
+		}
+
 		protected override Window EnsureWindow(object model, object view, bool isDialog)
 		{
 			MetroWindow window = view as MetroWindow;
 			if (window == null)
 			{
-				window = new MainWindow { Content = view };
+				window = this.WindowCreator();
+				window.Content = view;
 			}
 
 			window.SetValue(View.IsGeneratedProperty, true);

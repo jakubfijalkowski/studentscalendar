@@ -11,12 +11,12 @@ using StudentsCalendar.UI.Services;
 namespace StudentsCalendar.UI.Main
 {
 	/// <summary>
-	/// Ogólny widok tygodnia. Pozwala na wyświetlenie aktualnego tygodnia i kilku poprzednich/następnych.
+	/// Widok miesiąca podzielonego na tygodnie. Pozwala na wyświetlenie aktualnego tygodnia i kilku poprzednich/następnych.
 	/// </summary>
-	public sealed class WeekViewModel
+	public sealed class MonthViewModel
 		: Screen, IMainScreen
 	{
-		private const int MaxWeeks = 3;
+		private const int MaxWeeks = 2;
 
 		private readonly IContentProvider ContentProvider;
 		private readonly ICalendarEngine CalendarEngine;
@@ -38,7 +38,7 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="contentProvider"></param>
 		/// <param name="calendarEngine"></param>
 		/// <param name="layoutArranger"></param>
-		public WeekViewModel(IContentProvider contentProvider, ICalendarEngine calendarEngine, ILayoutArranger layoutArranger)
+		public MonthViewModel(IContentProvider contentProvider, ICalendarEngine calendarEngine, ILayoutArranger layoutArranger)
 		{
 			this.ContentProvider = contentProvider;
 			this.CalendarEngine = calendarEngine;

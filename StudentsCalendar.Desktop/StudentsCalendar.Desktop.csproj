@@ -102,8 +102,8 @@
     <Compile Include="Main\CurrentWeekView.xaml.cs">
       <DependentUpon>CurrentWeekView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Main\WeekView.xaml.cs">
-      <DependentUpon>WeekView.xaml</DependentUpon>
+    <Compile Include="Main\MonthView.xaml.cs">
+      <DependentUpon>MonthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MetroWindowManager.cs" />
     <Compile Include="Platform\SampleStorage.cs" />
@@ -187,7 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Main\WeekView.xaml">
+    <Page Include="Main\MonthView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
