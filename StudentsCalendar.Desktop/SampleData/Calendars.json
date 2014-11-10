@@ -1,0 +1,9 @@
+﻿[
+    {
+        "Id": "MainCalendar",
+        "Name": "Przykładowy kalendarz",
+        "StartDate": "2014-09-29",
+        "EndDate": "2015-02-01",
+        "IsActive": true
+    }
+]

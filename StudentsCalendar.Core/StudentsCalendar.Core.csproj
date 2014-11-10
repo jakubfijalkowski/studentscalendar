@@ -89,9 +89,9 @@
     <Compile Include="Modifiers\ModifyLocationInfo.cs" />
     <Compile Include="Modifiers\ModifyLecturerInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\CalendarEntry.cs" />
     <Compile Include="Storage\ContentProvider.cs" />
     <Compile Include="Storage\IContentProvider.cs" />
-    <Compile Include="Storage\Calendar.cs" />
     <Compile Include="Platform\IStorage.cs" />
     <Compile Include="Templates\CalendarTemplate.cs" />
     <Compile Include="Templates\DayTemplate.cs" />

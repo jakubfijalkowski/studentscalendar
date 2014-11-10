@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using NodaTime;
 using StudentsCalendar.Core;
+using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI.Services;
 
@@ -54,16 +55,22 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			var calendar = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
-			var generated = await Task.Run(() => this.CalendarEngine.Generate(calendar.Template));
+			var generated = await LoadCalendar();
 			var today = DateHelper.Today;
 			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
-			var week = generated.Calendar.Weeks.First(w => w.Date == thisWeek);
+			var week = generated.Weeks.First(w => w.Date == thisWeek);
 			this.Week = this.LayoutArranger.Arrange(week);
 			this.Today = this.Week.Days.First(d => d.Day.Date == today);
 
 			this.NotifyOfPropertyChange(() => Days);
 			this.NotifyOfPropertyChange(() => Today);
+		}
+
+		private async Task<FinalCalendar> LoadCalendar()
+		{
+			var entry = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
+			var template = await this.ContentProvider.LoadTemplate(entry.Id);
+			return (await Task.Run(() => this.CalendarEngine.Generate(template))).Calendar;
 		}
 	}
 }

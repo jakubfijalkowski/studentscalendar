@@ -9,9 +9,16 @@ namespace StudentsCalendar.Core.Platform
 	public interface IStorage
 	{
 		/// <summary>
-		/// Wczytuje źróło kalendarza.
+		/// Wczytuje listę kalendarzy.
 		/// </summary>
 		/// <returns></returns>
-		Task<Stream> LoadCalendars();
+		Task<Stream> LoadEntries();
+
+		/// <summary>
+		/// Wczytuje konkretny szablon kalendarza.
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		Task<Stream> LoadCalendar(string id);
 	}
 }

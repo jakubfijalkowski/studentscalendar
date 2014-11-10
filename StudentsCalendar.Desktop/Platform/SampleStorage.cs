@@ -11,9 +11,15 @@ namespace StudentsCalendar.Desktop.Platform
 		: IStorage
 	{
 		/// <inheritdoc />
-		public Task<Stream> LoadCalendars()
+		public Task<Stream> LoadEntries()
 		{
-			return Task.FromResult<Stream>(File.OpenRead("Calendars.json"));
+			return Task.FromResult<Stream>(File.OpenRead("SampleData/Calendars.json"));
+		}
+
+		/// <inheritdoc />
+		public Task<Stream> LoadCalendar(string id)
+		{
+			return Task.FromResult<Stream>(File.OpenRead("SampleData/MainCalendar.json"));
 		}
 	}
 }

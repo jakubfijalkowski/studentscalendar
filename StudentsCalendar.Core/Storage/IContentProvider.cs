@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core.Storage
 {
@@ -13,6 +14,13 @@ namespace StudentsCalendar.Core.Storage
 		/// Wczytuje i deserializuje dostępne kalendarze.
 		/// </summary>
 		/// <returns></returns>
-		Task<IReadOnlyList<Calendar>> LoadCalendars();
+		Task<IReadOnlyList<CalendarEntry>> LoadCalendars();
+
+		/// <summary>
+		/// Wczytuje i deserializuje szablon kalendarza.
+		/// </summary>
+		/// <param name="calendarId"></param>
+		/// <returns></returns>
+		Task<CalendarTemplate> LoadTemplate(string calendarId);
 	}
 }

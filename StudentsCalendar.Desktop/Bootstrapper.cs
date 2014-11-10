@@ -112,7 +112,7 @@ namespace StudentsCalendar.Desktop
 			builder.RegisterAssemblyTypes(typeof(CalendarEngine).Assembly)
 				.Where(c => !c.IsAbstract &&
 					(c.IsInNamespaceOf<IActivitySpan>() || c.IsInNamespaceOf<IClassesModifier>() ||
-					 c.IsInNamespaceOf<ICalendarGenerator>() || c.IsInNamespaceOf<Calendar>() ||
+					 c.IsInNamespaceOf<ICalendarGenerator>() || c.IsInNamespaceOf<IContentProvider>() ||
 					 c == typeof(CalendarEngine)))
 				.AsImplementedInterfaces().AsSelf();
 		}

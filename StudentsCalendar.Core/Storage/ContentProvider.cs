@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using NodaTime;
 using NodaTime.Serialization.JsonNet;
 using StudentsCalendar.Core.Platform;
+using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core.Storage
 {
@@ -31,12 +32,22 @@ namespace StudentsCalendar.Core.Storage
 		}
 
 		/// <inheritdoc />
-		public async Task<IReadOnlyList<Calendar>> LoadCalendars()
+		public async Task<IReadOnlyList<CalendarEntry>> LoadCalendars()
 		{
-			using (var stream = await this.Storage.LoadCalendars())
+			using (var stream = await this.Storage.LoadEntries())
 			using (var reader = new JsonTextReader(new StreamReader(stream)))
 			{
-				return await Task.Run(() => this.Serializer.Deserialize<List<Calendar>>(reader));
+				return await Task.Run(() => this.Serializer.Deserialize<List<CalendarEntry>>(reader));
+			}
+		}
+
+		/// <inheritdoc />
+		public async Task<CalendarTemplate> LoadTemplate(string calendarId)
+		{
+			using (var stream = await this.Storage.LoadCalendar(calendarId))
+			using (var reader = new JsonTextReader(new StreamReader(stream)))
+			{
+				return await Task.Run(() => this.Serializer.Deserialize<CalendarTemplate>(reader));
 			}
 		}
 	}

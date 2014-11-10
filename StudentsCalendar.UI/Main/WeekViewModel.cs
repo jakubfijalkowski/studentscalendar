@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Caliburn.Micro;
 using NodaTime;
 using StudentsCalendar.Core;
+using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI.Services;
 
@@ -49,17 +50,16 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			var calendar = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
-			var generated = await Task.Run(() => this.CalendarEngine.Generate(calendar.Template));
+			var generated = await LoadCalendar();
 			var today = DateHelper.Today;
 			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
 
-			var weekIndex = generated.Calendar.Weeks.Select((w, i) => Tuple.Create(w, i)).First(w => w.Item1.Date == thisWeek).Item2;
+			var weekIndex = generated.Weeks.Select((w, i) => Tuple.Create(w, i)).First(w => w.Item1.Date == thisWeek).Item2;
 
 			int startWeekIndex = Math.Max(weekIndex - MaxWeeks, 0);
-			int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Calendar.Weeks.Count - 1);
+			int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count - 1);
 
-			this.Weeks = generated.Calendar.Weeks
+			this.Weeks = generated.Weeks
 				.Skip(startWeekIndex)
 				.Take(endWeekIndex - startWeekIndex)
 				.Select(this.LayoutArranger.Arrange)
@@ -68,6 +68,13 @@ namespace StudentsCalendar.UI.Main
 
 			this.NotifyOfPropertyChange(() => CurrentWeek);
 			this.NotifyOfPropertyChange(() => Weeks);
+		}
+
+		private async Task<FinalCalendar> LoadCalendar()
+		{
+			var entry = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
+			var template = await this.ContentProvider.LoadTemplate(entry.Id);
+			return (await Task.Run(() => this.CalendarEngine.Generate(template))).Calendar;
 		}
 	}
 }
