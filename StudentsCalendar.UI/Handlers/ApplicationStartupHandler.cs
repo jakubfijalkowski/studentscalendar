@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using StudentsCalendar.Core;
 using StudentsCalendar.UI.Events;
 
 namespace StudentsCalendar.UI.Handlers
@@ -10,15 +11,20 @@ namespace StudentsCalendar.UI.Handlers
 	public sealed class ApplicationStartupHandler
 		: IHandle<ApplicationStartedEvent>
 	{
+		private readonly ICalendarsManager Calendars;
 		private readonly IEventAggregator EventAggregator;
 
-		public ApplicationStartupHandler(IEventAggregator eventAggregator)
+		public ApplicationStartupHandler(ICalendarsManager calendars, IEventAggregator eventAggregator)
 		{
+			this.Calendars = calendars;
 			this.EventAggregator = eventAggregator;
 		}
 
-		public void Handle(ApplicationStartedEvent message)
+		public async void Handle(ApplicationStartedEvent message)
 		{
+			//TODO: display loading screen
+			await this.Calendars.Initialize();
+
 			this.EventAggregator.PublishOnUIThread(NavigateRequestEvent.Create<Main.CurrentWeekViewModel>());
 		}
 	}

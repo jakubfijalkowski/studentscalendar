@@ -20,8 +20,7 @@ namespace StudentsCalendar.UI.Main
 	{
 		private const int MaxWeeks = 2;
 
-		private readonly IContentProvider ContentProvider;
-		private readonly IGenerationEngine CalendarEngine;
+		private readonly ICalendarsManager Calendars;
 		private readonly ILayoutArranger LayoutArranger;
 
 		/// <summary>
@@ -37,21 +36,19 @@ namespace StudentsCalendar.UI.Main
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
-		/// <param name="contentProvider"></param>
-		/// <param name="calendarEngine"></param>
 		/// <param name="layoutArranger"></param>
-		public MonthViewModel(IContentProvider contentProvider, IGenerationEngine calendarEngine, ILayoutArranger layoutArranger)
+		public MonthViewModel(ICalendarsManager calendars, ILayoutArranger layoutArranger)
 		{
-			this.ContentProvider = contentProvider;
-			this.CalendarEngine = calendarEngine;
+			this.Calendars = calendars;
 			this.LayoutArranger = layoutArranger;
 		}
 
-		protected override async void OnInitialize()
+		protected override void OnInitialize()
 		{
 			base.OnInitialize();
 
-			var generated = await LoadCalendar();
+			var generated = this.Calendars.ActiveCalendar;
+
 			var today = DateHelper.Today;
 			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
 
@@ -69,13 +66,6 @@ namespace StudentsCalendar.UI.Main
 
 			this.NotifyOfPropertyChange(() => CurrentWeek);
 			this.NotifyOfPropertyChange(() => Weeks);
-		}
-
-		private async Task<FinalCalendar> LoadCalendar()
-		{
-			var entry = (await this.ContentProvider.LoadCalendars()).First(c => c.IsActive);
-			var template = await this.ContentProvider.LoadTemplate(entry.Id);
-			return (await Task.Run(() => this.CalendarEngine.Generate(template))).Calendar;
 		}
 	}
 }
