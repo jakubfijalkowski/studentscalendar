@@ -38,17 +38,6 @@
     <Reference Include="Autofac">
       <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="Caliburn.Metro">
-      <HintPath>..\packages\Caliburn.Metro.0.5.0\lib\net45\Caliburn.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Metro.Autofac, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Metro.Autofac.0.5.0\lib\net45\Caliburn.Metro.Autofac.dll</HintPath>
-    </Reference>
-    <Reference Include="Caliburn.Metro.Core, Version=0.5.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Caliburn.Metro.0.5.0\lib\net45\Caliburn.Metro.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.1\lib\net45\Caliburn.Micro.dll</HintPath>
     </Reference>
@@ -107,12 +96,16 @@
       <DependentUpon>MainScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainScreenViewModel.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main\CurrentWeekView.xaml.cs">
       <DependentUpon>CurrentWeekView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Main\WeekView.xaml.cs">
       <DependentUpon>WeekView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MetroWindowManager.cs" />
     <Compile Include="Platform\SampleStorage.cs" />
     <Compile Include="PopupsView.xaml.cs">
       <DependentUpon>PopupsView.xaml</DependentUpon>
@@ -183,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
