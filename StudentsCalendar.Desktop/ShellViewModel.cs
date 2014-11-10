@@ -1,15 +1,13 @@
 ﻿using Caliburn.Micro;
 using StudentsCalendar.UI;
 
-using MainScreenViewModel = Caliburn.Micro.Conductor<StudentsCalendar.UI.IMainScreen>.Collection.OneActive;
-
 namespace StudentsCalendar.Desktop
 {
 	/// <summary>
 	/// "Shell" aplikacji desktopowej.
 	/// </summary>
 	sealed class ShellViewModel
-		: Conductor<object>.Collection.OneActive, IShell
+		: Conductor<object>.Collection.AllActive, IShell
 	{
 		/// <summary>
 		/// Pobiera kontrolkę z głównym widokiem.
@@ -30,10 +28,11 @@ namespace StudentsCalendar.Desktop
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
+		/// <param name="mainScreen"></param>
 		/// <param name="popups"></param>
-		public ShellViewModel(PopupsViewModel popups)
+		public ShellViewModel(MainScreenViewModel mainScreen, PopupsViewModel popups)
 		{
-			this.ActivateItem(new MainScreenViewModel());
+			this.ActivateItem(mainScreen);
 			this.ActivateItem(popups);
 		}
 
@@ -47,11 +46,19 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <inheritdoc />
-		public TViewModel Show<TViewModel>() where TViewModel : IPopupScreen
+		public TViewModel Show<TViewModel>()
+			where TViewModel : IPopupScreen
 		{
 			var model = IoC.Get<TViewModel>();
 			this.PopupsControl.ActivateItem(model);
 			return model;
+		}
+
+		protected override void OnActivate()
+		{
+			base.OnActivate();
+
+			this.NavigateTo<UI.Main.CurrentWeekViewModel>();
 		}
 	}
 }
