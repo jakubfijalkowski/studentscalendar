@@ -1,48 +1,56 @@
 ﻿using Caliburn.Micro;
 using StudentsCalendar.UI;
 
+using MainScreenViewModel = Caliburn.Micro.Conductor<StudentsCalendar.UI.IMainScreen>.Collection.OneActive;
+
 namespace StudentsCalendar.Desktop
 {
 	/// <summary>
-	/// "Shell" aplikacji desktopowej - używa kart do prezentacji głównych
-	/// elementów oraz okien dialogowych(wew. aplikacji) do prezentacji
-	/// "podekranów".
+	/// "Shell" aplikacji desktopowej.
 	/// </summary>
 	sealed class ShellViewModel
-		: Conductor<object>.Collection.AllActive, IShell
+		: Conductor<object>.Collection.OneActive, IShell
 	{
 		/// <summary>
-		/// Pobiera kontrolkę z kartami dla widoku.
+		/// Pobiera kontrolkę z głównym widokiem.
 		/// </summary>
-		public TabsViewModel TabsControl
+		public MainScreenViewModel MainScreen
 		{
-			get { return (TabsViewModel)this.Items[0]; }
+			get { return (MainScreenViewModel)this.Items[0]; }
 		}
 
 		/// <summary>
 		/// Pobiera kontrolkę obsługującą okna aplikacji.
 		/// </summary>
-		public WindowsViewModel WindowsControl
+		public PopupsViewModel PopupsControl
 		{
-			get { return (WindowsViewModel)this.Items[1]; }
+			get { return (PopupsViewModel)this.Items[1]; }
 		}
 
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
-		/// <param name="tabs"></param>
-		/// <param name="windows"></param>
-		public ShellViewModel(TabsViewModel tabs, WindowsViewModel windows)
+		/// <param name="popups"></param>
+		public ShellViewModel(PopupsViewModel popups)
 		{
-			this.ActivateItem(tabs);
-			this.ActivateItem(windows);
+			this.ActivateItem(new MainScreenViewModel());
+			this.ActivateItem(popups);
 		}
 
 		/// <inheritdoc />
 		public TViewModel NavigateTo<TViewModel>()
+			where TViewModel : IMainScreen
 		{
 			var model = IoC.Get<TViewModel>();
-			this.WindowsControl.ActivateItem(model);
+			this.MainScreen.ActivateItem(model);
+			return model;
+		}
+
+		/// <inheritdoc />
+		public TViewModel Show<TViewModel>() where TViewModel : IPopupScreen
+		{
+			var model = IoC.Get<TViewModel>();
+			this.PopupsControl.ActivateItem(model);
 			return model;
 		}
 	}

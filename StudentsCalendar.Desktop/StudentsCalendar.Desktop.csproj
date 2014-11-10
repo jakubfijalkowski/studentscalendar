@@ -102,20 +102,10 @@
     <Compile Include="Converters\SlotToMarginConverter.cs" />
     <Compile Include="Helpers\BooleanExtensions.cs" />
     <Compile Include="Platform\SampleStorage.cs" />
-    <Compile Include="Tabs\DayView.xaml.cs">
-      <DependentUpon>DayView.xaml</DependentUpon>
+    <Compile Include="PopupsView.xaml.cs">
+      <DependentUpon>PopupsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Tabs\WeekView.xaml.cs">
-      <DependentUpon>WeekView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowsView.xaml.cs">
-      <DependentUpon>WindowsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="WindowsViewModel.cs" />
-    <Compile Include="TabsView.xaml.cs">
-      <DependentUpon>TabsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TabsViewModel.cs" />
+    <Compile Include="PopupsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
@@ -216,19 +206,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TabsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tabs\DayView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Tabs\WeekView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="WindowsView.xaml">
+    <Page Include="PopupsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

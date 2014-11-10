@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace StudentsCalendar.Desktop
 {
 	/// <summary>
-	/// Interaction logic for WindowsView.xaml
+	/// Interaction logic for PopupsView.xaml
 	/// </summary>
-	public partial class WindowsView : UserControl
+	public partial class PopupsView : UserControl
 	{
-		public WindowsView()
+		public PopupsView()
 		{
 			InitializeComponent();
 		}
