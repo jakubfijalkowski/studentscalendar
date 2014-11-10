@@ -48,7 +48,7 @@
     <Compile Include="IMainScreen.cs" />
     <Compile Include="IPopupScreen.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />
-    <Compile Include="Main\WeekViewModel.cs" />
+    <Compile Include="Main\MonthViewModel.cs" />
     <Compile Include="Services\ILayoutArranger.cs" />
     <Compile Include="IHaveContext.cs" />
     <Compile Include="IShell.cs" />

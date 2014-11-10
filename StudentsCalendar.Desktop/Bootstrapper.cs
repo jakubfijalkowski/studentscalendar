@@ -77,9 +77,6 @@ namespace StudentsCalendar.Desktop
 
 		private void RegisterInfrastructure(ContainerBuilder builder)
 		{
-			builder.RegisterType<MainWindow>()
-				.AsSelf();
-
 			builder.RegisterType<EventAggregator>()
 				.AsSelf().AsImplementedInterfaces()
 				.InstancePerLifetimeScope();

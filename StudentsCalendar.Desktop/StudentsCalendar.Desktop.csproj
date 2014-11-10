@@ -96,9 +96,6 @@
       <DependentUpon>MainScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainScreenViewModel.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Main\CurrentWeekView.xaml.cs">
       <DependentUpon>CurrentWeekView.xaml</DependentUpon>
     </Compile>
@@ -179,10 +176,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainScreenView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

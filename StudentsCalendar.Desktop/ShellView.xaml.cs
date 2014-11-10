@@ -1,11 +1,11 @@
-﻿using System.Windows.Controls;
+﻿using MahApps.Metro.Controls;
 
 namespace StudentsCalendar.Desktop
 {
 	/// <summary>
-	/// Interaction logic for DesktopShellView.xaml
+	/// Interaction logic for ShellView.xaml
 	/// </summary>
-	public partial class ShellView : UserControl
+	public partial class ShellView : MetroWindow
 	{
 		public ShellView()
 		{
