@@ -37,6 +37,7 @@ namespace StudentsCalendar.Desktop
 		protected override void OnStartup(object sender, System.Windows.StartupEventArgs e)
 		{
 			this.DisplayRootViewFor<IShell>();
+			this.Container.Resolve<IEventAggregator>().PublishOnCurrentThread(new UI.Events.ApplicationStartedEvent());
 		}
 
 		/// <inheritdoc />

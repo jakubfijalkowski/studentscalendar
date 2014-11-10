@@ -41,7 +41,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\ApplicationStartedEvent.cs" />
     <Compile Include="Events\NavigateRequestEvent.cs" />
+    <Compile Include="Handlers\ApplicationStartupHandler.cs" />
     <Compile Include="Handlers\NavigationHandler.cs" />
     <Compile Include="IMainScreen.cs" />
     <Compile Include="IPopupScreen.cs" />
