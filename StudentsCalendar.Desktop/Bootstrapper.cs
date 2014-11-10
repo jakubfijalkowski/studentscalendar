@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Autofac;
 using Caliburn.Micro;
-using StudentsCalendar.Core;
 using StudentsCalendar.Core.ActivitySpans;
 using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Modifiers;
@@ -109,11 +108,11 @@ namespace StudentsCalendar.Desktop
 
 		public void RegisterCore(ContainerBuilder builder)
 		{
-			builder.RegisterAssemblyTypes(typeof(CalendarEngine).Assembly)
+			builder.RegisterAssemblyTypes(typeof(GenerationEngine).Assembly)
 				.Where(c => !c.IsAbstract &&
 					(c.IsInNamespaceOf<IActivitySpan>() || c.IsInNamespaceOf<IClassesModifier>() ||
 					 c.IsInNamespaceOf<ICalendarGenerator>() || c.IsInNamespaceOf<IContentProvider>() ||
-					 c == typeof(CalendarEngine)))
+					 c == typeof(GenerationEngine)))
 				.AsImplementedInterfaces().AsSelf();
 		}
 

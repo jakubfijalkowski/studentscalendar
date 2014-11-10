@@ -1,8 +1,7 @@
 ﻿using NodaTime;
-using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Templates;
 
-namespace StudentsCalendar.Core
+namespace StudentsCalendar.Core.Generation
 {
 	/// <summary>
 	/// Kontekst procesu generowania kalendarza.

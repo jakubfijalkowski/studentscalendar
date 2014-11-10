@@ -1,16 +1,15 @@
 ﻿using System.Linq;
 using NodaTime;
-using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Intermediates;
 using StudentsCalendar.Core.Templates;
 
-namespace StudentsCalendar.Core
+namespace StudentsCalendar.Core.Generation
 {
 	/// <summary>
 	/// Domyślna implementacja silnika kalendarza.
 	/// </summary>
-	public class CalendarEngine
-		: ICalendarEngine
+	public class GenerationEngine
+		: IGenerationEngine
 	{
 		private readonly ICalendarGenerator CalendarGenerator;
 		private readonly IWeekGenerator WeekGenerator;
@@ -26,7 +25,7 @@ namespace StudentsCalendar.Core
 		/// <param name="dayGenerator"></param>
 		/// <param name="classesGenerator"></param>
 		/// <param name="calendarFinalizer"></param>
-		public CalendarEngine(ICalendarGenerator calendarGenerator, IWeekGenerator weekGenerator,
+		public GenerationEngine(ICalendarGenerator calendarGenerator, IWeekGenerator weekGenerator,
 			IDayGenerator dayGenerator, IClassesGenerator classesGenerator,
 			ICalendarFinalizer calendarFinalizer)
 		{

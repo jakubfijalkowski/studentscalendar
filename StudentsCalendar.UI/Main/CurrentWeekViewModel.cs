@@ -5,6 +5,7 @@ using Caliburn.Micro;
 using NodaTime;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.Finals;
+using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI.Services;
 
@@ -17,7 +18,7 @@ namespace StudentsCalendar.UI.Main
 		: Screen, IMainScreen
 	{
 		private readonly IContentProvider ContentProvider;
-		private readonly ICalendarEngine CalendarEngine;
+		private readonly IGenerationEngine CalendarEngine;
 		private readonly ILayoutArranger LayoutArranger;
 
 		private ArrangedWeek Week;
@@ -44,7 +45,7 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="contentProvider"></param>
 		/// <param name="calendarEngine"></param>
 		/// <param name="layoutArranger"></param>
-		public CurrentWeekViewModel(IContentProvider contentProvider, ICalendarEngine calendarEngine, ILayoutArranger layoutArranger)
+		public CurrentWeekViewModel(IContentProvider contentProvider, IGenerationEngine calendarEngine, ILayoutArranger layoutArranger)
 		{
 			this.ContentProvider = contentProvider;
 			this.CalendarEngine = calendarEngine;

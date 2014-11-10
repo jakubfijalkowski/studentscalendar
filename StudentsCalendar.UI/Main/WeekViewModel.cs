@@ -6,6 +6,7 @@ using Caliburn.Micro;
 using NodaTime;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.Finals;
+using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI.Services;
 
@@ -20,7 +21,7 @@ namespace StudentsCalendar.UI.Main
 		private const int MaxWeeks = 2;
 
 		private readonly IContentProvider ContentProvider;
-		private readonly ICalendarEngine CalendarEngine;
+		private readonly IGenerationEngine CalendarEngine;
 		private readonly ILayoutArranger LayoutArranger;
 
 		/// <summary>
@@ -39,7 +40,7 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="contentProvider"></param>
 		/// <param name="calendarEngine"></param>
 		/// <param name="layoutArranger"></param>
-		public MonthViewModel(IContentProvider contentProvider, ICalendarEngine calendarEngine, ILayoutArranger layoutArranger)
+		public MonthViewModel(IContentProvider contentProvider, IGenerationEngine calendarEngine, ILayoutArranger layoutArranger)
 		{
 			this.ContentProvider = contentProvider;
 			this.CalendarEngine = calendarEngine;

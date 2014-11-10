@@ -1,5 +1,4 @@
-﻿using System;
-using Caliburn.Micro;
+﻿using Caliburn.Micro;
 using StudentsCalendar.UI.Events;
 
 namespace StudentsCalendar.UI.Handlers

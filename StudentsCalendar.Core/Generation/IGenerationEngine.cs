@@ -1,7 +1,7 @@
 ﻿using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Templates;
 
-namespace StudentsCalendar.Core
+namespace StudentsCalendar.Core.Generation
 {
 	/// <summary>
 	/// Silnik tworzenia kalendarza.
@@ -12,7 +12,7 @@ namespace StudentsCalendar.Core
 	/// kalendarz, by uzyskać formę niezmienną. Inaczej rzecz ujmując - spaja wszystkie
 	/// podsytemy aplikacji.
 	/// </remarks>
-	public interface ICalendarEngine
+	public interface IGenerationEngine
 	{
 		/// <summary>
 		/// Przeprowadza proces generowania kalendarza.

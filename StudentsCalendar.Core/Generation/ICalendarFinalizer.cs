@@ -1,5 +1,4 @@
-﻿using System;
-using StudentsCalendar.Core.Finals;
+﻿using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Intermediates;
 
 namespace StudentsCalendar.Core.Generation
