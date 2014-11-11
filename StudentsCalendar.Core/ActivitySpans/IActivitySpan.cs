@@ -16,6 +16,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// Np. dla tygodnia rozumiemy datę pierwszego tygodnia aktywności kalendarza
 	/// (poniedziałek). Dla poszczególnych dni, np. dla środy, datę wystąpienia
 	/// pierwszej środy w pierwszym tygodniu.
+	/// "Data bazowa" może zostać nadpisana przez użytkownika.
 	/// </remarks>
 	public interface IActivitySpan
 	{

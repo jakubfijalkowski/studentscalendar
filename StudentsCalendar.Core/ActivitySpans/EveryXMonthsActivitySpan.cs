@@ -21,11 +21,16 @@ namespace StudentsCalendar.Core.ActivitySpans
 			set { this._Count = Math.Max(1, value); }
 		}
 
+		/// <summary>
+		/// Data rozpoczęcia aktywności - określa dzień, od kiedy dany przedział jest aktywny.
+		/// </summary>
+		public LocalDate? StartDate { get; set; }
+
 		/// <inheritdoc />
 		public bool IsActive(LocalDate baseDate, LocalDate date)
 		{
-			var distance = Period.Between(baseDate, date, PeriodUnits.Months);
-			return (distance.Months % this.Count) == 0;
+			var distance = Period.Between(this.StartDate ?? baseDate, date, PeriodUnits.Months);
+			return distance.Months >= 0 && (distance.Months % this.Count) == 0;
 		}
 
 		/// <inheritdoc />
