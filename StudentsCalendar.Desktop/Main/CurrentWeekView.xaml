@@ -1,10 +1,11 @@
 ﻿<UserControl x:Class="StudentsCalendar.Desktop.Main.CurrentWeekView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls"
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers">
-    <TabControl ItemsSource="{Binding Days}" SelectedValue="{Binding Today}">
+    <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Days}" SelectedValue="{Binding Today}">
         <TabControl.ItemTemplate>
             <DataTemplate>
                 <TextBlock Text="{help:BindingWithCurrentCulture Day.Date, StringFormat='{}{0:dddd}'}" />
@@ -24,5 +25,5 @@
                 </ScrollViewer>
             </DataTemplate>
         </TabControl.ContentTemplate>
-    </TabControl>
+    </metro:MetroAnimatedSingleRowTabControl>
 </UserControl>

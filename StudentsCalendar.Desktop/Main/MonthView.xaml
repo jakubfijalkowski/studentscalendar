@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="StudentsCalendar.Desktop.Main.MonthView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls"
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
@@ -8,7 +9,7 @@
     <UserControl.Resources>
         <conv:WeekOffsetToStringConverter x:Key="WeekOffset" />
     </UserControl.Resources>
-    <TabControl ItemsSource="{Binding Weeks}" SelectedValue="{Binding CurrentWeek}">
+    <metro:MetroAnimatedTabControl ItemsSource="{Binding Weeks}" SelectedValue="{Binding CurrentWeek}">
         <TabControl.ItemTemplate>
             <DataTemplate>
                 <TextBlock>
@@ -74,5 +75,5 @@
                 </ScrollViewer>
             </DataTemplate>
         </TabControl.ContentTemplate>
-    </TabControl>
+    </metro:MetroAnimatedTabControl>
 </UserControl>
