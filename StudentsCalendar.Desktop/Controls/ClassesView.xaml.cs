@@ -43,11 +43,13 @@ namespace StudentsCalendar.Desktop.Controls
 		{
 			if (this.IsWide)
 			{
-				this.MainColumn.Width = new GridLength(this.MinColumnWidth * 1.5);
+				this.MainColumn.MinWidth = this.MinColumnWidth * 2;
+				this.MainColumn.Width = new GridLength(1, GridUnitType.Star);
 				this.SecondColumn.Width = new GridLength(1, GridUnitType.Star);
 			}
 			else
 			{
+				this.MainColumn.MinWidth = 0;
 				this.MainColumn.Width = new GridLength(1, GridUnitType.Star);
 				this.SecondColumn.Width = new GridLength(0);
 			}

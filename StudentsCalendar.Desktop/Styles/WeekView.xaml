@@ -5,10 +5,15 @@
         <Setter Property="FontSize" Value="{StaticResource SubHeaderFontSize}" />
         <Setter Property="Foreground" Value="{StaticResource HighlightBrush}" />
         <Setter Property="Height" Value="{StaticResource DayHeaderHeight}" />
+        
+        <Setter Property="Padding" Value="5,0" />
     </Style>
 
     <Style x:Key="WeekRangeStyle" TargetType="TextBlock" BasedOn="{StaticResource DefaultTextBlockStyle}">
-        <Setter Property="FontSize" Value="20" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Padding" Value="5,0,0,0" />
     </Style>
     
 </ResourceDictionary>
