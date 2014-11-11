@@ -88,6 +88,9 @@ namespace StudentsCalendar.Desktop
 			builder.RegisterType<ShellViewModel>()
 				.AsSelf().AsImplementedInterfaces()
 				.InstancePerLifetimeScope();
+
+			builder.RegisterType<Platform.UserStorage>()
+				.As<Core.Platform.IStorage>();
 		}
 
 		private void RegisterHandlers(ContainerBuilder builder)
@@ -129,7 +132,7 @@ namespace StudentsCalendar.Desktop
 				.AsImplementedInterfaces().AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(ShellViewModel).Assembly)
-				.Where(c => !c.IsAbstract && c != typeof(ShellViewModel) && (c.Name.EndsWith("ViewModel") || c.IsInNamespaceOf<Platform.SampleStorage>()))
+				.Where(c => !c.IsAbstract && c != typeof(ShellViewModel) && c.Name.EndsWith("ViewModel"))
 				.AsImplementedInterfaces().AsSelf();
 		}
 	}

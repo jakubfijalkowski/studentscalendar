@@ -104,7 +104,7 @@
       <DependentUpon>MonthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MetroWindowManager.cs" />
-    <Compile Include="Platform\SampleStorage.cs" />
+    <Compile Include="Platform\UserStorage.cs" />
     <Compile Include="PopupsView.xaml.cs">
       <DependentUpon>PopupsView.xaml</DependentUpon>
     </Compile>

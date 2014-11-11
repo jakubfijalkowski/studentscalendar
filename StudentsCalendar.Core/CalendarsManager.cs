@@ -57,7 +57,7 @@ namespace StudentsCalendar.Core
 			}
 			this.IsInitialized = true;
 
-			this.Entries = await this.ContentProvider.LoadCalendars();
+			this.Entries = await this.ContentProvider.LoadCalendars() ?? new CalendarEntry[0];
 			this.ActiveEntry = this.Entries.FirstOrDefault(e => e.IsActive);
 			if (this.ActiveEntry != null)
 			{
