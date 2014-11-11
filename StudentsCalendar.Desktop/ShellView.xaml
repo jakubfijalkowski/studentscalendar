@@ -25,6 +25,13 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
             </Button>
+            <Button cal:Message.Attach="ShowCalendars" Visibility="{Binding IsLoading, Converter={StaticResource RevBoolToVisibility}}">
+                <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle.OpacityMask>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_list}" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
+            </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
     <Grid>

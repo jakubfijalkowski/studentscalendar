@@ -1,5 +1,12 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Color x:Key="RedColor">#FFFF5656</Color>
+    <Color x:Key="AccentColor0">#FF119EDA</Color>
     <Color x:Key="LightAccentColor1">#FFF2FBFF</Color>
+
+    <SolidColorBrush x:Key="RedColorBrush" Color="{StaticResource RedColor}" />
+    <SolidColorBrush x:Key="AccentColorBrush0" Color="{StaticResource AccentColor0}" />
     <SolidColorBrush x:Key="LightAccentBrush1" Color="{StaticResource LightAccentColor1}" />
+
 </ResourceDictionary>

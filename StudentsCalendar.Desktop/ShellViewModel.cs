@@ -74,6 +74,14 @@ namespace StudentsCalendar.Desktop
 			this.ShowMainScreen(typeof(UI.Main.MonthViewModel));
 		}
 
+		/// <summary>
+		/// Wyświetla widok kalendarzy.
+		/// </summary>
+		public void ShowCalendars()
+		{
+			this.ShowMainScreen(typeof(UI.Main.CalendarsViewModel));
+		}
+
 		/// <inheritdoc />
 		public void ShowMainScreen(Type mainScreenType)
 		{

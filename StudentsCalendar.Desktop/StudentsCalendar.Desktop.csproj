@@ -86,6 +86,7 @@
     <Compile Include="Controls\SlotsView.xaml.cs">
       <DependentUpon>SlotsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BoolInverseConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\SlotToHeightConverter.cs" />
@@ -97,6 +98,9 @@
       <DependentUpon>MainScreenView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainScreenViewModel.cs" />
+    <Compile Include="Main\CalendarsView.xaml.cs">
+      <DependentUpon>CalendarsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Main\CurrentWeekView.xaml.cs">
       <DependentUpon>CurrentWeekView.xaml</DependentUpon>
     </Compile>
@@ -177,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainScreenView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Main\CalendarsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
