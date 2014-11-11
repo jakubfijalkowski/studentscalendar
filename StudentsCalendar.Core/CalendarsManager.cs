@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using StudentsCalendar.Core.Finals;
@@ -16,6 +17,8 @@ namespace StudentsCalendar.Core
 	{
 		private readonly IContentProvider ContentProvider;
 		private readonly IGenerationEngine GenerationEngine;
+
+		private ObservableCollection<CalendarEntry> _Entries;
 
 		private bool IsInitialized;
 
@@ -35,7 +38,10 @@ namespace StudentsCalendar.Core
 		public GenerationResults GenerationResults { get; private set; }
 
 		/// <inheritdoc />
-		public IReadOnlyList<CalendarEntry> Entries { get; private set; }
+		public IReadOnlyList<CalendarEntry> Entries
+		{
+			get { return this._Entries; }
+		}
 
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
@@ -57,12 +63,30 @@ namespace StudentsCalendar.Core
 			}
 			this.IsInitialized = true;
 
-			this.Entries = await this.ContentProvider.LoadCalendars() ?? new CalendarEntry[0];
+			var loadedEntries = await this.ContentProvider.LoadCalendars();
+			this._Entries = new ObservableCollection<CalendarEntry>(loadedEntries ?? Enumerable.Empty<CalendarEntry>());
 			this.ActiveEntry = this.Entries.FirstOrDefault(e => e.IsActive);
 			if (this.ActiveEntry != null)
 			{
 				await this.RegenerateActiveCalendar();
 			}
+		}
+
+		/// <inheritdoc />
+		public async Task DeleteEntry(CalendarEntry entry)
+		{
+			if (entry.IsActive)
+			{
+				throw new InvalidOperationException("Cannot delete active entry.");
+			}
+
+			// Try to remove the calendar from backing store first,
+			// if it will fail - the list will stay intact.
+
+			var newList = this.Entries.Where(e => e != entry).ToArray();
+			await this.ContentProvider.StoreCalendars(newList);
+			await this.ContentProvider.DeleteTemplate(entry.Id);
+			this._Entries.Remove(entry);
 		}
 
 		private async Task RegenerateActiveCalendar()

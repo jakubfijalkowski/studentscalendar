@@ -9,16 +9,36 @@ namespace StudentsCalendar.Core.Platform
 	public interface IStorage
 	{
 		/// <summary>
-		/// Wczytuje listę kalendarzy.
+		/// Otwiera strumień tylko do odczytu do istniejącego elementu.
 		/// </summary>
+		/// <exception cref="IOException">Rzucane, gdy nie udało się uzyskać dostępu do strumienia.</exception>
+		/// <param name="entryId"></param>
 		/// <returns></returns>
-		Task<Stream> LoadEntries();
+		Task<Stream> OpenRead(string entryId);
+		
+		/// <summary>
+		/// Otwiera strumień tylko do odczytu do elementu o wskazanym id. Jeśli element nie istnieje,
+		/// tworzy go i dopiero otwiera strumień.
+		/// </summary>
+		/// <exception cref="IOException">Rzucane, gdy nie udało się uzyskać dostępu do strumienia.</exception>
+		/// <param name="entryId"></param>
+		/// <returns></returns>
+		Task<Stream> OpenOrCreate(string entryId);
 
 		/// <summary>
-		/// Wczytuje konkretny szablon kalendarza.
+		/// Otwiera strumień tylko do zapisu do wskazanego elementu. Jeśli element nie istnieje,
+		/// tworzy go.
 		/// </summary>
-		/// <param name="id"></param>
+		/// <exception cref="IOException">Rzucane, gdy nie udało się uzyskać dostępu do strumienia.</exception>
+		/// <param name="entryId"></param>
 		/// <returns></returns>
-		Task<Stream> LoadCalendar(string id);
+		Task<Stream> OpenWrite(string entryId);
+
+		/// <summary>
+		/// Usuwa wpis. Jeśli wpis nie istnieje to nic nie robi.
+		/// </summary>
+		/// <param name="entryId"></param>
+		/// <returns></returns>
+		Task DeleteEntry(string entryId);
 	}
 }

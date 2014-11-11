@@ -11,25 +11,49 @@ namespace StudentsCalendar.Desktop.Platform
 	sealed class UserStorage
 		: IStorage
 	{
-		private const string CalendarsFile = "Calendars.json";
 		private readonly string DataPath = Path.Combine(
 			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
 			"StudentsCalendar");
 
 		/// <inheritdoc />
-		public Task<Stream> LoadEntries()
+		public Task<Stream> OpenRead(string entryId)
 		{
-			this.EnsureFolderExists();
-			string filePath = Path.Combine(DataPath, CalendarsFile);
-			return Task.FromResult<Stream>(new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read));
+			return this.AccessFile(entryId, FileMode.Open, FileAccess.Read);
 		}
 
 		/// <inheritdoc />
-		public Task<Stream> LoadCalendar(string id)
+		public Task<Stream> OpenOrCreate(string entryId)
+		{
+			return this.AccessFile(entryId, FileMode.OpenOrCreate, FileAccess.Read);
+		}
+
+		/// <inheritdoc />
+		public Task<Stream> OpenWrite(string entryId)
+		{
+			return this.AccessFile(entryId, FileMode.Create, FileAccess.Write);
+		}
+
+		/// <inheritdoc />
+		public Task DeleteEntry(string entryId)
+		{
+			var filePath = Path.Combine(entryId);
+			if (File.Exists(filePath))
+			{
+				try
+				{
+					File.Delete(filePath);
+				}
+				catch
+				{ }
+			}
+			return Task.FromResult<object>(null);
+		}
+
+		private Task<Stream> AccessFile(string name, FileMode mode, FileAccess access)
 		{
 			this.EnsureFolderExists();
-			string filePath = Path.Combine(DataPath, id + ".json");
-			return Task.FromResult<Stream>(new FileStream(filePath, FileMode.Open, FileAccess.Read));
+			string filePath = Path.Combine(DataPath, name);
+			return Task.FromResult<Stream>(new FileStream(filePath, mode, access));
 		}
 
 		private void EnsureFolderExists()
@@ -45,5 +69,6 @@ namespace StudentsCalendar.Desktop.Platform
 				}
 			}
 		}
+
 	}
 }

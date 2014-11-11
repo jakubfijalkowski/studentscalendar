@@ -16,7 +16,13 @@ namespace StudentsCalendar.UI.Main
 		/// <summary>
 		/// Pobiera listę kalendarzy użytkownika.
 		/// </summary>
-		public IReadOnlyList<CalendarEntry> Entries { get; private set; }
+		public IReadOnlyList<CalendarEntry> Entries
+		{
+			get
+			{
+				return this.Calendars.Entries;
+			}
+		}
 
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
@@ -25,7 +31,6 @@ namespace StudentsCalendar.UI.Main
 		public CalendarsViewModel(ICalendarsManager calendars)
 		{
 			this.Calendars = calendars;
-			this.Entries = this.Calendars.Entries;
 		}
 
 		/// <summary>
@@ -41,9 +46,9 @@ namespace StudentsCalendar.UI.Main
 		/// Usuwa wskazany wpis.
 		/// </summary>
 		/// <param name="entry"></param>
-		public void DeleteEntry(CalendarEntry entry)
+		public async void DeleteEntry(CalendarEntry entry)
 		{
-
+			await this.Calendars.DeleteEntry(entry);
 		}
 
 		/// <summary>

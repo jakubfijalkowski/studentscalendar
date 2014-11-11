@@ -22,6 +22,11 @@ namespace StudentsCalendar.Core
 		/// <summary>
 		/// Pobiera listę kalendarzy.
 		/// </summary>
+		/// <remarks>
+		/// To powinna być kolekcja, która może być "obserwowana"(tj. implementuje
+		/// <see cref="System.Collections.Specialized.INotifyCollectionChanged"/>),
+		/// np. <see cref="System.Collections.ObjectModel.ObservableCollection"/>.
+		/// </remarks>
 		IReadOnlyList<CalendarEntry> Entries { get; }
 
 		/// <summary>
@@ -46,5 +51,13 @@ namespace StudentsCalendar.Core
 		/// <exception cref="InvalidOperationException">Rzucane, gdy menedżer został już zainicjalizowany.</exception>
 		/// <returns></returns>
 		Task Initialize();
+
+		/// <summary>
+		/// Usuwa wpis z listy.
+		/// </summary>
+		/// <exception cref="InvalidOperationException">Rzucane, gdy podjęto próbę usunięcia aktywnego wpisu.</exception>
+		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
+		/// <param name="entry"></param>
+		Task DeleteEntry(CalendarEntry entry);
 	}
 }
