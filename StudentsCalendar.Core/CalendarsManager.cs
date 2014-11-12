@@ -65,10 +65,11 @@ namespace StudentsCalendar.Core
 
 			var loadedEntries = await this.ContentProvider.LoadCalendars();
 			this._Entries = new ObservableCollection<CalendarEntry>(loadedEntries ?? Enumerable.Empty<CalendarEntry>());
-			this.ActiveEntry = this.Entries.FirstOrDefault(e => e.IsActive);
-			if (this.ActiveEntry != null)
+			var entry = this.Entries.FirstOrDefault(e => e.IsActive);
+			if (entry != null)
 			{
-				await this.RegenerateActiveCalendar();
+				this.GenerationResults = await this.LoadAndGenerateCalendar(entry);
+				this.ActiveEntry = entry;
 			}
 		}
 
@@ -83,17 +84,35 @@ namespace StudentsCalendar.Core
 			// Try to remove the calendar from backing store first,
 			// if it fails - the list will stay intact.
 
-			var newList = this.Entries.Where(e => e != entry).ToArray();
+			var newList = this.Entries.Where(e => e != entry);
 			await this.ContentProvider.StoreCalendars(newList);
 			this._Entries.Remove(entry);
 
 			this.ContentProvider.DeleteTemplate(entry.Id);
 		}
 
-		private async Task RegenerateActiveCalendar()
+		/// <inheritdoc />
+		public async Task MakeActive(CalendarEntry entry)
 		{
-			var template = await this.ContentProvider.LoadTemplate(this.ActiveEntry.Id);
-			this.GenerationResults = await Task.Run(() => this.GenerationEngine.Generate(template));
+			// Try to load, generate and store calendar before changing any
+			// properties that may be bound to the UI
+			var result = await this.LoadAndGenerateCalendar(entry);
+			await this.ContentProvider.StoreCalendars(this.Entries);
+
+			this.GenerationResults = result;
+			if (this.ActiveEntry != null)
+			{
+				this.ActiveEntry.IsActive = false;
+			}
+			entry.IsActive = true;
+
+			this.ActiveEntry = entry;
+		}
+
+		private async Task<GenerationResults> LoadAndGenerateCalendar(CalendarEntry newEntry)
+		{
+			var template = await this.ContentProvider.LoadTemplate(newEntry.Id);
+			return await Task.Run(() => this.GenerationEngine.Generate(template));
 		}
 	}
 }

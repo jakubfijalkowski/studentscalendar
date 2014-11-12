@@ -48,16 +48,30 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="entry"></param>
 		public async void DeleteEntry(CalendarEntry entry)
 		{
-			await this.Calendars.DeleteEntry(entry);
+			try
+			{
+				await this.Calendars.DeleteEntry(entry);
+			}
+			catch
+			{
+				//TODO: handle error
+			}
 		}
 
 		/// <summary>
 		/// Ustawia wpis jako "aktywny".
 		/// </summary>
 		/// <param name="entry"></param>
-		public void MakeActive(CalendarEntry entry)
+		public async void MakeActive(CalendarEntry entry)
 		{
-
+			try
+			{
+				await this.Calendars.MakeActive(entry);
+			}
+			catch
+			{
+				//TODO: handle error
+			}
 		}
 	}
 }

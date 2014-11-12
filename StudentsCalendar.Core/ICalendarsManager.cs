@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Generation;
@@ -49,6 +50,8 @@ namespace StudentsCalendar.Core
 		/// na początku działania aplikacji.
 		/// </summary>
 		/// <exception cref="InvalidOperationException">Rzucane, gdy menedżer został już zainicjalizowany.</exception>
+		/// <exception cref="IOException">Rzucane, gdy nie udało się uzyskać dostępu do pliku z kalendarzami.</exception>
+		/// <exception cref="CalendarTemplateNotFoundException">Rzucane, gdy nie odnaleziono wpisu</exception>
 		/// <returns></returns>
 		Task Initialize();
 
@@ -59,5 +62,14 @@ namespace StudentsCalendar.Core
 		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
 		/// <param name="entry"></param>
 		Task DeleteEntry(CalendarEntry entry);
+
+		/// <summary>
+		/// Ustawia wskazany element na "aktywny".
+		/// </summary>
+		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
+		/// <exception cref="CalendarTemplateNotFoundException">Rzucane, gdy nie odnaleziono wpisu</exception>
+		/// <param name="entry"></param>
+		/// <returns></returns>
+		Task MakeActive(CalendarEntry entry);
 	}
 }

@@ -47,10 +47,17 @@ namespace StudentsCalendar.Core.Storage
 		/// <inheritdoc />
 		public async Task<CalendarTemplate> LoadTemplate(string calendarId)
 		{
-			using (var stream = await this.Storage.OpenRead(string.Format(TemplateEntryIdFormat, calendarId)))
-			using (var reader = new JsonTextReader(new StreamReader(stream)))
+			try
 			{
-				return await Task.Run(() => this.Serializer.Deserialize<CalendarTemplate>(reader));
+				using (var stream = await this.Storage.OpenRead(string.Format(TemplateEntryIdFormat, calendarId)))
+				using (var reader = new JsonTextReader(new StreamReader(stream)))
+				{
+					return await Task.Run(() => this.Serializer.Deserialize<CalendarTemplate>(reader));
+				}
+			}
+			catch (FileNotFoundException ex) //TODO: consider using more generic exception here
+			{
+				throw new CalendarTemplateNotFoundException(calendarId, ex);
 			}
 		}
 
