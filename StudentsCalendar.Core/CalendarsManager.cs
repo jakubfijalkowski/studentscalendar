@@ -81,12 +81,13 @@ namespace StudentsCalendar.Core
 			}
 
 			// Try to remove the calendar from backing store first,
-			// if it will fail - the list will stay intact.
+			// if it fails - the list will stay intact.
 
 			var newList = this.Entries.Where(e => e != entry).ToArray();
 			await this.ContentProvider.StoreCalendars(newList);
-			await this.ContentProvider.DeleteTemplate(entry.Id);
 			this._Entries.Remove(entry);
+
+			this.ContentProvider.DeleteTemplate(entry.Id);
 		}
 
 		private async Task RegenerateActiveCalendar()

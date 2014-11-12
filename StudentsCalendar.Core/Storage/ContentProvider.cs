@@ -35,7 +35,7 @@ namespace StudentsCalendar.Core.Storage
 		}
 
 		/// <inheritdoc />
-		public async Task<IReadOnlyList<CalendarEntry>> LoadCalendars()
+		public async Task<IEnumerable<CalendarEntry>> LoadCalendars()
 		{
 			using (var stream = await this.Storage.OpenOrCreate(CalendarsEntryId))
 			using (var reader = new JsonTextReader(new StreamReader(stream)))
@@ -55,7 +55,7 @@ namespace StudentsCalendar.Core.Storage
 		}
 
 		/// <inheritdoc />
-		public async Task StoreCalendars(IReadOnlyList<CalendarEntry> entries)
+		public async Task StoreCalendars(IEnumerable<CalendarEntry> entries)
 		{
 			using (var stream = await this.Storage.OpenWrite(CalendarsEntryId))
 			using (var writer = new JsonTextWriter(new StreamWriter(stream)))
@@ -65,9 +65,9 @@ namespace StudentsCalendar.Core.Storage
 		}
 
 		/// <inheritdoc />
-		public Task DeleteTemplate(string calendarId)
+		public void DeleteTemplate(string calendarId)
 		{
-			return this.Storage.DeleteEntry(string.Format(TemplateEntryIdFormat, calendarId));
+			this.Storage.DeleteEntry(string.Format(TemplateEntryIdFormat, calendarId));
 		}
 	}
 }

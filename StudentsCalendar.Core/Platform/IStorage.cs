@@ -38,7 +38,6 @@ namespace StudentsCalendar.Core.Platform
 		/// Usuwa wpis. Jeśli wpis nie istnieje to nic nie robi.
 		/// </summary>
 		/// <param name="entryId"></param>
-		/// <returns></returns>
-		Task DeleteEntry(string entryId);
+		void DeleteEntry(string entryId);
 	}
 }

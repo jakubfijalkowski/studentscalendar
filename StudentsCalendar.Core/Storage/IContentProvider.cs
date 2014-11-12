@@ -14,7 +14,7 @@ namespace StudentsCalendar.Core.Storage
 		/// Wczytuje i deserializuje dostępne kalendarze.
 		/// </summary>
 		/// <returns></returns>
-		Task<IReadOnlyList<CalendarEntry>> LoadCalendars();
+		Task<IEnumerable<CalendarEntry>> LoadCalendars();
 
 		/// <summary>
 		/// Wczytuje i deserializuje szablon kalendarza.
@@ -29,7 +29,7 @@ namespace StudentsCalendar.Core.Storage
 		/// <exception cref="IOException">Rzucane, gdy nie uda się wykonać operacji zapisu.</exception>
 		/// <param name="entries"></param>
 		/// <returns></returns>
-		Task StoreCalendars(IReadOnlyList<CalendarEntry> entries);
+		Task StoreCalendars(IEnumerable<CalendarEntry> entries);
 
 		/// <summary>
 		/// Usuwa szablon kalendarza.
@@ -37,7 +37,6 @@ namespace StudentsCalendar.Core.Storage
 		/// nie powiedzie się usunięcie wpisu z <see cref="IStorage"/>
 		/// </summary>
 		/// <param name="calendarId"></param>
-		/// <returns></returns>
-		Task DeleteTemplate(string calendarId);
+		void DeleteTemplate(string calendarId);
 	}
 }

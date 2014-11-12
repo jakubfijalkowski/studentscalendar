@@ -34,7 +34,7 @@ namespace StudentsCalendar.Desktop.Platform
 		}
 
 		/// <inheritdoc />
-		public Task DeleteEntry(string entryId)
+		public void DeleteEntry(string entryId)
 		{
 			var filePath = Path.Combine(entryId);
 			if (File.Exists(filePath))
@@ -46,7 +46,6 @@ namespace StudentsCalendar.Desktop.Platform
 				catch
 				{ }
 			}
-			return Task.FromResult<object>(null);
 		}
 
 		private Task<Stream> AccessFile(string name, FileMode mode, FileAccess access)
