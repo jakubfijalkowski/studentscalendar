@@ -2,6 +2,7 @@
 using Caliburn.Micro;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.Storage;
+using StudentsCalendar.UI.Dialogs;
 
 namespace StudentsCalendar.UI.Main
 {
@@ -11,6 +12,7 @@ namespace StudentsCalendar.UI.Main
 	public sealed class CalendarsViewModel
 		: Screen, IViewModel
 	{
+		private readonly IShell Shell;
 		private readonly ICalendarsManager Calendars;
 
 		/// <summary>
@@ -27,9 +29,11 @@ namespace StudentsCalendar.UI.Main
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
+		/// <param name="shell"></param>
 		/// <param name="calendars"></param>
-		public CalendarsViewModel(ICalendarsManager calendars)
+		public CalendarsViewModel(IShell shell, ICalendarsManager calendars)
 		{
+			this.Shell = shell;
 			this.Calendars = calendars;
 		}
 
@@ -55,6 +59,7 @@ namespace StudentsCalendar.UI.Main
 			catch
 			{
 				//TODO: handle error
+				var ignored = this.Shell.ShowDialog(new ErrorDialog { Title = "This is Spartaaa!", Message = "You shall not pass!" });
 			}
 		}
 
@@ -71,6 +76,7 @@ namespace StudentsCalendar.UI.Main
 			catch
 			{
 				//TODO: handle error
+				var ignored = this.Shell.ShowDialog(new ErrorDialog { Title = "This is Spartaaa!", Message = "You shall not pass!" });
 			}
 		}
 	}

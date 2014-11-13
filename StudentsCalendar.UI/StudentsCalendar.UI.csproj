@@ -41,6 +41,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\DialogAttribute.cs" />
+    <Compile Include="Dialogs\ErrorDialog.cs" />
+    <Compile Include="Dialogs\IDialogView.cs" />
     <Compile Include="Events\ApplicationStartedEvent.cs" />
     <Compile Include="Events\NavigateRequestEvent.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />

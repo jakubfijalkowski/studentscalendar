@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Autofac;
 using Caliburn.Micro;
 using StudentsCalendar.Core;
@@ -9,6 +8,7 @@ using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI;
+using StudentsCalendar.UI.Dialogs;
 
 namespace StudentsCalendar.Desktop
 {
@@ -107,7 +107,7 @@ namespace StudentsCalendar.Desktop
 		{
 			//TODO: is this really needed?
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
-				.Where(c => !c.IsAbstract && c.GetInterfaces().Any(i => i == typeof(IHandle)) && c.Name.EndsWith("Handler"))
+				.Where(c => !c.IsAbstract && c.Implements<IHandle>() && c.Name.EndsWith("Handler"))
 				.AsImplementedInterfaces()
 				.InstancePerLifetimeScope()
 				.OnActivated(a =>
@@ -134,6 +134,14 @@ namespace StudentsCalendar.Desktop
 
 		private void RegisterViewsAndViewModels(ContainerBuilder builder)
 		{
+			builder.RegisterAssemblyTypes(typeof(Bootstrapper).Assembly)
+				.Where(c =>
+					!c.IsAbstract && c.IsInNamespaceOf<Dialogs.ErrorDialogView>() &&
+					c.Implements<IDialogView>() && c.Inherits<MahApps.Metro.Controls.Dialogs.BaseMetroDialog>() &&
+					c.HasAttribute<DialogAttribute>())
+				.AsSelf()
+				.Keyed<IDialogView>(t => DialogAttribute.GetDialogType(t));
+
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.Name.EndsWith("View") && !c.IsInNamespaceOf<Controls.ClassesView>())
 				.AsSelf();

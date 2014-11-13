@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace StudentsCalendar.UI
 {
@@ -21,6 +22,14 @@ namespace StudentsCalendar.UI
 		/// <returns>Utworzony ViewModel.</returns>
 		TViewModel Show<TViewModel>()
 			where TViewModel : IViewModel;
+
+		/// <summary>
+		/// Wyświetla okno dialogowe o wskazanym typie modelu.
+		/// Zobacz <see cref="IDialogView"/> po więcej informacji na temat dialogów.
+		/// </summary>
+		/// <param name="model"></param>
+		/// <returns><see cref="Task"/>, który pozwala poczekać na zamknięcie okna.</returns>
+		Task ShowDialog(object model);
 
 		/// <summary>
 		/// Wyświetla ekran ładowania i wyłącza możliwość nawigacji z wewnątrz

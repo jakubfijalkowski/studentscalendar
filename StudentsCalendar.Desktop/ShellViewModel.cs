@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Autofac.Features.Indexed;
 using Caliburn.Micro;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using StudentsCalendar.UI;
+using StudentsCalendar.UI.Dialogs;
 
 namespace StudentsCalendar.Desktop
 {
@@ -12,6 +16,7 @@ namespace StudentsCalendar.Desktop
 		: Conductor<object>.Collection.AllActive, IShell, IHandle<UI.Events.NavigateRequestEvent>
 	{
 		private readonly IIndex<Type, IViewModel> ViewModelsFactory;
+		private readonly IIndex<Type, IDialogView> DialogsFactory;
 		private readonly IEventAggregator EventAggregator;
 
 		private bool _IsLoading;
@@ -58,9 +63,11 @@ namespace StudentsCalendar.Desktop
 		/// <param name="viewModelsFactory"></param>
 		/// <param name="eventAggregator"></param>
 		public ShellViewModel(MainScreenViewModel mainScreen, PopupsViewModel popups,
-			IIndex<Type, IViewModel> viewModelsFactory, IEventAggregator eventAggregator)
+			IIndex<Type, IViewModel> viewModelsFactory, IIndex<Type, IDialogView> dialogsFactory,
+			IEventAggregator eventAggregator)
 		{
 			this.ViewModelsFactory = viewModelsFactory;
+			this.DialogsFactory = dialogsFactory;
 			this.EventAggregator = eventAggregator;
 
 			this.ActivateItem(mainScreen);
@@ -105,6 +112,17 @@ namespace StudentsCalendar.Desktop
 			var model = (TViewModel)this.ViewModelsFactory[typeof(TViewModel)];
 			this.PopupsControl.ActivateItem(model);
 			return model;
+		}
+
+		/// <inheritdoc />
+		public Task ShowDialog(object model)
+		{
+			var window = (MetroWindow)this.GetView();
+			var dialogView = (IDialogView)this.DialogsFactory[model.GetType()];
+			var metroDialog = (BaseMetroDialog)dialogView;
+			metroDialog.DataContext = model;
+			return window.ShowMetroDialogAsync(metroDialog)
+				.ContinueWith(t => dialogView.WaitForClose());
 		}
 
 		/// <inheritdoc />

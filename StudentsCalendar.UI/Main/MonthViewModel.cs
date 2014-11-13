@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using NodaTime;
 using StudentsCalendar.Core;
-using StudentsCalendar.Core.Finals;
-using StudentsCalendar.Core.Generation;
-using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.UI.Main
