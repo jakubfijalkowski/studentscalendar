@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using MahApps.Metro.Controls.Dialogs;
-using StudentsCalendar.UI.Dialogs;
+﻿using StudentsCalendar.UI.Dialogs;
 
 namespace StudentsCalendar.Desktop.Dialogs
 {
@@ -10,17 +7,11 @@ namespace StudentsCalendar.Desktop.Dialogs
 	/// </summary>
 	[Dialog(typeof(ErrorDialog))]
 	public partial class ErrorDialogView
-		: BaseMetroDialog, IDialogView
+		: BaseDialog, IDialogView
 	{
 		public ErrorDialogView()
 		{
 			InitializeComponent();
-		}
-
-		/// <inheritdoc />
-		public Task WaitForClose()
-		{
-			throw new NotImplementedException();
 		}
 	}
 }

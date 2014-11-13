@@ -1,8 +1,25 @@
-﻿<dialog:BaseMetroDialog x:Class="StudentsCalendar.Desktop.Dialogs.ErrorDialogView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro">
-    <Grid>
-            
+﻿<dialog:BaseDialog x:Class="StudentsCalendar.Desktop.Dialogs.ErrorDialogView"
+                   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:dialog="clr-namespace:StudentsCalendar.Desktop.Dialogs">
+    <dialog:BaseDialog.DialogTop>
+        <Rectangle Height="5" Fill="{StaticResource RedColorBrush}" />
+    </dialog:BaseDialog.DialogTop>
+    <dialog:BaseDialog.DialogBottom>
+        <Rectangle Height="5" Fill="{StaticResource RedColorBrush}" />
+    </dialog:BaseDialog.DialogBottom>
+
+    <Grid Margin="0,0,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Style="{StaticResource DialogTitleStyle}" Text="{Binding Title}" Foreground="{StaticResource RedColorBrush}" />
+        <TextBlock Grid.Row="1" Style="{StaticResource DialogMessageStyle}" Text="{Binding Message}" TextWrapping="Wrap" />
+        <Button Grid.Row="3" Style="{StaticResource SquareButtonStyle}" HorizontalAlignment="Right"
+                Background="{StaticResource RedColorBrush}" Foreground="White" Width="100"
+                Content="Ok" Click="CloseDialog" />
     </Grid>
-</dialog:BaseMetroDialog>
+</dialog:BaseDialog>

@@ -92,6 +92,7 @@
     <Compile Include="Converters\SlotToHeightConverter.cs" />
     <Compile Include="Converters\SlotToMarginConverter.cs" />
     <Compile Include="Converters\WeekOffsetToStringConverter.cs" />
+    <Compile Include="Dialogs\BaseDialog.cs" />
     <Compile Include="Dialogs\ErrorDialogView.xaml.cs">
       <DependentUpon>ErrorDialogView.xaml</DependentUpon>
     </Compile>
@@ -225,6 +226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Defaults.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Dialogs.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

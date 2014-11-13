@@ -58,8 +58,11 @@ namespace StudentsCalendar.UI.Main
 			}
 			catch
 			{
-				//TODO: handle error
-				var ignored = this.Shell.ShowDialog(new ErrorDialog { Title = "This is Spartaaa!", Message = "You shall not pass!" });
+				var ignored = this.Shell.ShowDialog(new ErrorDialog
+				{
+					Title = "Nie można usunąć wpisu.",
+					Message = "Nie udało się zapisać zmian, spróbuj ponownie później."
+				});
 			}
 		}
 
@@ -73,10 +76,21 @@ namespace StudentsCalendar.UI.Main
 			{
 				await this.Calendars.MakeActive(entry);
 			}
+			catch (CalendarTemplateNotFoundException)
+			{
+				var ignored = this.Shell.ShowDialog(new ErrorDialog
+				{
+					Title = "Operacja nie powiodła się.",
+					Message = "Nie udało się odczytać szablonu. Prawdopodobnie został uszkodzony. Odtwórz go lub rozważ usunięcie wpisu."
+				});
+			}
 			catch
 			{
-				//TODO: handle error
-				var ignored = this.Shell.ShowDialog(new ErrorDialog { Title = "This is Spartaaa!", Message = "You shall not pass!" });
+				var ignored = this.Shell.ShowDialog(new ErrorDialog
+				{
+					Title = "Nie można usunąć wpisu.",
+					Message = "Nie udało się zapisać zmian, spróbuj ponownie później."
+				});
 			}
 		}
 	}

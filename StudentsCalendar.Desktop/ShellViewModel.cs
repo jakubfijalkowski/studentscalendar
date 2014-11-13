@@ -115,14 +115,16 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <inheritdoc />
-		public Task ShowDialog(object model)
+		public async Task ShowDialog(object model)
 		{
 			var window = (MetroWindow)this.GetView();
 			var dialogView = (IDialogView)this.DialogsFactory[model.GetType()];
 			var metroDialog = (BaseMetroDialog)dialogView;
 			metroDialog.DataContext = model;
-			return window.ShowMetroDialogAsync(metroDialog)
-				.ContinueWith(t => dialogView.WaitForClose());
+
+			await window.ShowMetroDialogAsync(metroDialog);
+			await dialogView.WaitForClose();
+			await window.HideMetroDialogAsync(metroDialog);
 		}
 
 		/// <inheritdoc />
