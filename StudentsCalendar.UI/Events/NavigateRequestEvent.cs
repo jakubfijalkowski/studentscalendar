@@ -23,7 +23,7 @@ namespace StudentsCalendar.UI.Events
 		}
 
 		public static NavigateRequestEvent Create<TViewModel>()
-			where TViewModel : IMainScreen
+			where TViewModel : IViewModel
 		{
 			return new NavigateRequestEvent(typeof(TViewModel));
 		}

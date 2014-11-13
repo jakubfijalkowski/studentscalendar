@@ -1,4 +1,5 @@
 ﻿using System;
+using Autofac.Features.Indexed;
 using Caliburn.Micro;
 using StudentsCalendar.UI;
 
@@ -10,6 +11,8 @@ namespace StudentsCalendar.Desktop
 	sealed class ShellViewModel
 		: Conductor<object>.Collection.AllActive, IShell
 	{
+		private readonly IIndex<Type, IViewModel> ViewModelsFactory;
+
 		private bool _IsLoading;
 
 		/// <summary>
@@ -51,8 +54,11 @@ namespace StudentsCalendar.Desktop
 		/// </summary>
 		/// <param name="mainScreen"></param>
 		/// <param name="popups"></param>
-		public ShellViewModel(MainScreenViewModel mainScreen, PopupsViewModel popups)
+		public ShellViewModel(MainScreenViewModel mainScreen, PopupsViewModel popups,
+			IIndex<Type, IViewModel> viewModelsFactory)
 		{
+			this.ViewModelsFactory = viewModelsFactory;
+
 			this.ActivateItem(mainScreen);
 			this.ActivateItem(popups);
 		}
@@ -85,16 +91,16 @@ namespace StudentsCalendar.Desktop
 		/// <inheritdoc />
 		public void ShowMainScreen(Type mainScreenType)
 		{
-			var model = IoC.GetInstance(mainScreenType, null) as IMainScreen;
+			var model = this.ViewModelsFactory[mainScreenType];
 			this.MainScreen.ActivateItem(model);
 			//TODO: remove all popups
 		}
 
 		/// <inheritdoc />
 		public TViewModel Show<TViewModel>()
-			where TViewModel : IPopupScreen
+			where TViewModel : IViewModel
 		{
-			var model = IoC.Get<TViewModel>();
+			var model = (TViewModel)this.ViewModelsFactory[typeof(TViewModel)];
 			this.PopupsControl.ActivateItem(model);
 			return model;
 		}

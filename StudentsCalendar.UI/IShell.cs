@@ -10,7 +10,7 @@ namespace StudentsCalendar.UI
 		/// <summary>
 		/// Wyświetla nowy ekran główny.
 		/// </summary>
-		/// <param name="mainScreenType"></param>
+		/// <param name="mainScreenType">Typ ekranu do wyświetlenia, musi implementować <see cref="IViewModel"/>.</param>
 		void ShowMainScreen(Type mainScreenType);
 
 		/// <summary>
@@ -26,7 +26,7 @@ namespace StudentsCalendar.UI
 		/// <typeparam name="TViewModel"></typeparam>
 		/// <returns>Utworzony ViewModel.</returns>
 		TViewModel Show<TViewModel>()
-			where TViewModel : IPopupScreen;
+			where TViewModel : IViewModel;
 
 		/// <summary>
 		/// Wyświetla ekran ładowania i wyłącza możliwość nawigacji z wewnątrz

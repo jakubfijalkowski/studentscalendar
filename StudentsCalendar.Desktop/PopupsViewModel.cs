@@ -7,9 +7,9 @@ namespace StudentsCalendar.Desktop
 	/// ViewModel dla okien wewnątrz aplikacji.
 	/// </summary>
 	sealed class PopupsViewModel
-		: Conductor<IPopupScreen>.Collection.OneActive
+		: Conductor<IViewModel>.Collection.OneActive
 	{
-		public override void DeactivateItem(IPopupScreen item, bool close)
+		public override void DeactivateItem(IViewModel item, bool close)
 		{
 			base.DeactivateItem(item, true);
 		}

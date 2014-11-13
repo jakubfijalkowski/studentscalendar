@@ -11,7 +11,7 @@ namespace StudentsCalendar.UI.Main
 	/// Tygodniowy rozkład zajęć
 	/// </summary>
 	public sealed class CurrentWeekViewModel
-		: Screen, IMainScreen
+		: Screen, IViewModel
 	{
 		private readonly ICalendarsManager Calendars;
 		private readonly ILayoutArranger LayoutArranger;

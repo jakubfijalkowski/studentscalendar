@@ -9,7 +9,7 @@ namespace StudentsCalendar.UI.Main
 	/// ViewModel listy kalendarzy użytkownika.
 	/// </summary>
 	public sealed class CalendarsViewModel
-		: Screen, IMainScreen
+		: Screen, IViewModel
 	{
 		private readonly ICalendarsManager Calendars;
 

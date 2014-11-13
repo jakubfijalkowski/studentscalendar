@@ -7,11 +7,6 @@ namespace StudentsCalendar.Desktop
 	/// ViewModel zarządzający historią wyświetleń głównego okna.
 	/// </summary>
 	sealed class MainScreenViewModel
-		: Conductor<IMainScreen>
-	{
-		public override void DeactivateItem(IMainScreen item, bool close)
-		{
-			base.DeactivateItem(item, true);
-		}
-	}
+		: Conductor<IViewModel>
+	{ }
 }

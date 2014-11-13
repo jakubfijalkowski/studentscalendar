@@ -16,7 +16,7 @@ namespace StudentsCalendar.UI.Main
 	/// Widok miesiąca podzielonego na tygodnie. Pozwala na wyświetlenie aktualnego tygodnia i kilku poprzednich/następnych.
 	/// </summary>
 	public sealed class MonthViewModel
-		: Screen, IMainScreen
+		: Screen, IViewModel
 	{
 		private const int MaxWeeks = 2;
 

@@ -68,9 +68,9 @@ namespace StudentsCalendar.Desktop
 		private void BuildContainer()
 		{
 			var builder = new ContainerBuilder();
+			this.RegisterCore(builder);
 			this.RegisterInfrastructure(builder);
 			this.RegisterHandlers(builder);
-			this.RegisterCore(builder);
 			this.RegisterViewsAndViewModels(builder);
 			this.Container = builder.Build();
 		}
@@ -78,12 +78,18 @@ namespace StudentsCalendar.Desktop
 		private void RegisterInfrastructure(ContainerBuilder builder)
 		{
 			builder.RegisterType<EventAggregator>()
-				.AsSelf().AsImplementedInterfaces()
+				.AsImplementedInterfaces()
 				.InstancePerLifetimeScope();
 
 			builder.RegisterType<MetroWindowManager>()
-				.AsSelf().AsImplementedInterfaces()
+				.AsImplementedInterfaces()
 				.InstancePerLifetimeScope();
+
+			builder.RegisterType<MainScreenViewModel>()
+				.AsSelf();
+
+			builder.RegisterType<PopupsViewModel>()
+				.AsSelf();
 
 			builder.RegisterType<ShellViewModel>()
 				.AsSelf().AsImplementedInterfaces()
@@ -91,10 +97,15 @@ namespace StudentsCalendar.Desktop
 
 			builder.RegisterType<Platform.UserStorage>()
 				.As<Core.Platform.IStorage>();
+
+			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
+				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<UI.Services.ILayoutArranger>())
+				.AsImplementedInterfaces().AsSelf();
 		}
 
 		private void RegisterHandlers(ContainerBuilder builder)
 		{
+			//TODO: is this really needed?
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.GetInterfaces().Any(i => i == typeof(IHandle)) && c.Name.EndsWith("Handler"))
 				.AsImplementedInterfaces()
@@ -128,12 +139,9 @@ namespace StudentsCalendar.Desktop
 				.AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
-				.Where(c => !c.IsAbstract)
-				.AsImplementedInterfaces().AsSelf();
-
-			builder.RegisterAssemblyTypes(typeof(ShellViewModel).Assembly)
-				.Where(c => !c.IsAbstract && c != typeof(ShellViewModel) && c.Name.EndsWith("ViewModel"))
-				.AsImplementedInterfaces().AsSelf();
+				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"))
+				.Keyed<IViewModel>(t => t)
+				.AsSelf();
 		}
 	}
 }
