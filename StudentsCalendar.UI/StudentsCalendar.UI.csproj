@@ -47,6 +47,7 @@
     <Compile Include="Events\ApplicationStartedEvent.cs" />
     <Compile Include="Events\NavigateRequestEvent.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />
+    <Compile Include="Handlers\NavigationRequestHandler.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="Main\CalendarsViewModel.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />

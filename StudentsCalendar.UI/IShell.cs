@@ -9,6 +9,12 @@ namespace StudentsCalendar.UI
 	public interface IShell
 	{
 		/// <summary>
+		/// Wyświetla nowy ekran główny.
+		/// </summary>
+		/// <param name="viewModelType">Typ ViewModelu dla ekranu.</param>
+		void ShowMainScreen(Type viewModelType);
+
+		/// <summary>
 		/// Wyświetla "wyskakujące okienko".
 		/// </summary>
 		/// <remarks>
@@ -20,7 +26,7 @@ namespace StudentsCalendar.UI
 		/// </remarks>
 		/// <typeparam name="TViewModel"></typeparam>
 		/// <returns>Utworzony ViewModel.</returns>
-		TViewModel Show<TViewModel>()
+		TViewModel ShowPopup<TViewModel>()
 			where TViewModel : IViewModel;
 
 		/// <summary>

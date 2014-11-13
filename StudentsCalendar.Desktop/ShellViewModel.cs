@@ -13,11 +13,10 @@ namespace StudentsCalendar.Desktop
 	/// "Shell" aplikacji desktopowej.
 	/// </summary>
 	sealed class ShellViewModel
-		: Conductor<object>.Collection.AllActive, IShell, IHandle<UI.Events.NavigateRequestEvent>
+		: Conductor<object>.Collection.AllActive, IShell
 	{
 		private readonly IIndex<Type, IViewModel> ViewModelsFactory;
 		private readonly IIndex<Type, IDialogView> DialogsFactory;
-		private readonly IEventAggregator EventAggregator;
 
 		private bool _IsLoading;
 
@@ -54,7 +53,6 @@ namespace StudentsCalendar.Desktop
 			}
 		}
 
-
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
@@ -63,12 +61,10 @@ namespace StudentsCalendar.Desktop
 		/// <param name="viewModelsFactory"></param>
 		/// <param name="eventAggregator"></param>
 		public ShellViewModel(MainScreenViewModel mainScreen, PopupsViewModel popups,
-			IIndex<Type, IViewModel> viewModelsFactory, IIndex<Type, IDialogView> dialogsFactory,
-			IEventAggregator eventAggregator)
+			IIndex<Type, IViewModel> viewModelsFactory, IIndex<Type, IDialogView> dialogsFactory)
 		{
 			this.ViewModelsFactory = viewModelsFactory;
 			this.DialogsFactory = dialogsFactory;
-			this.EventAggregator = eventAggregator;
 
 			this.ActivateItem(mainScreen);
 			this.ActivateItem(popups);
@@ -100,13 +96,15 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <inheritdoc />
-		public void Handle(UI.Events.NavigateRequestEvent message)
+		public void ShowMainScreen(Type viewModelType)
 		{
-			this.ShowMainScreen(message.ScreenType);
+			var model = this.ViewModelsFactory[viewModelType];
+			this.MainScreen.ActivateItem(model);
+			//TODO: remove all popups
 		}
 
 		/// <inheritdoc />
-		public TViewModel Show<TViewModel>()
+		public TViewModel ShowPopup<TViewModel>()
 			where TViewModel : IViewModel
 		{
 			var model = (TViewModel)this.ViewModelsFactory[typeof(TViewModel)];
@@ -132,28 +130,6 @@ namespace StudentsCalendar.Desktop
 		{
 			//TODO: consider making it multithreaded and ref-counted
 			return new LoadingDisposable(this);
-		}
-
-		protected override void OnInitialize()
-		{
-			base.OnInitialize();
-			this.EventAggregator.Subscribe(this);
-		}
-
-		protected override void OnDeactivate(bool close)
-		{
-			base.OnDeactivate(close);
-			if (close)
-			{
-				this.EventAggregator.Unsubscribe(this);
-			}
-		}
-
-		private void ShowMainScreen(Type mainScreenType)
-		{
-			var model = this.ViewModelsFactory[mainScreenType];
-			this.MainScreen.ActivateItem(model);
-			//TODO: remove all popups
 		}
 
 		private sealed class LoadingDisposable
