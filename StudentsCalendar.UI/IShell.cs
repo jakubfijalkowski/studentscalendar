@@ -8,12 +8,6 @@ namespace StudentsCalendar.UI
 	public interface IShell
 	{
 		/// <summary>
-		/// Wyświetla nowy ekran główny.
-		/// </summary>
-		/// <param name="mainScreenType">Typ ekranu do wyświetlenia, musi implementować <see cref="IViewModel"/>.</param>
-		void ShowMainScreen(Type mainScreenType);
-
-		/// <summary>
 		/// Wyświetla "wyskakujące okienko".
 		/// </summary>
 		/// <remarks>

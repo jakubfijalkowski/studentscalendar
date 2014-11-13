@@ -9,9 +9,10 @@ namespace StudentsCalendar.Desktop
 	/// "Shell" aplikacji desktopowej.
 	/// </summary>
 	sealed class ShellViewModel
-		: Conductor<object>.Collection.AllActive, IShell
+		: Conductor<object>.Collection.AllActive, IShell, IHandle<UI.Events.NavigateRequestEvent>
 	{
 		private readonly IIndex<Type, IViewModel> ViewModelsFactory;
+		private readonly IEventAggregator EventAggregator;
 
 		private bool _IsLoading;
 
@@ -54,10 +55,13 @@ namespace StudentsCalendar.Desktop
 		/// </summary>
 		/// <param name="mainScreen"></param>
 		/// <param name="popups"></param>
+		/// <param name="viewModelsFactory"></param>
+		/// <param name="eventAggregator"></param>
 		public ShellViewModel(MainScreenViewModel mainScreen, PopupsViewModel popups,
-			IIndex<Type, IViewModel> viewModelsFactory)
+			IIndex<Type, IViewModel> viewModelsFactory, IEventAggregator eventAggregator)
 		{
 			this.ViewModelsFactory = viewModelsFactory;
+			this.EventAggregator = eventAggregator;
 
 			this.ActivateItem(mainScreen);
 			this.ActivateItem(popups);
@@ -89,11 +93,9 @@ namespace StudentsCalendar.Desktop
 		}
 
 		/// <inheritdoc />
-		public void ShowMainScreen(Type mainScreenType)
+		public void Handle(UI.Events.NavigateRequestEvent message)
 		{
-			var model = this.ViewModelsFactory[mainScreenType];
-			this.MainScreen.ActivateItem(model);
-			//TODO: remove all popups
+			this.ShowMainScreen(message.ScreenType);
 		}
 
 		/// <inheritdoc />
@@ -110,6 +112,28 @@ namespace StudentsCalendar.Desktop
 		{
 			//TODO: consider making it multithreaded and ref-counted
 			return new LoadingDisposable(this);
+		}
+
+		protected override void OnInitialize()
+		{
+			base.OnInitialize();
+			this.EventAggregator.Subscribe(this);
+		}
+
+		protected override void OnDeactivate(bool close)
+		{
+			base.OnDeactivate(close);
+			if (close)
+			{
+				this.EventAggregator.Unsubscribe(this);
+			}
+		}
+
+		private void ShowMainScreen(Type mainScreenType)
+		{
+			var model = this.ViewModelsFactory[mainScreenType];
+			this.MainScreen.ActivateItem(model);
+			//TODO: remove all popups
 		}
 
 		private sealed class LoadingDisposable
