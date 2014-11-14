@@ -4,9 +4,11 @@
     <Color x:Key="RedColor">#FFFF5656</Color>
     <Color x:Key="AccentColor0">#FF119EDA</Color>
     <Color x:Key="LightAccentColor1">#FFF2FBFF</Color>
+    <Color x:Key="White2">#AAFFFFFF</Color>
 
     <SolidColorBrush x:Key="RedColorBrush" Color="{StaticResource RedColor}" />
     <SolidColorBrush x:Key="AccentColorBrush0" Color="{StaticResource AccentColor0}" />
     <SolidColorBrush x:Key="LightAccentBrush1" Color="{StaticResource LightAccentColor1}" />
+    <SolidColorBrush x:Key="WhiteBrush2" Color="{StaticResource White2}" />
 
 </ResourceDictionary>
