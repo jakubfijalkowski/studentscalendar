@@ -56,7 +56,7 @@ namespace StudentsCalendar.UI.Popups
 		{
 			try
 			{
-				await this.Calendars.SaveChanges();
+				await this.Calendars.SaveChanges(this.Entry);
 				this.TryClose();
 			}
 			catch

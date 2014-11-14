@@ -12,6 +12,7 @@ namespace StudentsCalendar.Core
 	/// <summary>
 	/// Podstawowa implementacja <see cref="ICalendarsManager"/>
 	/// </summary>
+	/// TODO: rewrite, because this is just bad code that does much too much in a strange fasion.
 	public sealed class CalendarsManager
 		: ICalendarsManager
 	{
@@ -74,9 +75,13 @@ namespace StudentsCalendar.Core
 		}
 
 		/// <inheritdoc />
-		public Task SaveChanges()
+		public async Task SaveChanges(CalendarEntry entry)
 		{
-			return this.ContentProvider.StoreCalendars(this.Entries);
+			if (entry.IsActive)
+			{
+				this.GenerationResults = await this.LoadAndGenerateCalendar(entry);
+			}
+			await this.ContentProvider.StoreCalendars(this.Entries);
 		}
 
 		/// <inheritdoc />
@@ -117,7 +122,10 @@ namespace StudentsCalendar.Core
 
 		private async Task<GenerationResults> LoadAndGenerateCalendar(CalendarEntry newEntry)
 		{
+			//TODO: fix this hack!
 			var template = await this.ContentProvider.LoadTemplate(newEntry.Id);
+			template.StartDate = newEntry.StartDate;
+			template.EndDate = newEntry.EndDate;
 			return await Task.Run(() => this.GenerationEngine.Generate(template));
 		}
 	}
