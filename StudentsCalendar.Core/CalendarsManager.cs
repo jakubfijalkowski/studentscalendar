@@ -74,6 +74,12 @@ namespace StudentsCalendar.Core
 		}
 
 		/// <inheritdoc />
+		public Task SaveChanges()
+		{
+			return this.ContentProvider.StoreCalendars(this.Entries);
+		}
+
+		/// <inheritdoc />
 		public async Task DeleteEntry(CalendarEntry entry)
 		{
 			if (entry.IsActive)

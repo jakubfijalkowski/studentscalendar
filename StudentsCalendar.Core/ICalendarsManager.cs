@@ -56,11 +56,23 @@ namespace StudentsCalendar.Core
 		Task Initialize();
 
 		/// <summary>
+		/// Zapisuje zmienioną listę kalendarzy.
+		/// </summary>
+		/// <remarks>
+		/// Obiekt wywołujący tą metodę jest odpowiedzialny za ewentualny rollback danych
+		/// przy niepowodzeniu.
+		/// </remarks>
+		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
+		/// <returns></returns>
+		Task SaveChanges();
+
+		/// <summary>
 		/// Usuwa wpis z listy.
 		/// </summary>
 		/// <exception cref="InvalidOperationException">Rzucane, gdy podjęto próbę usunięcia aktywnego wpisu.</exception>
 		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
 		/// <param name="entry"></param>
+		/// <returns></returns>
 		Task DeleteEntry(CalendarEntry entry);
 
 		/// <summary>

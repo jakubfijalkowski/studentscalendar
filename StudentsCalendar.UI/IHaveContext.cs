@@ -4,11 +4,11 @@
 	/// Określa view modele, które muszą być inicjalizowane dodatkowymi informacjami(np. obiektem do edycji).
 	/// </summary>
 	public interface IHaveContext<TData>
+		: IViewModel
 	{
 		/// <summary>
-		/// Zmienia kontekst obiektu.
+		/// Pobiera lub zmienia kontekst ViewModelu.
 		/// </summary>
-		/// <param name="context"></param>
-		void UpdateContext(TData context);
+		TData Context { get; set; }
 	}
 }
