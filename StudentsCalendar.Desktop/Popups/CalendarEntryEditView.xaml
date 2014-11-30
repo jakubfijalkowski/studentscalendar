@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
+             xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls"
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
     <UserControl.Resources>
         <conv:NodaToBclConverter x:Key="NodaToBcl" />
@@ -80,7 +81,7 @@
                     <ItemsControl Grid.Column="1" ItemsSource="{Binding EditSlots}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Button Content="{Binding TimeSlot}" />
+                                <controls:CalendarEditSlotView DataContext="{Binding}" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>

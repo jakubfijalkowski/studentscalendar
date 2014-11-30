@@ -91,6 +91,58 @@
         <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
     
+    <Style x:Key="CalendarSlotEditEmptyButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{StaticResource AccentColorBrush7}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource AccentColorBrush6}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{StaticResource AccentColorBrush5}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="CalendarSlotTemplateButtonStyle" TargetType="Button">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Background" Value="{StaticResource GreenColorBrush4}" />
+        <Setter Property="Margin" Value="2,0" />
+        
+        <Setter Property="BorderBrush" Value="{StaticResource GreenColorBrush}" />
+        <Setter Property="BorderThickness" Value="1" />
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background" Value="{StaticResource GreenColorBrush3}" />
+            </Trigger>
+            <Trigger Property="IsPressed" Value="true">
+                <Setter Property="Background" Value="{StaticResource GreenColorBrush2}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
     <DrawingBrush x:Key="CalendarDaySeparatorBrush">
         <DrawingBrush.Drawing>
             <GeometryDrawing>

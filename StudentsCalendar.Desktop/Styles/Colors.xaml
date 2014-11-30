@@ -6,9 +6,29 @@
     <Color x:Key="LightAccentColor1">#FFF2FBFF</Color>
     <Color x:Key="White2">#AAFFFFFF</Color>
 
+    <Color x:Key="AccentColor5">#24119EDA</Color>
+    <Color x:Key="AccentColor6">#19119EDA</Color>
+    <Color x:Key="AccentColor7">#0C119EDA</Color>
+
+    <Color x:Key="GreenColor">#FF477D11</Color>
+    <Color x:Key="GreenColor1">#CC60A917</Color>
+    <Color x:Key="GreenColor2">#9960A917</Color>
+    <Color x:Key="GreenColor3">#6660A917</Color>
+    <Color x:Key="GreenColor4">#3360A917</Color>
+
     <SolidColorBrush x:Key="RedColorBrush" Color="{StaticResource RedColor}" />
     <SolidColorBrush x:Key="AccentColorBrush0" Color="{StaticResource AccentColor0}" />
     <SolidColorBrush x:Key="LightAccentBrush1" Color="{StaticResource LightAccentColor1}" />
     <SolidColorBrush x:Key="WhiteBrush2" Color="{StaticResource White2}" />
 
+    <SolidColorBrush x:Key="AccentColorBrush5" Color="{StaticResource AccentColor5}" />
+    <SolidColorBrush x:Key="AccentColorBrush6" Color="{StaticResource AccentColor6}" />
+    <SolidColorBrush x:Key="AccentColorBrush7" Color="{StaticResource AccentColor7}" />
+
+    <SolidColorBrush x:Key="GreenColorBrush" Color="{StaticResource GreenColor}" />
+    <SolidColorBrush x:Key="GreenColorBrush1" Color="{StaticResource GreenColor1}" />
+    <SolidColorBrush x:Key="GreenColorBrush2" Color="{StaticResource GreenColor2}" />
+    <SolidColorBrush x:Key="GreenColorBrush3" Color="{StaticResource GreenColor3}" />
+    <SolidColorBrush x:Key="GreenColorBrush4" Color="{StaticResource GreenColor4}" />
+    
 </ResourceDictionary>

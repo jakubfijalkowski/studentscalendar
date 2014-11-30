@@ -68,6 +68,7 @@ namespace StudentsCalendar.UI.Popups
 			this._DayOfWeek = dayOfWeek;
 			this._TimeSlot = timeSlot;
 
+			this.IsEmpty = true;
 			this.Templates.CollectionChanged += this.OnTemplatesChanged;
 		}
 

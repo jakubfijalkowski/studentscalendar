@@ -77,6 +77,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\CalendarEditSlotView.xaml.cs">
+      <DependentUpon>CalendarEditSlotView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ClassesView.xaml.cs">
       <DependentUpon>ClassesView.xaml</DependentUpon>
     </Compile>
@@ -178,6 +181,10 @@
     <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Controls\CalendarEditSlotView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\ClassesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
