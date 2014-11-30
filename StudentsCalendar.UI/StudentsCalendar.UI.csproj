@@ -53,8 +53,10 @@
     <Compile Include="Main\CalendarsViewModel.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />
     <Compile Include="Main\MonthViewModel.cs" />
+    <Compile Include="Popups\AddClassesEventArgs.cs" />
     <Compile Include="Popups\CalendarEditSlot.cs" />
     <Compile Include="Popups\CalendarEntryEditViewModel.cs" />
+    <Compile Include="Popups\ClassesEditEventArgs.cs" />
     <Compile Include="Services\ILayoutArranger.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Services\LayoutArranger.cs" />
