@@ -24,7 +24,7 @@ namespace StudentsCalendar.Core
 		/// <inheritdoc />
 		public FinalCalendar Calendar
 		{
-			get { return this.Results.Calendar; }
+			get { return this.Results != null ? this.Results.Calendar : null; }
 		}
 
 		/// <summary>
@@ -39,13 +39,25 @@ namespace StudentsCalendar.Core
 		}
 
 		/// <inheritdoc />
-		public async Task Update(string calendarId)
+		public Task Update(string calendarId)
 		{
-			var template = await this.ContentProvider.LoadTemplate(calendarId);
-			var results = this.GenerationEngine.Generate(template);
+			if (this.Template != null && this.Template.Id == calendarId)
+			{
+				return this.LoadAndGenerate(calendarId);
+			}
+			return Task.FromResult<object>(null);
+		}
 
-			this.Template = template;
-			this.Results = results;
+
+		public Task MakeActive(string calendarId)
+		{
+			return this.LoadAndGenerate(calendarId);
+		}
+
+		private async Task LoadAndGenerate(string calendarId)
+		{
+			this.Template = await this.ContentProvider.LoadTemplate(calendarId);
+			this.Results = await Task.Run(() => this.GenerationEngine.Generate(this.Template));
 		}
 	}
 }

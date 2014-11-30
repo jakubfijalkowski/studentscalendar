@@ -30,7 +30,7 @@ namespace StudentsCalendar.UI.Handlers
 			using (this.Shell.ShowLoadingScreen())
 			{
 				await this.Calendars.Initialize();
-				await this.CurrentCalendar.Update(this.Calendars.ActiveEntry.Id);
+				await this.CurrentCalendar.MakeActive(this.Calendars.ActiveEntry.Id);
 			}
 
 			this.EventAggregator.PublishOnUIThread(NavigateRequestEvent.Create<Main.CurrentWeekViewModel>());

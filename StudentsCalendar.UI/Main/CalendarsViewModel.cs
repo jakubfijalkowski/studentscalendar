@@ -14,6 +14,7 @@ namespace StudentsCalendar.UI.Main
 	{
 		private readonly IShell Shell;
 		private readonly ICalendarsManager Calendars;
+		private readonly ICurrentCalendar CurrentCalendar;
 
 		/// <summary>
 		/// Pobiera listę kalendarzy użytkownika.
@@ -31,10 +32,12 @@ namespace StudentsCalendar.UI.Main
 		/// </summary>
 		/// <param name="shell"></param>
 		/// <param name="calendars"></param>
-		public CalendarsViewModel(IShell shell, ICalendarsManager calendars)
+		/// <param name="currentCalendar"></param>
+		public CalendarsViewModel(IShell shell, ICalendarsManager calendars, ICurrentCalendar currentCalendar)
 		{
 			this.Shell = shell;
 			this.Calendars = calendars;
+			this.CurrentCalendar = currentCalendar;
 		}
 
 		/// <summary>
@@ -74,6 +77,7 @@ namespace StudentsCalendar.UI.Main
 		{
 			try
 			{
+				await this.CurrentCalendar.MakeActive(entry.Id);
 				await this.Calendars.MakeActive(entry);
 			}
 			catch (CalendarTemplateNotFoundException)
@@ -88,7 +92,7 @@ namespace StudentsCalendar.UI.Main
 			{
 				var ignored = this.Shell.ShowDialog(new ErrorDialog
 				{
-					Title = "Nie można usunąć wpisu.",
+					Title = "Nie można uaktualnić wpisu.",
 					Message = "Nie udało się zapisać zmian, spróbuj ponownie później."
 				});
 			}

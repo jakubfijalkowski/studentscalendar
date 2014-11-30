@@ -33,7 +33,19 @@ namespace StudentsCalendar.Core
 		/// W praktyce to powinno być realizowane przez mechanizm zdarzeń. Nie opłaca się
 		/// go jednak wprowadzać tylko dla tego jednego miejsca.
 		/// </remarks>
+		/// <exception cref="System.IO.IOException">Rzucane, gdy nie uda się wczytać wskazanego szablonu.</exception>
 		/// <param name="calendarId"></param>
 		Task Update(string calendarId);
+
+		/// <summary>
+		/// Ustawia kalendarz o wskazanym id jako aktywny.
+		/// </summary>
+		/// <remarks>
+		/// TODO: podobnie jak w <see cref="Update"/>.
+		/// </remarks>
+		/// <exception cref="System.IO.IOException">Rzucane, gdy nie uda się wczytać wskazanego szablonu.</exception>
+		/// <param name="calendarId"></param>
+		/// <returns></returns>
+		Task MakeActive(string calendarId);
 	}
 }
