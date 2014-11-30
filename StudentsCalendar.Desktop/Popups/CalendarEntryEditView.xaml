@@ -4,7 +4,8 @@
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
              xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls"
-             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
+             xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:cal="http://www.caliburnproject.org">
     <UserControl.Resources>
         <conv:NodaToBclConverter x:Key="NodaToBcl" />
         <conv:IsoDayOfWeekToStringConverter x:Key="DayOfWeekToString" />
@@ -81,7 +82,8 @@
                     <ItemsControl Grid.Column="1" ItemsSource="{Binding EditSlots}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <controls:CalendarEditSlotView DataContext="{Binding}" />
+                                <controls:CalendarEditSlotView DataContext="{Binding}"
+                                                               cal:Message.Attach="[Event AddClasses] = [Action AddClasses($eventArgs)]; [Event EditClasses] = [Action EditClasses($eventArgs)]; [Event DeleteClasses] = [Action DeleteClasses($eventArgs)]" />
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                         <ItemsControl.ItemsPanel>

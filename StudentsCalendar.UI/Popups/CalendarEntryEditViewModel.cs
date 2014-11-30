@@ -15,9 +15,6 @@ namespace StudentsCalendar.UI.Popups
 	public sealed class CalendarEntryEditViewModel
 		: Screen, IViewModel
 	{
-		private const int EditStartHour = 0;
-		private const int EditEndHour = 24;
-
 		private readonly IShell Shell;
 
 		private readonly IContentProvider ContentProvider;
@@ -105,6 +102,36 @@ namespace StudentsCalendar.UI.Popups
 			this.TryClose();
 		}
 
+		/// <summary>
+		/// Dodaje nowe zajęcia we wskazanym slocie.
+		/// </summary>
+		/// <param name="args"></param>
+		public void AddClasses(AddClassesEventArgs args)
+		{
+
+		}
+
+		/// <summary>
+		/// Edytuje wskazane zajęcia.
+		/// </summary>
+		/// <param name="args"></param>
+		public void EditClasses(ClassesEditEventArgs args)
+		{
+
+		}
+
+		/// <summary>
+		/// Usuwa wskazane zajęcia.
+		/// </summary>
+		/// <param name="args"></param>
+		public void DeleteClasses(ClassesEditEventArgs args)
+		{
+			args.EditSlot.Templates.Remove(args.Template);
+
+			var dayIdx = args.EditSlot.DayOfWeek.ToIndex();
+			this.Template.WeekTemplate.Days[dayIdx].Classes.Remove(args.Template);
+		}
+
 		private async void LoadTemplate()
 		{
 			try
@@ -129,17 +156,25 @@ namespace StudentsCalendar.UI.Popups
 
 		private void BuildEditTemplate()
 		{
-			int hours = EditEndHour - EditStartHour;
 			this.TimeSlots = Enumerable
-				.Range(EditStartHour, hours)
+				.Range(0, 24)
 				.Select(h => new LocalTime(h, 0))
 				.ToList();
 			this.EditSlots =
-				(from i in Enumerable.Range(0, hours * 7)
+				(from i in Enumerable.Range(0, 24 * 7)
 				 let day = (i % 7).ToDayOfWeek()
-				 let hour = i / 7 + EditStartHour
+				 let hour = i / 7
 				 select new CalendarEditSlot(day, new LocalTime(hour, 0))
 				).ToList();
+
+			foreach (var day in this.Template.WeekTemplate.Days)
+			{
+				foreach (var classes in day.Classes)
+				{
+					var idx = classes.StartTime.Hour * 7 + day.DayOfWeek.ToIndex();
+					this.EditSlots[idx].Templates.Add(classes);
+				}
+			}
 		}
 	}
 }
