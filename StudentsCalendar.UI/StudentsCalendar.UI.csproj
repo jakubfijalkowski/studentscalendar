@@ -55,7 +55,6 @@
     <Compile Include="Main\MonthViewModel.cs" />
     <Compile Include="Popups\CalendarEntryEditViewModel.cs" />
     <Compile Include="Services\ILayoutArranger.cs" />
-    <Compile Include="IHaveContext.cs" />
     <Compile Include="IShell.cs" />
     <Compile Include="Services\LayoutArranger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

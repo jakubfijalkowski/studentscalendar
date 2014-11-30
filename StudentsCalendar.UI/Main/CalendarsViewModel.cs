@@ -43,7 +43,7 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="entry"></param>
 		public void EditEntry(CalendarEntry entry)
 		{
-			//this.Shell.ShowPopup<Popups.CalendarEntryEditViewModel>().Context = entry;
+			this.Shell.ShowPopup<Popups.CalendarEntryEditViewModel>().CalendarId = entry.Id;
 		}
 
 		/// <summary>

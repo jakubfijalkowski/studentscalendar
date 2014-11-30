@@ -27,14 +27,14 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Text="Nazwa" />
-        <TextBox Grid.Column="1" Text="{Binding Entry.Name, Mode=TwoWay}" />
+        <TextBox Grid.Column="1" Text="{Binding Template.Name, Mode=TwoWay}" />
         <TextBlock Grid.Column="2" Text="Rozpoczęcie" />
         <DatePicker x:Name="StartDatePicker" Grid.Column="3"
-                    SelectedDate="{Binding Entry.StartDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
+                    SelectedDate="{Binding Template.StartDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateEnd="{Binding SelectedDate, ElementName=EndDatePicker}" />
         <TextBlock Grid.Column="4" Text="Zakończenie" />
         <DatePicker x:Name="EndDatePicker" Grid.Column="5"
-                    SelectedDate="{Binding Entry.EndDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
+                    SelectedDate="{Binding Template.EndDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateStart="{Binding SelectedDate, ElementName=StartDatePicker}"/>
         
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Right">
