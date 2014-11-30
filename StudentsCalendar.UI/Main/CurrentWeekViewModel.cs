@@ -48,14 +48,14 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			var today = DateHelper.Today;
-			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
-			var week = this.Calendars.ActiveCalendar.Weeks.First(w => w.Date == thisWeek);
-			this.Week = this.LayoutArranger.Arrange(week);
-			this.Today = this.Week.Days.First(d => d.Day.Date == today);
+			//var today = DateHelper.Today;
+			//var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
+			//var week = this.Calendars.ActiveCalendar.Weeks.First(w => w.Date == thisWeek);
+			//this.Week = this.LayoutArranger.Arrange(week);
+			//this.Today = this.Week.Days.First(d => d.Day.Date == today);
 
-			this.NotifyOfPropertyChange(() => Days);
-			this.NotifyOfPropertyChange(() => Today);
+			//this.NotifyOfPropertyChange(() => Days);
+			//this.NotifyOfPropertyChange(() => Today);
 		}
 	}
 }

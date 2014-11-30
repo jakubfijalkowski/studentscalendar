@@ -2,15 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using StudentsCalendar.Core.Finals;
-using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Storage;
+using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core
 {
 	/// <summary>
-	/// Menedżer odpowiedzialny za dostęp do listy kalendarzy, aktualnie wybranego kalendarza
-	/// oraz jego wygenerowanej reprezentacji.
+	/// Menedżer odpowiedzialny za dostęp do listy kalendarzy.
 	/// </summary>
 	/// <remarks>
 	/// Zakłada się, że dostęp do właściwości jest możliwy z każdego wątku, zaś wywołania
@@ -18,7 +16,6 @@ namespace StudentsCalendar.Core
 	/// wywołać metody z innego wątku, jeśli dowolna metoda jest w trakcie wykonywania).
 	/// Dostęp nie jest nadzorowany.
 	/// </remarks>
-	/// TODO: make it more event-driven, because this interface/class is starting to be too big.
 	public interface ICalendarsManager
 	{
 		/// <summary>
@@ -37,22 +34,10 @@ namespace StudentsCalendar.Core
 		CalendarEntry ActiveEntry { get; }
 
 		/// <summary>
-		/// Pobiera wygenerowaną reprezentacje aktualnie wygenerowanego kalendarza.
-		/// </summary>
-		FinalCalendar ActiveCalendar { get; }
-
-		/// <summary>
-		/// Pobiera wynik procesu generowania, z którego powstał <see cref="ActiveCalendar"/>.
-		/// </summary>
-		GenerationResults GenerationResults { get; }
-
-		/// <summary>
 		/// Asynchronicznie inicjalizuje menadżer. Powinno być wywoływane tylko raz,
 		/// na początku działania aplikacji.
 		/// </summary>
 		/// <exception cref="InvalidOperationException">Rzucane, gdy menedżer został już zainicjalizowany.</exception>
-		/// <exception cref="IOException">Rzucane, gdy nie udało się uzyskać dostępu do pliku z kalendarzami.</exception>
-		/// <exception cref="CalendarTemplateNotFoundException">Rzucane, gdy nie odnaleziono szablonu aktywnego kalendarza.</exception>
 		/// <returns></returns>
 		Task Initialize();
 
@@ -63,10 +48,9 @@ namespace StudentsCalendar.Core
 		/// Obiekt wywołujący tą metodę jest odpowiedzialny za ewentualny rollback danych
 		/// przy niepowodzeniu.
 		/// </remarks>
-		/// <exception cref="CalendarTemplateNotFoundException">Rzucane, gdy nie odnaleziono szablonu aktywnego kalendarza.</exception>
 		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
 		/// <returns></returns>
-		Task SaveChanges(CalendarEntry entry);
+		Task SaveChanges(CalendarTemplate template);
 
 		/// <summary>
 		/// Usuwa wpis z listy.
@@ -81,7 +65,6 @@ namespace StudentsCalendar.Core
 		/// Ustawia wskazany element na "aktywny".
 		/// </summary>
 		/// <exception cref="IOException">Rzucane, gdy menedżer nie był w stanie zapisać zmian.</exception>
-		/// <exception cref="CalendarTemplateNotFoundException">Rzucane, gdy nie odnaleziono szablonu kalendarza.</exception>
 		/// <param name="entry"></param>
 		/// <returns></returns>
 		Task MakeActive(CalendarEntry entry);

@@ -72,6 +72,16 @@ namespace StudentsCalendar.Core.Storage
 		}
 
 		/// <inheritdoc />
+		public async Task StoreCalendar(CalendarTemplate template)
+		{
+			using (var stream = await this.Storage.OpenWrite(string.Format(TemplateEntryIdFormat, template.Id)))
+			using (var writer = new JsonTextWriter(new StreamWriter(stream)))
+			{
+				await Task.Run(() => this.Serializer.Serialize(writer, template));
+			}
+		}
+
+		/// <inheritdoc />
 		public void DeleteTemplate(string calendarId)
 		{
 			this.Storage.DeleteEntry(string.Format(TemplateEntryIdFormat, calendarId));

@@ -9,6 +9,21 @@ namespace StudentsCalendar.Core.Templates
 	/// </summary>
 	public sealed class CalendarTemplate
 	{
+		private readonly string _Id;
+
+		/// <summary>
+		/// Pobiera wewnętrzny identyfikator kalendarza.
+		/// </summary>
+		public string Id
+		{
+			get { return this._Id; }
+		}
+
+		/// <summary>
+		/// Pobiera lub zmienia nazwę szablonu.
+		/// </summary>
+		public string Name { get; set; }
+
 		/// <summary>
 		/// Pobiera lub zmienia bazowy szablon tygodniowy.
 		/// </summary>
@@ -28,5 +43,10 @@ namespace StudentsCalendar.Core.Templates
 		/// Lista modyfikatorów przypisana do całego kalendarza.
 		/// </summary>
 		public IList<ICalendarModifier> Modifiers { get; set; }
+
+		public CalendarTemplate(string id)
+		{
+			this._Id = id;
+		}
 	}
 }

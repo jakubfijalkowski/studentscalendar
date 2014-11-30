@@ -1,5 +1,7 @@
 ﻿{
     "$type": "StudentsCalendar.Core.Templates.CalendarTemplate, StudentsCalendar.Core",
+    "Id": "MainCalendar",
+    "Name": "Przykładowy kalendarz",
     "WeekTemplate": {
         "$type": "StudentsCalendar.Core.Templates.WeekTemplate, StudentsCalendar.Core",
         "Days": [

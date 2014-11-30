@@ -3,21 +3,18 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using StudentsCalendar.Core.Finals;
-using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Storage;
+using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core
 {
 	/// <summary>
 	/// Podstawowa implementacja <see cref="ICalendarsManager"/>
 	/// </summary>
-	/// TODO: rewrite, because this is just bad code that does much too much in a strange fasion.
 	public sealed class CalendarsManager
 		: ICalendarsManager
 	{
 		private readonly IContentProvider ContentProvider;
-		private readonly IGenerationEngine GenerationEngine;
 
 		private ObservableCollection<CalendarEntry> _Entries;
 
@@ -25,18 +22,6 @@ namespace StudentsCalendar.Core
 
 		/// <inheritdoc />
 		public CalendarEntry ActiveEntry { get; private set; }
-
-		/// <inheritdoc />
-		public FinalCalendar ActiveCalendar
-		{
-			get
-			{
-				return this.GenerationResults != null ? this.GenerationResults.Calendar : null;
-			}
-		}
-
-		/// <inheritdoc />
-		public GenerationResults GenerationResults { get; private set; }
 
 		/// <inheritdoc />
 		public IReadOnlyList<CalendarEntry> Entries
@@ -48,11 +33,9 @@ namespace StudentsCalendar.Core
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
 		/// <param name="contentProvider"></param>
-		/// <param name="generationEngine"></param>
-		public CalendarsManager(IContentProvider contentProvider, IGenerationEngine generationEngine)
+		public CalendarsManager(IContentProvider contentProvider)
 		{
 			this.ContentProvider = contentProvider;
-			this.GenerationEngine = generationEngine;
 		}
 
 		/// <inheritdoc />
@@ -66,21 +49,18 @@ namespace StudentsCalendar.Core
 
 			var loadedEntries = await this.ContentProvider.LoadCalendars();
 			this._Entries = new ObservableCollection<CalendarEntry>(loadedEntries ?? Enumerable.Empty<CalendarEntry>());
-			var entry = this.Entries.FirstOrDefault(e => e.IsActive);
-			if (entry != null)
-			{
-				this.GenerationResults = await this.LoadAndGenerateCalendar(entry);
-				this.ActiveEntry = entry;
-			}
+			this.ActiveEntry = this.Entries.FirstOrDefault(e => e.IsActive);
 		}
 
 		/// <inheritdoc />
-		public async Task SaveChanges(CalendarEntry entry)
+		public async Task SaveChanges(CalendarTemplate template)
 		{
-			if (entry.IsActive)
-			{
-				this.GenerationResults = await this.LoadAndGenerateCalendar(entry);
-			}
+			var entry = this.Entries.First(e => e.Id == template.Id);
+			entry.Name = template.Name;
+			entry.StartDate = template.StartDate;
+			entry.EndDate = template.EndDate;
+
+			await this.ContentProvider.StoreCalendar(template);
 			await this.ContentProvider.StoreCalendars(this.Entries);
 		}
 
@@ -105,28 +85,25 @@ namespace StudentsCalendar.Core
 		/// <inheritdoc />
 		public async Task MakeActive(CalendarEntry entry)
 		{
-			// Try to load, generate and store calendar before changing any
-			// properties that may be bound to the UI
-			var result = await this.LoadAndGenerateCalendar(entry);
-			await this.ContentProvider.StoreCalendars(this.Entries);
-
-			this.GenerationResults = result;
+			var old = this.ActiveEntry;
 			if (this.ActiveEntry != null)
 			{
 				this.ActiveEntry.IsActive = false;
 			}
 			entry.IsActive = true;
-
 			this.ActiveEntry = entry;
-		}
 
-		private async Task<GenerationResults> LoadAndGenerateCalendar(CalendarEntry newEntry)
-		{
-			//TODO: fix this hack!
-			var template = await this.ContentProvider.LoadTemplate(newEntry.Id);
-			template.StartDate = newEntry.StartDate;
-			template.EndDate = newEntry.EndDate;
-			return await Task.Run(() => this.GenerationEngine.Generate(template));
+			try
+			{
+				await this.ContentProvider.StoreCalendars(this.Entries);
+			}
+			catch
+			{
+				entry.IsActive = false;
+				old.IsActive = true;
+				this.ActiveEntry = old;
+				throw;
+			}
 		}
 	}
 }

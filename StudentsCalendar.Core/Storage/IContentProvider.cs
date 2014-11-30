@@ -37,6 +37,14 @@ namespace StudentsCalendar.Core.Storage
 		Task StoreCalendars(IEnumerable<CalendarEntry> entries);
 
 		/// <summary>
+		/// Zapisuje kalendarz.
+		/// </summary>
+		/// <exception cref="IOException">Rzucane, gdy nie uda się wykonać operacji zapisu.</exception>
+		/// <param name="template"></param>
+		/// <returns></returns>
+		Task StoreCalendar(CalendarTemplate template);
+
+		/// <summary>
 		/// Usuwa szablon kalendarza.
 		/// Metoda nie rzuca wyjątku - kalendarz jest uznawany za usunięty, nawet jeśli
 		/// nie powiedzie się usunięcie wpisu z <see cref="IStorage"/>.

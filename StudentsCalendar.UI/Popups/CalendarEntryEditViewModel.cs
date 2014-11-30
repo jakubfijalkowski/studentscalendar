@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
 using StudentsCalendar.Core;
-using StudentsCalendar.Core.Storage;
+using StudentsCalendar.Core.Templates;
 using StudentsCalendar.UI.Dialogs;
 
 namespace StudentsCalendar.UI.Popups
@@ -9,15 +9,15 @@ namespace StudentsCalendar.UI.Popups
 	/// ViewModel do edycji kaneldarza.
 	/// </summary>
 	public sealed class CalendarEntryEditViewModel
-		: Screen, IViewModel, IHaveContext<CalendarEntry>
+		: Screen, IViewModel, IHaveContext<CalendarTemplate>
 	{
 		private readonly IShell Shell;
 		private readonly ICalendarsManager Calendars;
 
-		private EditableObject<CalendarEntry> EditableObject;
+		private EditableObject<CalendarTemplate> EditableObject;
 
 		/// <inheritdoc />
-		public CalendarEntry Context
+		public CalendarTemplate Context
 		{
 			get
 			{
@@ -25,15 +25,15 @@ namespace StudentsCalendar.UI.Popups
 			}
 			set
 			{
-				this.EditableObject = new EditableObject<CalendarEntry>(value);
-				this.NotifyOfPropertyChange(() => this.Entry);
+				this.EditableObject = new EditableObject<CalendarTemplate>(value);
+				this.NotifyOfPropertyChange(() => this.Template);
 			}
 		}
 
 		/// <summary>
 		/// Pobiera obiekt, który należy edytować.
 		/// </summary>
-		public CalendarEntry Entry
+		public CalendarTemplate Template
 		{
 			get { return this.EditableObject.Data; }
 		}
@@ -56,7 +56,7 @@ namespace StudentsCalendar.UI.Popups
 		{
 			try
 			{
-				await this.Calendars.SaveChanges(this.Entry);
+				await this.Calendars.SaveChanges(this.Template);
 				this.TryClose();
 			}
 			catch

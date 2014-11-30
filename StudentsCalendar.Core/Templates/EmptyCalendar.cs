@@ -13,10 +13,11 @@ namespace StudentsCalendar.Core.Templates
 		/// <summary>
 		/// Tworzy pusty kalendarz.
 		/// </summary>
+		/// <param name="id"></param>
 		/// <returns></returns>
-		public static CalendarTemplate Create()
+		public static CalendarTemplate Create(string id)
 		{
-			return new CalendarTemplate
+			return new CalendarTemplate(id)
 			{
 				WeekTemplate = CreateWeek(),
 				StartDate = DateHelper.Today.PlusDays(-1),

@@ -8,8 +8,6 @@ namespace StudentsCalendar.Core.Storage
 	/// Opisuje wpis w bazie kalendarzy, który służy do identyfikacji właściwych szablonów.
 	/// Pozwala opóźnić wczytanie szablonu głównego, i pominąć wczytywanie pozostałych szablonów.
 	/// </summary>
-	/// TODO: consider introducint wrapper around it that implements INotifyPropertyChanged and
-	/// let the object be POCO
 	public sealed class CalendarEntry
 		: INotifyPropertyChanged
 	{
@@ -43,7 +41,6 @@ namespace StudentsCalendar.Core.Storage
 			}
 		}
 
-
 		/// <summary>
 		/// Pobiera lub zmienia datę początku aktywności kalendarza.
 		/// </summary>
@@ -60,7 +57,6 @@ namespace StudentsCalendar.Core.Storage
 			}
 		}
 
-
 		/// <summary>
 		/// Pobiera lub zmienia datę końca aktywności kalendarza.
 		/// </summary>
@@ -76,7 +72,6 @@ namespace StudentsCalendar.Core.Storage
 				}
 			}
 		}
-
 
 		/// <summary>
 		/// Wskazuje, czy kalendarz jest aktywny, czy nie.
@@ -96,7 +91,6 @@ namespace StudentsCalendar.Core.Storage
 				}
 			}
 		}
-
 
 		public CalendarEntry(string id)
 		{
