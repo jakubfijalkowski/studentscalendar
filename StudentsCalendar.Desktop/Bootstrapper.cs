@@ -130,6 +130,10 @@ namespace StudentsCalendar.Desktop
 			builder.RegisterType<CalendarsManager>()
 				.AsImplementedInterfaces()
 				.InstancePerLifetimeScope();
+
+			builder.RegisterType<CurrentCalendar>()
+				.AsImplementedInterfaces()
+				.InstancePerLifetimeScope();
 		}
 
 		private void RegisterViewsAndViewModels(ContainerBuilder builder)

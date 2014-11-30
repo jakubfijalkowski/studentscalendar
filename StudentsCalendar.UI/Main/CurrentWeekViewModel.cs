@@ -13,7 +13,7 @@ namespace StudentsCalendar.UI.Main
 	public sealed class CurrentWeekViewModel
 		: Screen, IViewModel
 	{
-		private readonly ICalendarsManager Calendars;
+		private readonly ICurrentCalendar CurrentCalendar;
 		private readonly ILayoutArranger LayoutArranger;
 
 		private ArrangedWeek Week;
@@ -37,10 +37,11 @@ namespace StudentsCalendar.UI.Main
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
+		/// <param name="calendar"></param>
 		/// <param name="layoutArranger"></param>
-		public CurrentWeekViewModel(ICalendarsManager calendars, ILayoutArranger layoutArranger)
+		public CurrentWeekViewModel(ICurrentCalendar calendar, ILayoutArranger layoutArranger)
 		{
-			this.Calendars = calendars;
+			this.CurrentCalendar = calendar;
 			this.LayoutArranger = layoutArranger;
 		}
 
@@ -48,14 +49,14 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			//var today = DateHelper.Today;
-			//var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
-			//var week = this.Calendars.ActiveCalendar.Weeks.First(w => w.Date == thisWeek);
-			//this.Week = this.LayoutArranger.Arrange(week);
-			//this.Today = this.Week.Days.First(d => d.Day.Date == today);
+			var today = DateHelper.Today;
+			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
+			var week = this.CurrentCalendar.Calendar.Weeks.First(w => w.Date == thisWeek);
+			this.Week = this.LayoutArranger.Arrange(week);
+			this.Today = this.Week.Days.First(d => d.Day.Date == today);
 
-			//this.NotifyOfPropertyChange(() => Days);
-			//this.NotifyOfPropertyChange(() => Today);
+			this.NotifyOfPropertyChange(() => Days);
+			this.NotifyOfPropertyChange(() => Today);
 		}
 	}
 }

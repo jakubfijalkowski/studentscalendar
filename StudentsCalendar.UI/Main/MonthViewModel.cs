@@ -16,7 +16,7 @@ namespace StudentsCalendar.UI.Main
 	{
 		private const int MaxWeeks = 2;
 
-		private readonly ICalendarsManager Calendars;
+		private readonly ICurrentCalendar CurrentCalendar;
 		private readonly ILayoutArranger LayoutArranger;
 
 		/// <summary>
@@ -32,10 +32,11 @@ namespace StudentsCalendar.UI.Main
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
+		/// <param name="calendar"></param>
 		/// <param name="layoutArranger"></param>
-		public MonthViewModel(ICalendarsManager calendars, ILayoutArranger layoutArranger)
+		public MonthViewModel(ICurrentCalendar calendar, ILayoutArranger layoutArranger)
 		{
-			this.Calendars = calendars;
+			this.CurrentCalendar = calendar;
 			this.LayoutArranger = layoutArranger;
 		}
 
@@ -43,25 +44,25 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			//var generated = this.Calendars.ActiveCalendar;
+			var generated = this.CurrentCalendar.Calendar;
 
-			//var today = DateHelper.Today;
-			//var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
+			var today = DateHelper.Today;
+			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
 
-			//var weekIndex = generated.Weeks.Select((w, i) => Tuple.Create(w, i)).First(w => w.Item1.Date == thisWeek).Item2;
+			var weekIndex = generated.Weeks.Select((w, i) => Tuple.Create(w, i)).First(w => w.Item1.Date == thisWeek).Item2;
 
-			//int startWeekIndex = Math.Max(weekIndex - MaxWeeks, 0);
-			//int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count - 1);
+			int startWeekIndex = Math.Max(weekIndex - MaxWeeks, 0);
+			int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count - 1);
 
-			//this.Weeks = generated.Weeks
-			//	.Skip(startWeekIndex)
-			//	.Take(endWeekIndex - startWeekIndex)
-			//	.Select(this.LayoutArranger.Arrange)
-			//	.ToArray();
-			//this.CurrentWeek = this.Weeks[weekIndex - startWeekIndex];
+			this.Weeks = generated.Weeks
+				.Skip(startWeekIndex)
+				.Take(endWeekIndex - startWeekIndex)
+				.Select(this.LayoutArranger.Arrange)
+				.ToArray();
+			this.CurrentWeek = this.Weeks[weekIndex - startWeekIndex];
 
-			//this.NotifyOfPropertyChange(() => CurrentWeek);
-			//this.NotifyOfPropertyChange(() => Weeks);
+			this.NotifyOfPropertyChange(() => CurrentWeek);
+			this.NotifyOfPropertyChange(() => Weeks);
 		}
 	}
 }

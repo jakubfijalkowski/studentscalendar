@@ -50,6 +50,7 @@
     <Compile Include="ActivitySpans\WeekActivitySpanSum.cs" />
     <Compile Include="ActivitySpans\ActivitySpanSum.cs" />
     <Compile Include="CalendarsManager.cs" />
+    <Compile Include="CurrentCalendar.cs" />
     <Compile Include="Generation\GenerationEngine.cs" />
     <Compile Include="Generation\CalendarFinalizer.cs" />
     <Compile Include="Generation\DefaultCalendarGenerator.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Generation\IWeekGenerator.cs" />
     <Compile Include="Generation\IDayGenerator.cs" />
     <Compile Include="Generation\IClassesGenerator.cs" />
+    <Compile Include="ICurrentCalendar.cs" />
     <Compile Include="ICalendarsManager.cs" />
     <Compile Include="Intermediates\IntermediateCalendar.cs" />
     <Compile Include="Intermediates\IntermediateClasses.cs" />
