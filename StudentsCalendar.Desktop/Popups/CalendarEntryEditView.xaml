@@ -6,6 +6,8 @@
              xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls">
     <UserControl.Resources>
         <conv:NodaToBclConverter x:Key="NodaToBcl" />
+        <conv:IsoDayOfWeekToStringConverter x:Key="DayOfWeekToString" />
+
         <Style TargetType="TextBlock" BasedOn="{StaticResource CalendarEditLabelStyle}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource CalendarEditTextBoxStyle}" />
         <Style TargetType="DatePicker" BasedOn="{StaticResource CalendarEditDatePickerBoxStyle}" />
@@ -36,7 +38,61 @@
         <DatePicker x:Name="EndDatePicker" Grid.Column="5"
                     SelectedDate="{Binding Template.EndDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateStart="{Binding SelectedDate, ElementName=StartDatePicker}"/>
-        
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="7" Margin="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="{StaticResource EditSlotGridWidth}" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="{StaticResource EditSlotGridHeight}" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <ItemsControl Grid.Column="1" ItemsSource="{Binding Template.WeekTemplate.Days}" Margin="0,0,17,0">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <UniformGrid Rows="1" MinWidth="{StaticResource EditMinWeekWidth}" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding DayOfWeek, Converter={StaticResource DayOfWeekToString}}"
+                                   Style="{StaticResource CalendarEditDayHeaderStyle}" />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                <Grid Background="{StaticResource CalendarEditBackgroundBrush}" Height="{StaticResource EditWeekViewHeight}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="{StaticResource EditSlotGridWidth}" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <ItemsControl Grid.Column="0" ItemsSource="{Binding TimeSlots}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Height="{StaticResource EditSlotHeight}">
+                                    <TextBlock Grid.Row="1" Text="{Binding StringFormat='{}{0:H:mm}'}"
+                                               Style="{StaticResource CalendarEditSlotDescriptionStyle}" />
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <ItemsControl Grid.Column="1" ItemsSource="{Binding EditSlots}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Button Content="{Binding TimeSlot}" />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="7" MinWidth="{StaticResource EditMinWeekWidth}" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" />
             <Button x:Name="Cancel" Content="Anuluh" />

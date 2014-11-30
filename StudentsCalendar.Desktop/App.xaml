@@ -20,10 +20,10 @@
                 <ResourceDictionary Source="Styles/Colors.xaml" />
                 <ResourceDictionary Source="Styles/Defaults.xaml" />
                 <ResourceDictionary Source="Styles/Dialogs.xaml" />
-                <ResourceDictionary Source="Styles/CalendarView.xaml" />
                 <ResourceDictionary Source="Styles/ClassesView.xaml" />
                 <ResourceDictionary Source="Styles/SlotsView.xaml" />
                 <ResourceDictionary Source="Styles/WeekView.xaml" />
+                <ResourceDictionary Source="Styles/CalendarView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

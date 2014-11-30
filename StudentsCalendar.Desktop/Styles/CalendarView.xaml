@@ -79,6 +79,17 @@
     <Style x:Key="CalendarEditButtonStyle" TargetType="Button" BasedOn="{StaticResource MetroButton}">
         <Setter Property="Margin" Value="10" />
     </Style>
+
+    <Style x:Key="CalendarEditSlotDescriptionStyle" TargetType="TextBlock" BasedOn="{StaticResource SlotDescriptionStyle}">
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+    
+    <Style x:Key="CalendarEditDayHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource DayHeaderStyle}">
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
     
     <DrawingBrush x:Key="CalendarDaySeparatorBrush">
         <DrawingBrush.Drawing>
@@ -104,6 +115,26 @@
                     <LineGeometry StartPoint="0,0">
                         <LineGeometry.EndPoint>
                             <Point X="{StaticResource SlotHeight}" Y="0" />
+                        </LineGeometry.EndPoint>
+                    </LineGeometry>
+                </GeometryDrawing.Geometry>
+                <GeometryDrawing.Pen>
+                    <Pen Brush="{StaticResource AccentColorBrush4}" Thickness="{StaticResource SeparatorSize}" />
+                </GeometryDrawing.Pen>
+            </GeometryDrawing>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <DrawingBrush x:Key="CalendarEditBackgroundBrush" TileMode="Tile" ViewportUnits="Absolute" Stretch="None" AlignmentY="Top">
+        <DrawingBrush.Viewport>
+            <Rect X="0" Y="0" Width="{StaticResource EditSlotHeight}" Height="{StaticResource EditSlotHeight}" />
+        </DrawingBrush.Viewport>
+        <DrawingBrush.Drawing>
+            <GeometryDrawing>
+                <GeometryDrawing.Geometry>
+                    <LineGeometry StartPoint="0,0">
+                        <LineGeometry.EndPoint>
+                            <Point X="{StaticResource EditSlotHeight}" Y="0" />
                         </LineGeometry.EndPoint>
                     </LineGeometry>
                 </GeometryDrawing.Geometry>

@@ -1,4 +1,7 @@
-﻿using Caliburn.Micro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Caliburn.Micro;
+using NodaTime;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.Core.Templates;
@@ -12,6 +15,9 @@ namespace StudentsCalendar.UI.Popups
 	public sealed class CalendarEntryEditViewModel
 		: Screen, IViewModel
 	{
+		private const int EditStartHour = 0;
+		private const int EditEndHour = 24;
+
 		private readonly IShell Shell;
 
 		private readonly IContentProvider ContentProvider;
@@ -34,7 +40,6 @@ namespace StudentsCalendar.UI.Popups
 			}
 		}
 
-
 		/// <summary>
 		/// Pobiera obiekt, który należy edytować.
 		/// </summary>
@@ -42,6 +47,16 @@ namespace StudentsCalendar.UI.Popups
 		{
 			get { return this.EditableObject != null ? this.EditableObject.Data : null; }
 		}
+
+		/// <summary>
+		/// Pobiera listę slotów wyświetlanych na ekranie.
+		/// </summary>
+		public IReadOnlyList<LocalTime> TimeSlots { get; private set; }
+
+		/// <summary>
+		/// Pobiera listę slotów do edycji.
+		/// </summary>
+		public IReadOnlyList<CalendarEditSlot> EditSlots { get; private set; }
 
 		/// <summary>
 		/// Inicjalizuje ViewModel niezbędnymi zależnościami.
@@ -96,7 +111,11 @@ namespace StudentsCalendar.UI.Popups
 			{
 				var template = await this.ContentProvider.LoadTemplate(this.CalendarId);
 				this.EditableObject = new EditableObject<CalendarTemplate>(template);
+
+				this.BuildEditTemplate();
+
 				this.NotifyOfPropertyChange(() => this.Template);
+				this.NotifyOfPropertyChange(() => this.EditSlots);
 			}
 			catch
 			{
@@ -106,6 +125,21 @@ namespace StudentsCalendar.UI.Popups
 					Message = "Sprawdź, czy dane aplikacji nie zostały uszkodzone. Jeśli tak się stało, usuń i utwórz kalendarz ponownie."
 				}).ContinueWith(t => this.TryClose());
 			}
+		}
+
+		private void BuildEditTemplate()
+		{
+			int hours = EditEndHour - EditStartHour;
+			this.TimeSlots = Enumerable
+				.Range(EditStartHour, hours)
+				.Select(h => new LocalTime(h, 0))
+				.ToList();
+			this.EditSlots =
+				(from i in Enumerable.Range(0, hours * 7)
+				 let day = (i % 7).ToDayOfWeek()
+				 let hour = i / 7 + EditStartHour
+				 select new CalendarEditSlot(day, new LocalTime(hour, 0))
+				).ToList();
 		}
 	}
 }

@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Converters\BoolInverseConverter.cs" />
     <Compile Include="Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Converters\IsoDayOfWeekToStringConverter.cs" />
     <Compile Include="Converters\NodaToBclConverter.cs" />
     <Compile Include="Converters\NullToVisibilityConverter.cs" />
     <Compile Include="Converters\SlotToHeightConverter.cs" />
