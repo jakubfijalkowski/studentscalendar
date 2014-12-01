@@ -47,8 +47,8 @@
     <Compile Include="ActivitySpans\SpecificWeeksActivitySpan.cs" />
     <Compile Include="ActivitySpans\SpecificDatesActivitySpan.cs" />
     <Compile Include="ActivitySpans\ActivitySpanProduct.cs" />
-    <Compile Include="ActivitySpans\WeekActivitySpanProduct.cs" />
-    <Compile Include="ActivitySpans\WeekActivitySpanSum.cs" />
+    <Compile Include="ActivitySpans\WeeklyActivitySpanProduct.cs" />
+    <Compile Include="ActivitySpans\WeeklyActivitySpanSum.cs" />
     <Compile Include="ActivitySpans\ActivitySpanSum.cs" />
     <Compile Include="CalendarsManager.cs" />
     <Compile Include="CurrentCalendar.cs" />

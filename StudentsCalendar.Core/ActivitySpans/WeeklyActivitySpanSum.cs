@@ -6,7 +6,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// <summary>
 	/// Operacja sumy przedziałów.
 	/// </summary>
-	public sealed class WeekActivitySpanSum
+	public sealed class WeeklyActivitySpanSum
 		: IWeeklyActivitySpan
 	{
 		/// <summary>
@@ -17,7 +17,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 		/// <summary>
 		/// Inicjalizuje obiekt pustą listą.
 		/// </summary>
-		public WeekActivitySpanSum()
+		public WeeklyActivitySpanSum()
 		{
 			this.Spans = new List<IWeeklyActivitySpan>();
 		}

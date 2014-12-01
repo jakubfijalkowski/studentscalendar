@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
+             xmlns:cal="http://www.caliburnproject.org"
              xmlns:xcd="http://schemas.xceed.com/wpf/xaml/toolkit">
     <UserControl.Resources>
         <conv:NodaToBclConverter x:Key="NodaToBcl" />
-        
+
         <Style TargetType="TextBlock" BasedOn="{StaticResource ClassesEditLabelStyle}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource ClassesEditTextBoxStyle}" />
         <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
@@ -60,6 +61,44 @@
             <TextBlock Text="Notatki" />
             <TextBox Grid.Row="1" Text="{Binding Classes.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
         </Grid>
+
+        <ItemsControl Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Modifiers}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ClassesModifierMarkerStyle}" />
+                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource ClassesModifierNameStyle}" Text="{Binding Description}" />
+                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ClassesModifierSpanStyle}" Text="{Binding SpanDescription}" />
+
+                        <StackPanel Grid.RowSpan="2" Grid.Column="2" Orientation="Horizontal">
+                            <Button Style="{StaticResource ClassesModifierButtonStyle}">
+                                <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                            <Button Style="{StaticResource ClassesModifierButtonStyle}">
+                                <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                    <Rectangle.OpacityMask>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Reflection;
 using StudentsCalendar.Core.Modifiers;
 
@@ -11,16 +13,21 @@ namespace StudentsCalendar.UI.Services
 	public sealed class DefaultModifierRenderer
 		: IModifierRenderer
 	{
+		private readonly Dictionary<Type, MethodInfo> Descriptions;
+
+		public DefaultModifierRenderer()
+		{
+			this.Descriptions = typeof(DefaultModifierRenderer)
+				.GetRuntimeMethods()
+				.Where(m => m.Name == "Describe")
+				.ToDictionary(m => m.GetParameters()[0].ParameterType);
+		}
+
 		/// <inheritdoc />
 		public string Describe(IModifier modifier)
 		{
-			var type = modifier.GetType();
-			var desc = typeof(DefaultModifierRenderer).GetRuntimeMethod("Describe", new Type[] { type });
-			if (desc != null)
-			{
-				return (string)desc.Invoke(null, new object[] { modifier });
-			}
-			throw new NotSupportedException();
+			return (string)this.Descriptions[modifier.GetType()]
+				.Invoke(null, new object[] { modifier });
 		}
 
 		private static string Describe(AddTestToClasses mod)
