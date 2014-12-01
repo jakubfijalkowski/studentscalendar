@@ -106,18 +106,42 @@ namespace StudentsCalendar.UI.Popups
 		/// Dodaje nowe zajęcia we wskazanym slocie.
 		/// </summary>
 		/// <param name="args"></param>
-		public void AddClasses(AddClassesEventArgs args)
+		public async void AddClasses(AddClassesEventArgs args)
 		{
+			var template = EmptyCalendar.CreateClasses();
+			template.StartTime = args.EditSlot.TimeSlot;
+			template.EndTime = template.StartTime.PlusHours(1);
 
+			var vm = this.Shell.ShowPopup<ClassesEditViewModel>();
+			vm.Classes = template;
+			if (await vm.WaitForClose())
+			{
+				var day = args.EditSlot.DayOfWeek;
+
+				this.Template.WeekTemplate.Days[day.ToIndex()].Classes.Add(template);
+
+				var idx = SlotToIndex(day, template);
+				this.EditSlots[idx].Templates.Add(template);
+			}
 		}
 
 		/// <summary>
 		/// Edytuje wskazane zajęcia.
 		/// </summary>
 		/// <param name="args"></param>
-		public void EditClasses(ClassesEditEventArgs args)
+		public async void EditClasses(ClassesEditEventArgs args)
 		{
+			var day = args.EditSlot.DayOfWeek;
+			var oldIdx = SlotToIndex(day, args.Template);
 
+			var vm = this.Shell.ShowPopup<ClassesEditViewModel>();
+			vm.Classes = args.Template;
+			if (await vm.WaitForClose())
+			{
+				var idx = SlotToIndex(day, args.Template);
+				this.EditSlots[oldIdx].Templates.Remove(args.Template);
+				this.EditSlots[idx].Templates.Add(args.Template);
+			}
 		}
 
 		/// <summary>
@@ -130,6 +154,11 @@ namespace StudentsCalendar.UI.Popups
 
 			var dayIdx = args.EditSlot.DayOfWeek.ToIndex();
 			this.Template.WeekTemplate.Days[dayIdx].Classes.Remove(args.Template);
+		}
+
+		private static int SlotToIndex(IsoDayOfWeek day, ClassesTemplate classes)
+		{
+			return day.ToIndex() + classes.StartTime.Hour * 7;
 		}
 
 		private async void LoadTemplate()
@@ -171,9 +200,26 @@ namespace StudentsCalendar.UI.Popups
 			{
 				foreach (var classes in day.Classes)
 				{
-					var idx = classes.StartTime.Hour * 7 + day.DayOfWeek.ToIndex();
+					var idx = SlotToIndex(day.DayOfWeek, classes);
 					this.EditSlots[idx].Templates.Add(classes);
 				}
+			}
+		}
+
+		private async void EditTemplate(IsoDayOfWeek day, ClassesTemplate template, int? oldIndex = null)
+		{
+			var vm = this.Shell.ShowPopup<ClassesEditViewModel>();
+			vm.Classes = template;
+			if (await vm.WaitForClose())
+			{
+				this.Template.WeekTemplate.Days[day.ToIndex()].Classes.Add(template);
+
+				var idx = SlotToIndex(day, template);
+				if (oldIndex.HasValue)
+				{
+					this.EditSlots[oldIndex.Value].Templates.Remove(template);
+				}
+				this.EditSlots[idx].Templates.Add(template);
 			}
 		}
 	}

@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="StudentsCalendar.Desktop.Popups.ClassesEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource ClassesEditLabelStyle}" />
+        <Style TargetType="TextBox" BasedOn="{StaticResource ClassesEditTextBoxStyle}" />
+        <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="300" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
+                    DataContext="{Binding Classes}">
+            <TextBlock Text="Godzina rozpoczęcia" />
+            <TextBox Text="{help:BindingWithCurrentCulture StartTime, Mode=TwoWay}" />
+            <TextBlock Text="Godzina zakończenia" />
+            <TextBox Text="{help:BindingWithCurrentCulture EndTime, Mode=TwoWay}" />
+            <TextBlock Text="Krótka nazwa" />
+            <TextBox Text="{Binding ShortName, Mode=TwoWay}" />
+            <TextBlock Text="Pełna nazwa" />
+            <TextBox Text="{Binding FullName, Mode=TwoWay}" />
+            <TextBlock Text="Imię prowadzącego" />
+            <TextBox Text="{Binding Lecturer.FirstName, Mode=TwoWay}" />
+            <TextBlock Text="Nazwisko prowadzącego" />
+            <TextBox Text="{Binding Lecturer.LastName, Mode=TwoWay}" />
+            <TextBlock Text="Kontakt do prowadzącego" />
+            <TextBox Text="{Binding Lecturer.PhoneNumber, Mode=TwoWay}" />
+            <TextBlock Text="Lokalizacja" />
+            <TextBox Text="{Binding Location.Name, Mode=TwoWay}" />
+            <TextBlock Text="Pokój" />
+            <TextBox Text="{Binding Location.Room, Mode=TwoWay}" />
+            <TextBlock Text="Adres" />
+            <TextBox Text="{Binding Location.Address, Mode=TwoWay}" />
+        </StackPanel>
+
+        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Notatki" />
+            <TextBox Grid.Row="1" Text="{Binding Classes.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
+        </Grid>
+
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
+            <Button x:Name="Cancel" Content="Anuluh" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>
