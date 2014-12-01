@@ -18,10 +18,22 @@ namespace StudentsCalendar.Desktop.Converters
 				var date = (LocalDate)value;
 				return new DateTime(date.Year, date.Month, date.Day);
 			}
+			else if (value is LocalTime)
+			{
+				var time = (LocalTime)value;
+				return new DateTime(2000, 1, 1, time.Hour, time.Minute, time.Second);
+			}
 			else
 			{
 				var date = (DateTime)value;
-				return new LocalDate(date.Year, date.Month, date.Day);
+				if (targetType == typeof(LocalDate))
+				{
+					return new LocalDate(date.Year, date.Month, date.Day);
+				}
+				else
+				{
+					return new LocalTime(date.Hour, date.Minute, date.Second);
+				}
 			}
 		}
 

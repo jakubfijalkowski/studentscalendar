@@ -4,6 +4,7 @@
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    xmlns:cal="http://www.caliburnproject.org"
                    xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
+                   MinWidth="1440" MinHeight="750"
                    x:Name="Root">
     <metro:MetroWindow.Resources>
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />

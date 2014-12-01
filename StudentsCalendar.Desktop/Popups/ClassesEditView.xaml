@@ -1,11 +1,16 @@
 ﻿<UserControl x:Class="StudentsCalendar.Desktop.Popups.ClassesEditView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers">
+             xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
+             xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
+             xmlns:xcd="http://schemas.xceed.com/wpf/xaml/toolkit">
     <UserControl.Resources>
+        <conv:NodaToBclConverter x:Key="NodaToBcl" />
+        
         <Style TargetType="TextBlock" BasedOn="{StaticResource ClassesEditLabelStyle}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource ClassesEditTextBoxStyle}" />
         <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
+        <Style TargetType="xcd:DateTimeUpDown" BasedOn="{StaticResource ClassesEditTimePickerStyle}" />
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -21,9 +26,13 @@
         <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
                     DataContext="{Binding Classes}">
             <TextBlock Text="Godzina rozpoczęcia" />
-            <TextBox Text="{help:BindingWithCurrentCulture StartTime, Mode=TwoWay}" />
+            <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
+                            Maximum="{Binding Value, ElementName=EndTime}"
+                            ClipValueToMinMax="True" Format="ShortTime" />
             <TextBlock Text="Godzina zakończenia" />
-            <TextBox Text="{help:BindingWithCurrentCulture EndTime, Mode=TwoWay}" />
+            <xcd:DateTimeUpDown x:Name="EndTime" Value="{Binding EndTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
+                            Minimum="{Binding Value, ElementName=StartTime}"
+                            ClipValueToMinMax="True" Format="ShortTime" />
             <TextBlock Text="Krótka nazwa" />
             <TextBox Text="{Binding ShortName, Mode=TwoWay}" />
             <TextBlock Text="Pełna nazwa" />
