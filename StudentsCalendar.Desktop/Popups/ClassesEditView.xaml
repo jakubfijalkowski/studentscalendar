@@ -17,6 +17,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -24,7 +25,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
+        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
                     DataContext="{Binding Classes}">
             <TextBlock Text="Godzina rozpoczęcia" />
             <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
@@ -52,7 +53,7 @@
             <TextBox Text="{Binding Location.Address, Mode=TwoWay}" />
         </StackPanel>
 
-        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
+        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -80,14 +81,14 @@
                         <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ClassesModifierSpanStyle}" Text="{Binding SpanDescription}" />
 
                         <StackPanel Grid.RowSpan="2" Grid.Column="2" Orientation="Horizontal">
-                            <Button Style="{StaticResource ClassesModifierButtonStyle}">
+                            <Button cal:Message.Attach="EditModifier($dataContext)" Style="{StaticResource ClassesModifierButtonStyle}">
                                 <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                                     <Rectangle.OpacityMask>
                                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
                                     </Rectangle.OpacityMask>
                                 </Rectangle>
                             </Button>
-                            <Button Style="{StaticResource ClassesModifierButtonStyle}">
+                            <Button cal:Message.Attach="DeleteModifier($dataContext)" Style="{StaticResource ClassesModifierButtonStyle}">
                                 <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                                     <Rectangle.OpacityMask>
                                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
@@ -100,7 +101,16 @@
             </ItemsControl.ItemTemplate>
         </ItemsControl>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+        <Button x:Name="AddModifier" Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource ClassesModifierButtonStyle}"
+                Margin="10">
+            <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                <Rectangle.OpacityMask>
+                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
+        </Button>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
             <Button x:Name="Cancel" Content="Anuluh" IsCancel="True" />
         </StackPanel>

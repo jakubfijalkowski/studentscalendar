@@ -148,6 +148,34 @@ namespace StudentsCalendar.UI.Popups
 			this.Close(false);
 		}
 
+		/// <summary>
+		/// Tworzy nowy modyfikator i wyświetla listę 
+		/// </summary>
+		/// <param name="desc"></param>
+		public void AddModifier(ModifierDescription desc)
+		{
+
+		}
+
+		/// <summary>
+		/// Wyświetla okno edycji modyfikatora.
+		/// </summary>
+		/// <param name="desc"></param>
+		public void EditModifier(ModifierDescription desc)
+		{
+
+		}
+
+		/// <summary>
+		/// Usuwa modyfikator.
+		/// </summary>
+		/// <param name="desc"></param>
+		public void DeleteModifier(ModifierDescription desc)
+		{
+			this.Classes.Modifiers.Remove((IClassesModifier)desc.Modifier);
+			this._Modifiers.Remove(desc);
+		}
+
 		private void Close(bool result)
 		{
 			this.CloseTCS.SetResult(result);
