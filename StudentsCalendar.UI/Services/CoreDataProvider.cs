@@ -57,14 +57,14 @@ namespace StudentsCalendar.UI.Services
 			return CreateInstance<TResult>(description.Type.GetTypeInfo());
 		}
 
-		private static IReadOnlyList<TDescription> GetTypes<TConstraint, TDescription>(Assembly assembly, Func<TConstraint, string> describe)
+		private static IReadOnlyList<TDescription> GetTypes<TConstraint, TDescription>(Assembly assembly, Func<TConstraint, bool, string> describe)
 			where TDescription : BaseDescription<TConstraint>
 		{
 			var types = from ti in assembly.DefinedTypes
 						where !ti.IsInterface && !ti.IsAbstract
 						where typeof(TConstraint).GetTypeInfo().IsAssignableFrom(ti)
 						let sample = CreateInstance<TConstraint>(ti)
-						let name = describe(sample)
+						let name = describe(sample, true)
 						select CreateDescription<TDescription>(name, ti);
 			return types.ToList();
 		}

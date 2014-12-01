@@ -11,7 +11,8 @@ namespace StudentsCalendar.UI.Services
 		/// Opisuje wskazany modyfikator w sposób strawny dla użytkownika.
 		/// </summary>
 		/// <param name="modifier"></param>
+		/// <param name="shouldBeUniversal"></param>
 		/// <returns></returns>
-		string Describe(IModifier modifier);
+		string Describe(IModifier modifier, bool shouldBeUniversal = false);
 	}
 }

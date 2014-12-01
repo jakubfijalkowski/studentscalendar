@@ -25,53 +25,66 @@ namespace StudentsCalendar.UI.Services
 		}
 
 		/// <inheritdoc />
-		public string Describe(IModifier modifier)
+		public string Describe(IModifier modifier, bool shouldBeUniversal = false)
 		{
 			return (string)this.Descriptions[modifier.GetType()]
-				.Invoke(null, new object[] { modifier });
+				.Invoke(null, new object[] { modifier, shouldBeUniversal });
 		}
 
-		private static string Describe(AddTestToClasses mod)
+		private static string Describe(AddTestToClasses mod, bool shouldBeUniversal)
 		{
-			return string.Format("Dodaj test '{0}'", mod.Title);
+			var str = "Dodaj test";
+			if (!shouldBeUniversal)
+			{
+				str += " '" + mod.Title + "'";
+			}
+			return str;
 		}
 
-		private static string Describe(CancelClasses mod)
+		private static string Describe(CancelClasses mod, bool shouldBeUniversal)
 		{
 			return "Odwołaj zajęcia";
 		}
 
-		private static string Describe(CancelClassesInRange mod)
+		private static string Describe(CancelClassesInRange mod, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "Odwołaj zajęcia od ... do ...";
+			}
 			return string.Format(CultureInfo.CurrentCulture, "Odwołaj zajęcia od {0} do {1}", mod.StartDate, mod.EndDate);
 		}
 
-		private static string Describe(CancelDay mod)
+		private static string Describe(CancelDay mod, bool shouldBeUniversal)
 		{
 			return "Wolny dzień";
 		}
 
-		private static string Describe(CancelWeek mod)
+		private static string Describe(CancelWeek mod, bool shouldBeUniversal)
 		{
 			return "Wolny tydzień";
 		}
 
-		private static string Describe(ChangeWeekday mod)
+		private static string Describe(ChangeWeekday mod, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "Zmień plan na inny dzień";
+			}
 			return string.Format(CultureInfo.CurrentCulture, "Zmień plan na {0:dddd}", new LocalDate().Next(mod.DayOfWeek));
 		}
 
-		private static string Describe(ModifyClassesInfo mod)
+		private static string Describe(ModifyClassesInfo mod, bool shouldBeUniversal)
 		{
 			return "Zmień informacje o zajęciach";
 		}
 
-		private static string Describe(ModifyLecturerInfo mod)
+		private static string Describe(ModifyLecturerInfo mod, bool shouldBeUniversal)
 		{
 			return "Zmień dane prowadzącego";
 		}
 
-		private static string Describe(ModifyLocationInfo mod)
+		private static string Describe(ModifyLocationInfo mod, bool shouldBeUniversal)
 		{
 			return "Zmień dane o lokalizacji";
 		}

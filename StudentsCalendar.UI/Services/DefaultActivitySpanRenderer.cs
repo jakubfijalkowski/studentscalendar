@@ -24,30 +24,43 @@ namespace StudentsCalendar.UI.Services
 		}
 
 		/// <inheritdoc />
-		public string Describe(IActivitySpan span)
+		public string Describe(IActivitySpan span, bool shouldBeUniversal = false)
 		{
 			return (string)this.Descriptions[span.GetType()]
-				.Invoke(this, new object[] { span });
+				.Invoke(this, new object[] { span, shouldBeUniversal });
 		}
 
-		private string Describe(AlwaysExceptActivitySpan span)
+		private string Describe(AlwaysExceptActivitySpan span, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "zawsze oprócz ...";
+			}
 			var dates = span.Dates.Select(d => d.ToString("D", CultureInfo.CurrentCulture));
 			return "zawsze oprócz " + string.Join(", ", dates);
 		}
 
-		private string Describe(DateRangeActivitySpan span)
+		private string Describe(DateRangeActivitySpan span, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "od ... do ...";
+			}
 			return string.Format(CultureInfo.CurrentCulture, "od {0:D} do {1:D}", span.Beginning, span.End);
 		}
 
-		private string Describe(EmptyActivitySpan span)
+		private string Describe(EmptyActivitySpan span, bool shouldBeUniversal)
 		{
 			return "nigdy";
 		}
 
-		private string Describe(EveryXMonthsActivitySpan span)
+		private string Describe(EveryXMonthsActivitySpan span, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "co X miesięcy";
+			}
+
 			var str = string.Format("co {0} {1}", span.Count, PluralForm(span.Count, "miesiąc", "miesięcy", "miesiące"));
 			if (span.StartDate.HasValue)
 			{
@@ -56,8 +69,13 @@ namespace StudentsCalendar.UI.Services
 			return str;
 		}
 
-		private string Describe(EveryXWeeksActivitySpan span)
+		private string Describe(EveryXWeeksActivitySpan span, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "co X tygodni";
+			}
+
 			var str = string.Format("co {0} {1}", span.Count, PluralForm(span.Count, "tydzień", "tygodni", "tygodnie"));
 			if (span.StartDate.HasValue)
 			{
@@ -66,19 +84,29 @@ namespace StudentsCalendar.UI.Services
 			return str;
 		}
 
-		private string Describe(FullActivitySpan span)
+		private string Describe(FullActivitySpan span, bool shouldBeUniversal)
 		{
 			return "zawsze";
 		}
 
-		private string Describe(SpecificDatesActivitySpan span)
+		private string Describe(SpecificDatesActivitySpan span, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "tylko w określone dni";
+			}
+
 			var dates = span.Dates.Select(d => d.ToString("D", CultureInfo.CurrentCulture));
 			return "tylko " + string.Join(", ", dates);
 		}
 
-		private string Describe(SpecificWeeksActivitySpan span)
+		private string Describe(SpecificWeeksActivitySpan span, bool shouldBeUniversal)
 		{
+			if (shouldBeUniversal)
+			{
+				return "tylko w określone tygodnie";
+			}
+
 			var dates = span.Dates
 				.Select(d => new { Start = d, End = d.Next(NodaTime.IsoDayOfWeek.Sunday) })
 				.Select(d => new { Start = d.Start.ToString("D", CultureInfo.CurrentCulture), End = d.End.ToString("D", CultureInfo.CurrentCulture) })

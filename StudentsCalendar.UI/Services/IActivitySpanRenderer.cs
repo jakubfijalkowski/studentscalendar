@@ -12,7 +12,8 @@ namespace StudentsCalendar.UI.Services
 		/// Opisuje wskazany przedział aktywności.
 		/// </summary>
 		/// <param name="span"></param>
+		/// <param name="shouldBeUniversal"></param>
 		/// <returns></returns>
-		string Describe(IActivitySpan span);
+		string Describe(IActivitySpan span, bool shouldBeUniversal = false);
 	}
 }

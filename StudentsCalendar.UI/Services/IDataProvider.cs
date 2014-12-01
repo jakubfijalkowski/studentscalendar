@@ -34,6 +34,11 @@ namespace StudentsCalendar.UI.Services
 			this._Name = name;
 			this._Type = type;
 		}
+
+		public override string ToString()
+		{
+			return this.Type.Name + " - " + this.Name;
+		}
 	}
 
 	public sealed class ClassesModifierDescription
