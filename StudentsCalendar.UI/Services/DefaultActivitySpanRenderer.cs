@@ -58,7 +58,7 @@ namespace StudentsCalendar.UI.Services
 
 		private string Describe(EveryXWeeksActivitySpan span)
 		{
-			var str = string.Format("co {0} {1} począwszy od {2}", span.Count, PluralForm(span.Count, "tydzień", "tygodni", "tygodnie"));
+			var str = string.Format("co {0} {1}", span.Count, PluralForm(span.Count, "tydzień", "tygodni", "tygodnie"));
 			if (span.StartDate.HasValue)
 			{
 				str += " począwszy od " + span.StartDate.Value.ToString("D", CultureInfo.CurrentCulture);

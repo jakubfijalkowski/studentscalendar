@@ -115,7 +115,7 @@ namespace StudentsCalendar.UI.Popups
 		/// </summary>
 		/// <param name="modifierRenderer"></param>
 		/// <param name="activitySpanRenderer"></param>
-		public ClassesEditViewModel(IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer)
+		public ClassesEditViewModel(IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dp)
 		{
 			this.ModifierRenderer = modifierRenderer;
 			this.ActivitySpanRenderer = activitySpanRenderer;

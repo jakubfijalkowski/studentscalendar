@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
+using NodaTime;
 using StudentsCalendar.Core.Modifiers;
 
 namespace StudentsCalendar.UI.Services
@@ -57,7 +58,7 @@ namespace StudentsCalendar.UI.Services
 
 		private static string Describe(ChangeWeekday mod)
 		{
-			return string.Format(CultureInfo.CurrentCulture, "Zmień plan na {0:dddd}", mod.DayOfWeek);
+			return string.Format(CultureInfo.CurrentCulture, "Zmień plan na {0:dddd}", new LocalDate().Next(mod.DayOfWeek));
 		}
 
 		private static string Describe(ModifyClassesInfo mod)
