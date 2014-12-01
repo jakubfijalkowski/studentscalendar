@@ -77,6 +77,7 @@ namespace StudentsCalendar.UI.Popups
 	{
 		private readonly IModifierRenderer ModifierRenderer;
 		private readonly IActivitySpanRenderer ActivitySpanRenderer;
+		private readonly IDataProvider DataProvider;
 
 		private readonly TaskCompletionSource<bool> CloseTCS = new TaskCompletionSource<bool>();
 
@@ -111,14 +112,23 @@ namespace StudentsCalendar.UI.Popups
 		}
 
 		/// <summary>
+		/// Pobiera listę dostępnych modyfikatorów.
+		/// </summary>
+		public IReadOnlyList<ClassesModifierDescription> AvailableModifiers
+		{
+			get { return this.DataProvider.ClassesModifiers; }
+		}
+
+		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
 		/// <param name="modifierRenderer"></param>
 		/// <param name="activitySpanRenderer"></param>
-		public ClassesEditViewModel(IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dp)
+		public ClassesEditViewModel(IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dataProvider)
 		{
 			this.ModifierRenderer = modifierRenderer;
 			this.ActivitySpanRenderer = activitySpanRenderer;
+			this.DataProvider = dataProvider;
 		}
 
 		/// <summary>
@@ -152,9 +162,16 @@ namespace StudentsCalendar.UI.Popups
 		/// Tworzy nowy modyfikator i wyświetla listę 
 		/// </summary>
 		/// <param name="desc"></param>
-		public void AddModifier(ModifierDescription desc)
+		public void AddModifier(ClassesModifierDescription desc)
 		{
-
+			var mod = this.DataProvider.Create(desc);
+			var description = new ModifierDescription(mod)
+			{
+				Description = this.ModifierRenderer.Describe(mod),
+				SpanDescription = this.ActivitySpanRenderer.Describe(mod.ActivitySpan)
+			};
+			this.Classes.Modifiers.Add(mod);
+			this._Modifiers.Add(description);
 		}
 
 		/// <summary>
