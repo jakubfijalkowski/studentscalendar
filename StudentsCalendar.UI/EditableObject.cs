@@ -17,7 +17,8 @@ namespace StudentsCalendar.UI
 	{
 		private readonly JsonSerializer Serializer = JsonSerializer.Create(new JsonSerializerSettings
 		{
-			TypeNameHandling = TypeNameHandling.Objects
+			TypeNameHandling = TypeNameHandling.Objects,
+			ObjectCreationHandling = ObjectCreationHandling.Replace
 		}.ConfigureForNodaTime(DateTimeZoneProviders.Tzdb));
 
 		private readonly byte[] OriginalData;
