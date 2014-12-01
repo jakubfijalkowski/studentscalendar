@@ -30,28 +30,10 @@ namespace StudentsCalendar.UI.Services
 				.Invoke(this, new object[] { span });
 		}
 
-		private string Describe(ActivitySpanProduct span)
+		private string Describe(AlwaysExceptActivitySpan span)
 		{
-			var strings = span.Spans.Select(s => "'" + this.Describe(s) + "'");
-			return "Iloczyn " + string.Join(", ", strings);
-		}
-
-		private string Describe(ActivitySpanSum span)
-		{
-			var strings = span.Spans.Select(s => "'" + this.Describe(s) + "'");
-			return "Suma " + string.Join(", ", strings);
-		}
-
-		private string Describe(WeeklyActivitySpanProduct span)
-		{
-			var strings = span.Spans.Select(s => "'" + this.Describe(s) + "'");
-			return "Iloczyn " + string.Join(", ", strings);
-		}
-
-		private string Describe(WeeklyActivitySpanSum span)
-		{
-			var strings = span.Spans.Select(s => "'" + this.Describe(s) + "'");
-			return "Suma " + string.Join(", ", strings);
+			var dates = span.Dates.Select(d => d.ToString("D", CultureInfo.CurrentCulture));
+			return "zawsze oprócz " + string.Join(", ", dates);
 		}
 
 		private string Describe(DateRangeActivitySpan span)
@@ -77,16 +59,6 @@ namespace StudentsCalendar.UI.Services
 		private string Describe(FullActivitySpan span)
 		{
 			return "zawsze";
-		}
-
-		private string Describe(InverseActivitySpan span)
-		{
-			return string.Format("odwrotność '{0}'", this.Describe(span.Span));
-		}
-
-		private string Descrie(InverseWeeklyActivitySpan span)
-		{
-			return string.Format("odwrotność '{0}'", this.Describe(span.Span));
 		}
 
 		private string Describe(SpecificDatesActivitySpan span)

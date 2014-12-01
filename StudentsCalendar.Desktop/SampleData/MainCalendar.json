@@ -74,11 +74,8 @@
                             {
                                 "$type": "StudentsCalendar.Core.Modifiers.CancelClasses, StudentsCalendar.Core",
                                 "ActivitySpan": {
-                                    "$type": "StudentsCalendar.Core.ActivitySpans.InverseActivitySpan, StudentsCalendar.Core",
-                                    "Span": {
-                                        "$type": "StudentsCalendar.Core.ActivitySpans.SpecificDatesActivitySpan, StudentsCalendar.Core",
-                                        "Dates": [ "2014-10-13", "2014-10-27", "2014-11-17", "2014-12-01", "2014-12-15", "2014-01-12", "2014-01-19", "2014-01-26" ]
-                                    }
+                                    "$type": "StudentsCalendar.Core.ActivitySpans.AlwaysExceptActivitySpan, StudentsCalendar.Core",
+                                    "Dates": [ "2014-10-13", "2014-10-27", "2014-11-17", "2014-12-01", "2014-12-15", "2014-01-12", "2014-01-19", "2014-01-26" ]
                                 }
                             },
                             {

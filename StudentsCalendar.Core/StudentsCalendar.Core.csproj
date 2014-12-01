@@ -34,6 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpans\AlwaysExceptActivitySpan.cs" />
     <Compile Include="ActivitySpans\DateRangeActivitySpan.cs" />
     <Compile Include="ActivitySpans\EveryXMonthsActivitySpan.cs" />
     <Compile Include="ActivitySpans\EveryXWeeksActivitySpan.cs" />
@@ -41,15 +42,9 @@
     <Compile Include="ActivitySpans\FullActivitySpan.cs" />
     <Compile Include="ActivitySpans\IActivitySpan.cs" />
     <Compile Include="ActivitySpans\IDailyActivitySpan.cs" />
-    <Compile Include="ActivitySpans\InverseWeeklyActivitySpan.cs" />
-    <Compile Include="ActivitySpans\InverseActivitySpan.cs" />
     <Compile Include="ActivitySpans\IWeeklyActivitySpan.cs" />
     <Compile Include="ActivitySpans\SpecificWeeksActivitySpan.cs" />
     <Compile Include="ActivitySpans\SpecificDatesActivitySpan.cs" />
-    <Compile Include="ActivitySpans\ActivitySpanProduct.cs" />
-    <Compile Include="ActivitySpans\WeeklyActivitySpanProduct.cs" />
-    <Compile Include="ActivitySpans\WeeklyActivitySpanSum.cs" />
-    <Compile Include="ActivitySpans\ActivitySpanSum.cs" />
     <Compile Include="CalendarsManager.cs" />
     <Compile Include="CurrentCalendar.cs" />
     <Compile Include="Generation\GenerationEngine.cs" />
