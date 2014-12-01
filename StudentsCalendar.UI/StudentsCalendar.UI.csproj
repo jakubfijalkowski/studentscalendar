@@ -58,8 +58,11 @@
     <Compile Include="Popups\CalendarEntryEditViewModel.cs" />
     <Compile Include="Popups\ClassesEditEventArgs.cs" />
     <Compile Include="Popups\ClassesEditViewModel.cs" />
+    <Compile Include="Services\DefaultModifierRenderer.cs" />
+    <Compile Include="Services\IActivitySpanRenderer.cs" />
     <Compile Include="Services\ILayoutArranger.cs" />
     <Compile Include="IShell.cs" />
+    <Compile Include="Services\IModifierRenderer.cs" />
     <Compile Include="Services\LayoutArranger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
