@@ -7,7 +7,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// Przedział aktywności, który jest aktywny tylko w określone daty.
 	/// </summary>
 	public sealed class SpecificWeeksActivitySpan
-		: IActivitySpan, IWeekActivitySpan
+		: IDailyActivitySpan, IWeeklyActivitySpan
 	{
 		/// <summary>
 		/// Pobiera lub zmienia listę dat(poniedziałki), w które przedział jest aktywny.

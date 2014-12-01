@@ -7,10 +7,11 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// </summary>
 	/// <remarks>
 	/// Więcej informacji na temat pracy przedziału aktywności znajduje się w
-	/// dokumentacji <see cref="IActivitySpan"/>.
+	/// dokumentacji <see cref="IDailyActivitySpan"/>.
 	/// </remarks>
-	/// <seealso cref="IActivitySpan"/>
-	public interface IWeekActivitySpan
+	/// <seealso cref="IDailyActivitySpan"/>
+	public interface IWeeklyActivitySpan
+		: IActivitySpan
 	{
 		/// <summary>
 		/// Sprawdza, czy dany tydzień jest aktywny.

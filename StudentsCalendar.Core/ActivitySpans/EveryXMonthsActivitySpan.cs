@@ -8,7 +8,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// tylko co kilka miesięcy.
 	/// </summary>
 	public sealed class EveryXMonthsActivitySpan
-		: IActivitySpan, IWeekActivitySpan
+		: IDailyActivitySpan, IWeeklyActivitySpan
 	{
 		private int _Count = 1;
 

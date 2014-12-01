@@ -1,15 +1,15 @@
 ﻿namespace StudentsCalendar.Core.ActivitySpans
 {
 	/// <summary>
-	/// Odwraca aktywność dowolnego <see cref="IActivitySpan"/>.
+	/// Odwraca aktywność dowolnego <see cref="IDailyActivitySpan"/>.
 	/// </summary>
 	public sealed class InverseActivitySpan
-		: IActivitySpan
+		: IDailyActivitySpan
 	{
 		/// <summary>
-		/// Bazowy <see cref="IActivitySpan"/>.
+		/// Bazowy <see cref="IDailyActivitySpan"/>.
 		/// </summary>
-		public IActivitySpan Span { get; set; }
+		public IDailyActivitySpan Span { get; set; }
 
 		public InverseActivitySpan()
 		{

@@ -9,11 +9,12 @@ namespace StudentsCalendar.Core.Modifiers
 	/// Operuje na <see cref="IntermediateClasses"/>.
 	/// </summary>
 	public interface IClassesModifier
+		: IModifier
 	{
 		/// <summary>
 		/// Przedział aktywności, kiedy dany modyfikator ma być aktywny.
 		/// </summary>
-		IActivitySpan ActivitySpan { get; set; }
+		IDailyActivitySpan ActivitySpan { get; set; }
 
 		/// <summary>
 		/// Aplikuje modyfikator na danych.

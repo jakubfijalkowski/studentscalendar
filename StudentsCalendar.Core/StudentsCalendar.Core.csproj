@@ -40,9 +40,10 @@
     <Compile Include="ActivitySpans\EmptyActivitySpan.cs" />
     <Compile Include="ActivitySpans\FullActivitySpan.cs" />
     <Compile Include="ActivitySpans\IActivitySpan.cs" />
-    <Compile Include="ActivitySpans\InverseWeekActivitySpan.cs" />
+    <Compile Include="ActivitySpans\IDailyActivitySpan.cs" />
+    <Compile Include="ActivitySpans\InverseWeeklyActivitySpan.cs" />
     <Compile Include="ActivitySpans\InverseActivitySpan.cs" />
-    <Compile Include="ActivitySpans\IWeekActivitySpan.cs" />
+    <Compile Include="ActivitySpans\IWeeklyActivitySpan.cs" />
     <Compile Include="ActivitySpans\SpecificWeeksActivitySpan.cs" />
     <Compile Include="ActivitySpans\SpecificDatesActivitySpan.cs" />
     <Compile Include="ActivitySpans\ActivitySpanProduct.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Modifiers\ICalendarModifier.cs" />
     <Compile Include="Modifiers\IDayModifier.cs" />
     <Compile Include="Modifiers\IClassesModifier.cs" />
+    <Compile Include="Modifiers\IModifier.cs" />
     <Compile Include="Modifiers\IWeekModifier.cs" />
     <Compile Include="Modifiers\ModifyClassesInfo.cs" />
     <Compile Include="Modifiers\ModifyLocationInfo.cs" />

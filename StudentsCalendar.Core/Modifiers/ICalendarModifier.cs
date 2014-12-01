@@ -8,6 +8,7 @@ namespace StudentsCalendar.Core.Modifiers
 	/// Operuje na <see cref="IntermediateCalendar"/>.
 	/// </summary>
 	public interface ICalendarModifier
+		: IModifier
 	{
 		/// <summary>
 		/// Aplikuje modyfikator na danych.

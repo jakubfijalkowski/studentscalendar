@@ -11,7 +11,7 @@ namespace StudentsCalendar.Core.Modifiers
 		: IWeekModifier
 	{
 		/// <inheritdoc />
-		public IWeekActivitySpan ActivitySpan { get; set; }
+		public IWeeklyActivitySpan ActivitySpan { get; set; }
 
 		/// <summary>
 		/// Inicjalizuje obiekt domyślnymi wartościami.

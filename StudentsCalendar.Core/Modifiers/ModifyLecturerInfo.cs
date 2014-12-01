@@ -26,7 +26,7 @@ namespace StudentsCalendar.Core.Modifiers
 		public string PhoneNumber { get; set; }
 
 		/// <inheritdoc />
-		public IActivitySpan ActivitySpan { get; set; }
+		public IDailyActivitySpan ActivitySpan { get; set; }
 
 		/// <summary>
 		/// Inicjalizuje obiekt domyślnymi wartościami.

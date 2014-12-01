@@ -11,7 +11,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// jest aktywny.
 	/// </remarks>
 	public sealed class DateRangeActivitySpan
-		: IActivitySpan, IWeekActivitySpan
+		: IDailyActivitySpan, IWeeklyActivitySpan
 	{
 		private LocalDate _Beginning = DateHelper.Today;
 		private LocalDate _End = DateHelper.Today;

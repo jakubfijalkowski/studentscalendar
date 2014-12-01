@@ -6,7 +6,7 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// Przedział aktywności, który dla dowolnej daty jest aktywny.
 	/// </summary>
 	public sealed class FullActivitySpan
-		: IActivitySpan, IWeekActivitySpan
+		: IDailyActivitySpan, IWeeklyActivitySpan
 	{
 		/// <inheritdoc />
 		public bool IsActive(LocalDate baseDate, LocalDate date)
