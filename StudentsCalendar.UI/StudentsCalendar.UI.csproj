@@ -53,6 +53,11 @@
     <Compile Include="Main\CalendarsViewModel.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />
     <Compile Include="Main\MonthViewModel.cs" />
+    <Compile Include="ModifierViewModels\BaseModifierViewModel.cs" />
+    <Compile Include="ModifierViewModels\DefaultModifierViewModels.cs" />
+    <Compile Include="ModifierViewModels\ModifyClassesInfoViewModel.cs" />
+    <Compile Include="ModifierViewModels\ModifyLecturerInfoViewModel.cs" />
+    <Compile Include="ModifierViewModels\ModifyLocationInfoViewModel.cs" />
     <Compile Include="Popups\AddClassesEventArgs.cs" />
     <Compile Include="Popups\CalendarEditSlot.cs" />
     <Compile Include="Popups\CalendarEntryEditViewModel.cs" />
@@ -69,6 +74,7 @@
     <Compile Include="Services\IModifierRenderer.cs" />
     <Compile Include="Services\LayoutArranger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShellExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Caliburn.Micro">

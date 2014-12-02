@@ -9,6 +9,7 @@ using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI;
 using StudentsCalendar.UI.Dialogs;
+using StudentsCalendar.UI.ModifierViewModels;
 
 namespace StudentsCalendar.Desktop
 {
@@ -151,8 +152,13 @@ namespace StudentsCalendar.Desktop
 				.AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
-				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel"))
+				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel") && !c.IsInNamespaceOf<BaseModifierViewModel<IModifier>>())
 				.Keyed<IViewModel>(t => t)
+				.AsSelf();
+
+			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
+				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<BaseModifierViewModel<IModifier>>())
+				.Keyed<IViewModel>(t => t.BaseType)
 				.AsSelf();
 		}
 	}

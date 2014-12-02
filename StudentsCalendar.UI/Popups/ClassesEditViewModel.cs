@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Threading.Tasks;
 using Caliburn.Micro;
 using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.Core.Templates;
@@ -75,6 +74,7 @@ namespace StudentsCalendar.UI.Popups
 	public sealed class ClassesEditViewModel
 		: PopupBaseViewModel<bool>, IViewModel
 	{
+		private readonly IShell Shell;
 		private readonly IModifierRenderer ModifierRenderer;
 		private readonly IActivitySpanRenderer ActivitySpanRenderer;
 		private readonly IDataProvider DataProvider;
@@ -120,10 +120,13 @@ namespace StudentsCalendar.UI.Popups
 		/// <summary>
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
+		/// <param name="shell"></param>
 		/// <param name="modifierRenderer"></param>
 		/// <param name="activitySpanRenderer"></param>
-		public ClassesEditViewModel(IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dataProvider)
+		/// <param name="dataProvider"></param>
+		public ClassesEditViewModel(IShell shell, IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dataProvider)
 		{
+			this.Shell = shell;
 			this.ModifierRenderer = modifierRenderer;
 			this.ActivitySpanRenderer = activitySpanRenderer;
 			this.DataProvider = dataProvider;
@@ -150,25 +153,33 @@ namespace StudentsCalendar.UI.Popups
 		/// Tworzy nowy modyfikator i wyświetla listę 
 		/// </summary>
 		/// <param name="desc"></param>
-		public void AddModifier(ClassesModifierDescription desc)
+		public async void AddModifier(ClassesModifierDescription desc)
 		{
 			var mod = this.DataProvider.Create(desc);
-			var description = new ModifierDescription(mod)
+
+			if (await this.Shell.ShowModifierEditPopup(mod).CloseTask)
 			{
-				Description = this.ModifierRenderer.Describe(mod),
-				SpanDescription = this.ActivitySpanRenderer.Describe(mod.ActivitySpan)
-			};
-			this.Classes.Modifiers.Add(mod);
-			this._Modifiers.Add(description);
+				var description = new ModifierDescription(mod)
+				{
+					Description = this.ModifierRenderer.Describe(mod),
+					SpanDescription = this.ActivitySpanRenderer.Describe(mod.ActivitySpan)
+				};
+				this.Classes.Modifiers.Add(mod);
+				this._Modifiers.Add(description);
+			}
 		}
 
 		/// <summary>
 		/// Wyświetla okno edycji modyfikatora.
 		/// </summary>
 		/// <param name="desc"></param>
-		public void EditModifier(ModifierDescription desc)
+		public async void EditModifier(ModifierDescription desc)
 		{
-
+			if (await this.Shell.ShowModifierEditPopup(desc.Modifier).CloseTask)
+			{
+				desc.Description = this.ModifierRenderer.Describe(desc.Modifier);
+				desc.SpanDescription = this.ActivitySpanRenderer.Describe(((IClassesModifier)desc.Modifier).ActivitySpan);
+			}
 		}
 
 		/// <summary>
