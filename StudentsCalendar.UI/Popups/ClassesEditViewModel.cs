@@ -73,13 +73,11 @@ namespace StudentsCalendar.UI.Popups
 	/// ViewModel dla ekranu edycji zajęć.
 	/// </summary>
 	public sealed class ClassesEditViewModel
-		: Screen, IViewModel
+		: PopupBaseViewModel<bool>, IViewModel
 	{
 		private readonly IModifierRenderer ModifierRenderer;
 		private readonly IActivitySpanRenderer ActivitySpanRenderer;
 		private readonly IDataProvider DataProvider;
-
-		private readonly TaskCompletionSource<bool> CloseTCS = new TaskCompletionSource<bool>();
 
 		private EditableObject<ClassesTemplate> EditableClasses;
 		private ObservableCollection<ModifierDescription> _Modifiers;
@@ -132,16 +130,6 @@ namespace StudentsCalendar.UI.Popups
 		}
 
 		/// <summary>
-		/// Czeka na zakończenie edycji. Zwraca wartość wskazującą, czy dane zostały
-		/// zapisane czy odrzucone.
-		/// </summary>
-		/// <returns></returns>
-		public Task<bool> WaitForClose()
-		{
-			return this.CloseTCS.Task;
-		}
-
-		/// <summary>
 		/// Zapisuje zmiany i zamyka okno.
 		/// </summary>
 		public void Save()
@@ -191,12 +179,6 @@ namespace StudentsCalendar.UI.Popups
 		{
 			this.Classes.Modifiers.Remove((IClassesModifier)desc.Modifier);
 			this._Modifiers.Remove(desc);
-		}
-
-		private void Close(bool result)
-		{
-			this.CloseTCS.SetResult(result);
-			this.TryClose();
 		}
 
 		private void OnClassesChanged()

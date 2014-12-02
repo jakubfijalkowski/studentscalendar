@@ -114,7 +114,7 @@ namespace StudentsCalendar.UI.Popups
 
 			var vm = this.Shell.ShowPopup<ClassesEditViewModel>();
 			vm.Classes = template;
-			if (await vm.WaitForClose())
+			if (await vm.CloseTask)
 			{
 				var day = args.EditSlot.DayOfWeek;
 
@@ -136,7 +136,7 @@ namespace StudentsCalendar.UI.Popups
 
 			var vm = this.Shell.ShowPopup<ClassesEditViewModel>();
 			vm.Classes = args.Template;
-			if (await vm.WaitForClose())
+			if (await vm.CloseTask)
 			{
 				var idx = SlotToIndex(day, args.Template);
 				this.EditSlots[oldIdx].Templates.Remove(args.Template);
@@ -210,7 +210,7 @@ namespace StudentsCalendar.UI.Popups
 		{
 			var vm = this.Shell.ShowPopup<ClassesEditViewModel>();
 			vm.Classes = template;
-			if (await vm.WaitForClose())
+			if (await vm.CloseTask)
 			{
 				this.Template.WeekTemplate.Days[day.ToIndex()].Classes.Add(template);
 
