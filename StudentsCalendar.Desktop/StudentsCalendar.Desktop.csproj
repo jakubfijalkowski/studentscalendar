@@ -136,6 +136,9 @@
       <DependentUpon>MonthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MetroWindowManager.cs" />
+    <Compile Include="ModifierViews\AddTestToClassesView.xaml.cs">
+      <DependentUpon>AddTestToClassesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Platform\UserStorage.cs" />
     <Compile Include="PopupsView.xaml.cs">
       <DependentUpon>PopupsView.xaml</DependentUpon>
@@ -235,6 +238,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\MonthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\AddTestToClassesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

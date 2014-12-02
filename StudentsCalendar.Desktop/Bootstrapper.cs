@@ -31,6 +31,7 @@ namespace StudentsCalendar.Desktop
 		{
 			this.BuildContainer();
 
+			ViewLocator.AddSubNamespaceMapping(".UI.ModifierViewModels", ".Desktop.ModifierViews");
 			ViewLocator.AddSubNamespaceMapping(".UI", ".Desktop");
 		}
 

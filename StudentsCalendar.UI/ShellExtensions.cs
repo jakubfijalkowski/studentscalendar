@@ -21,7 +21,9 @@ namespace StudentsCalendar.UI
 			var type = modifier.GetType();
 			var baseModelType = typeof(BaseModifierViewModel<>).MakeGenericType(type);
 			var method = typeof(IShell).GetRuntimeMethod("ShowPopup", new Type[0]).MakeGenericMethod(baseModelType);
-			return (Popups.PopupBaseViewModel<bool>)method.Invoke(shell, new object[0]);
+			var vm = (IModifierViewModel)method.Invoke(shell, new object[0]);
+			vm.Modifier = modifier;
+			return (Popups.PopupBaseViewModel<bool>)vm;
 		}
 	}
 }
