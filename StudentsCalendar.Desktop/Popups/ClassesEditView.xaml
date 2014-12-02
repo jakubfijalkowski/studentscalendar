@@ -124,7 +124,7 @@
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
-            <Button x:Name="Cancel" Content="Anuluh" IsCancel="True" />
+            <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
         </StackPanel>
     </Grid>
 </UserControl>

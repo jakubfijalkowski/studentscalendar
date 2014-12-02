@@ -98,7 +98,7 @@
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" />
-            <Button x:Name="Cancel" Content="Anuluh" />
+            <Button x:Name="Cancel" Content="Anuluj" />
         </StackPanel>
     </Grid>
 </UserControl>
