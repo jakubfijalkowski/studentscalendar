@@ -41,12 +41,20 @@ namespace StudentsCalendar.UI.Main
 		}
 
 		/// <summary>
+		/// Tworzy nowy kalendarz i otwiera okno edycji.
+		/// </summary>
+		public void AddNewCalendar()
+		{
+			this.Shell.ShowPopup<Popups.CalendarEntryEditViewModel>().UseNewCalendar();
+		}
+
+		/// <summary>
 		/// Wyświetla okno edycji dla wskazanego wpisu.
 		/// </summary>
 		/// <param name="entry"></param>
 		public void EditEntry(CalendarEntry entry)
 		{
-			this.Shell.ShowPopup<Popups.CalendarEntryEditViewModel>().CalendarId = entry.Id;
+			this.Shell.ShowPopup<Popups.CalendarEntryEditViewModel>().UseCalendar(entry.Id);
 		}
 
 		/// <summary>

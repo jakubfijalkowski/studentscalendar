@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using Caliburn.Micro;
+using System.Threading.Tasks;
 using NodaTime;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.Storage;
@@ -13,7 +14,7 @@ namespace StudentsCalendar.UI.Popups
 	/// ViewModel do edycji kaneldarza.
 	/// </summary>
 	public sealed class CalendarEntryEditViewModel
-		: Screen, IViewModel
+		: PopupBaseViewModel<bool>, IViewModel
 	{
 		private readonly IShell Shell;
 
@@ -21,21 +22,8 @@ namespace StudentsCalendar.UI.Popups
 		private readonly ICalendarsManager Calendars;
 		private readonly ICurrentCalendar CurrentCalendar;
 
-		private string _CalendarId;
+		private string CalendarId;
 		private EditableObject<CalendarTemplate> EditableObject;
-
-		/// <summary>
-		/// Pobiera lub zmienia identyfikator kalendarza do edycji.
-		/// </summary>
-		public string CalendarId
-		{
-			get { return this._CalendarId; }
-			set
-			{
-				this._CalendarId = value;
-				this.LoadTemplate();
-			}
-		}
 
 		/// <summary>
 		/// Pobiera obiekt, który należy edytować.
@@ -71,6 +59,31 @@ namespace StudentsCalendar.UI.Popups
 		}
 
 		/// <summary>
+		/// Edytuje istniejący kalendarz.
+		/// </summary>
+		/// <param name="calendarId"></param>
+		public async void UseCalendar(string calendarId)
+		{
+			this.CalendarId = calendarId;
+			if (await this.LoadTemplate())
+			{
+				this.BuildEditTemplate();
+			}
+		}
+
+		/// <summary>
+		/// Edytuje nowy kalendarz.
+		/// </summary>
+		public void UseNewCalendar()
+		{
+			this.CalendarId = Guid.NewGuid().ToString("D");
+			this.EditableObject = new EditableObject<CalendarTemplate>(EmptyCalendar.Create(this.CalendarId));
+
+			this.NotifyOfPropertyChange(() => this.Template);
+			this.BuildEditTemplate();
+		}
+
+		/// <summary>
 		/// Zapisuje zmiany do "backing store".
 		/// </summary>
 		public async void Save()
@@ -78,10 +91,9 @@ namespace StudentsCalendar.UI.Popups
 			try
 			{
 				await this.Calendars.SaveChanges(this.Template);
-
 				await this.CurrentCalendar.Update(this.Template.Id);
 
-				this.TryClose();
+				this.Close(true);
 			}
 			catch
 			{
@@ -99,7 +111,7 @@ namespace StudentsCalendar.UI.Popups
 		public void Cancel()
 		{
 			this.EditableObject.Rollback();
-			this.TryClose();
+			this.Close(false);
 		}
 
 		/// <summary>
@@ -161,17 +173,15 @@ namespace StudentsCalendar.UI.Popups
 			return day.ToIndex() + classes.StartTime.Hour * 7;
 		}
 
-		private async void LoadTemplate()
+		private async Task<bool> LoadTemplate()
 		{
 			try
 			{
 				var template = await this.ContentProvider.LoadTemplate(this.CalendarId);
 				this.EditableObject = new EditableObject<CalendarTemplate>(template);
 
-				this.BuildEditTemplate();
-
 				this.NotifyOfPropertyChange(() => this.Template);
-				this.NotifyOfPropertyChange(() => this.EditSlots);
+				return true;
 			}
 			catch
 			{
@@ -180,6 +190,7 @@ namespace StudentsCalendar.UI.Popups
 					Title = "Nie udało się wczytać kalendarza.",
 					Message = "Sprawdź, czy dane aplikacji nie zostały uszkodzone. Jeśli tak się stało, usuń i utwórz kalendarz ponownie."
 				}).ContinueWith(t => this.TryClose());
+				return false;
 			}
 		}
 
@@ -204,6 +215,8 @@ namespace StudentsCalendar.UI.Popups
 					this.EditSlots[idx].Templates.Add(classes);
 				}
 			}
+
+			this.NotifyOfPropertyChange(() => this.EditSlots);
 		}
 
 		private async void EditTemplate(IsoDayOfWeek day, ClassesTemplate template, int? oldIndex = null)
