@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NodaTime;
 using StudentsCalendar.Core.Modifiers;
@@ -13,11 +14,10 @@ namespace StudentsCalendar.Core.Templates
 		/// <summary>
 		/// Tworzy pusty kalendarz.
 		/// </summary>
-		/// <param name="id"></param>
 		/// <returns></returns>
-		public static CalendarTemplate Create(string id)
+		public static CalendarTemplate Create()
 		{
-			return new CalendarTemplate(id)
+			return new CalendarTemplate(Guid.NewGuid().ToString("D"))
 			{
 				WeekTemplate = CreateWeek(),
 				StartDate = DateHelper.Today.PlusDays(-1),

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NodaTime;
@@ -76,8 +75,8 @@ namespace StudentsCalendar.UI.Popups
 		/// </summary>
 		public void UseNewCalendar()
 		{
-			this.CalendarId = Guid.NewGuid().ToString("D");
-			this.EditableObject = new EditableObject<CalendarTemplate>(EmptyCalendar.Create(this.CalendarId));
+			this.EditableObject = new EditableObject<CalendarTemplate>(EmptyCalendar.Create());
+			this.CalendarId = this.EditableObject.Data.Id;
 
 			this.NotifyOfPropertyChange(() => this.Template);
 			this.BuildEditTemplate();
