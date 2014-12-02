@@ -100,6 +100,9 @@ namespace StudentsCalendar.Desktop
 			builder.RegisterType<Platform.UserStorage>()
 				.As<Core.Platform.IStorage>();
 
+			builder.RegisterType<ActivitySpanViewLocator>()
+				.AsImplementedInterfaces();
+
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<UI.Services.ILayoutArranger>())
 				.AsImplementedInterfaces().AsSelf();

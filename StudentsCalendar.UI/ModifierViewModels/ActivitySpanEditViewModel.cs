@@ -138,7 +138,7 @@ namespace StudentsCalendar.UI.ModifierViewModels
 					  let isSelected = selectedSpan.GetType() == s.Type
 					  let obj = isSelected ? selectedSpan : dataProvider.Create(s)
 					  let desc = s.Name
-					  let view = (object)null
+					  let view = renderer.Render(obj)
 					  select new AvailableSpanDescription(obj, desc, view);
 
 			return new ActivitySpanEditViewModel(lst.ToList(), selectedSpan);

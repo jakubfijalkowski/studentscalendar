@@ -10,13 +10,20 @@ namespace StudentsCalendar.UI.Services
 	/// <summary>
 	/// Wyświetla wbudowane przedziały aktywności.
 	/// </summary>
+	/// <remarks>
+	/// Używa <see cref="IActivitySpanViewLocator"/> i <see cref="Activator"/> do stworzenia
+	/// i zbindowania widoku dla <see cref="ActivitySpan"/>.
+	/// </remarks>
 	public sealed class DefaultActivitySpanRenderer
 		: IActivitySpanRenderer
 	{
+		private readonly IActivitySpanViewLocator SpanViewLocator;
 		private readonly Dictionary<Type, MethodInfo> Descriptions;
 
-		public DefaultActivitySpanRenderer()
+		public DefaultActivitySpanRenderer(IActivitySpanViewLocator spanViewLocator)
 		{
+			this.SpanViewLocator = spanViewLocator;
+
 			this.Descriptions = typeof(DefaultActivitySpanRenderer)
 				.GetRuntimeMethods()
 				.Where(m => m.Name == "Describe")
@@ -28,6 +35,24 @@ namespace StudentsCalendar.UI.Services
 		{
 			return (string)this.Descriptions[span.GetType()]
 				.Invoke(this, new object[] { span, shouldBeUniversal });
+		}
+
+		/// <inheritdoc />
+		public object Render(IActivitySpan span)
+		{
+			var type = this.SpanViewLocator.LocateView(span);
+			if (type == null)
+			{
+				return null;
+			}
+
+			var instance = Activator.CreateInstance(type);
+			var dataContextProperty = type.GetRuntimeProperty("DataContext");
+			if (dataContextProperty != null && dataContextProperty.CanWrite)
+			{
+				dataContextProperty.SetValue(instance, span);
+			}
+			return instance;
 		}
 
 		private string Describe(AlwaysExceptActivitySpan span, bool shouldBeUniversal)
