@@ -42,7 +42,7 @@ namespace StudentsCalendar.Core
 		Task Initialize();
 
 		/// <summary>
-		/// Zapisuje zmiany dokonane we wskazanym wpisie.
+		/// Zapisuje zmiany dokonane we wskazanym wpisie. Jeśli wpis nie istniał, to tworzy nowy.
 		/// </summary>
 		/// <remarks>
 		/// Obiekt wywołujący tą metodę jest odpowiedzialny za ewentualny rollback danych

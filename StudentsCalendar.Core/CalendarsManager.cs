@@ -55,7 +55,14 @@ namespace StudentsCalendar.Core
 		/// <inheritdoc />
 		public async Task SaveChanges(CalendarTemplate template)
 		{
-			var entry = this.Entries.First(e => e.Id == template.Id);
+			var entry = this.Entries.FirstOrDefault(e => e.Id == template.Id);
+
+			if (entry == null)
+			{
+				entry = new CalendarEntry(template.Id);
+				this._Entries.Add(entry);
+			}
+
 			entry.Name = template.Name;
 			entry.StartDate = template.StartDate;
 			entry.EndDate = template.EndDate;
