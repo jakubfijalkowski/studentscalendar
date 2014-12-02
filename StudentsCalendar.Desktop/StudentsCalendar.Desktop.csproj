@@ -139,6 +139,27 @@
     <Compile Include="ModifierViews\AddTestToClassesView.xaml.cs">
       <DependentUpon>AddTestToClassesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModifierViews\CancelClassesInRangeView.xaml.cs">
+      <DependentUpon>CancelClassesInRangeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierViews\CancelClassesView.xaml.cs">
+      <DependentUpon>CancelClassesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierViews\CancelDayView.xaml.cs">
+      <DependentUpon>CancelDayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierViews\CancelWeekView.xaml.cs">
+      <DependentUpon>CancelWeekView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierViews\ModifyClassesInfoView.xaml.cs">
+      <DependentUpon>ModifyClassesInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierViews\ModifyLecturerInfoView.xaml.cs">
+      <DependentUpon>ModifyLecturerInfoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ModifierViews\ModifyLocationInfoView.xaml.cs">
+      <DependentUpon>ModifyLocationInfoView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Platform\UserStorage.cs" />
     <Compile Include="PopupsView.xaml.cs">
       <DependentUpon>PopupsView.xaml</DependentUpon>
@@ -242,6 +263,34 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModifierViews\AddTestToClassesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\CancelClassesInRangeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\CancelClassesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\CancelDayView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\CancelWeekView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\ModifyClassesInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\ModifyLecturerInfoView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\ModifyLocationInfoView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

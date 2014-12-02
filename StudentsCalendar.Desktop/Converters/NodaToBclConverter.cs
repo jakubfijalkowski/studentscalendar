@@ -13,6 +13,22 @@ namespace StudentsCalendar.Desktop.Converters
 		/// <inheritdocs />
 		public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
 		{
+			if (value == null)
+			{
+				if (targetType == typeof(DateTime))
+				{
+					return new DateTime();
+				}
+				else if (targetType == typeof(LocalDate))
+				{
+					return new LocalDate();
+				}
+				else
+				{
+					return new LocalTime();
+				}
+			}
+
 			if (value is LocalDate)
 			{
 				var date = (LocalDate)value;

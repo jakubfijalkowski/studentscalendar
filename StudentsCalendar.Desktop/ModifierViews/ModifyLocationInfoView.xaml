@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="StudentsCalendar.Desktop.ModifierViews.AddTestToClassesView"
+﻿<UserControl x:Class="StudentsCalendar.Desktop.ModifierViews.ModifyLocationInfoView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
@@ -6,7 +6,7 @@
     <UserControl.Resources>
         <Style TargetType="TextBlock" BasedOn="{StaticResource ClassesEditLabelStyle}" />
         <Style TargetType="TextBox" BasedOn="{StaticResource ClassesEditTextBoxStyle}" />
-        <Style TargetType="ComboBox" BasedOn="{StaticResource ClassesEditComboBoxStyle}" />
+        <Style TargetType="CheckBox" BasedOn="{StaticResource ClassesModifierCheckBoxStyle}" />
         <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
     </UserControl.Resources>
     <Grid>
@@ -21,19 +21,27 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Dodaj test" />
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Zmodyfikuj informacje o lokalizacji" />
 
-        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch"
-                   DataContext="{Binding Modifier}">
-            <TextBlock Text="Catch phrase" DockPanel.Dock="Top" />
-            <TextBox Text="{Binding CatchPhrase, Mode=TwoWay}" DockPanel.Dock="Top" />
-            <TextBlock Text="Tytuł" DockPanel.Dock="Top" />
-            <TextBox Text="{Binding Title, Mode=TwoWay}" DockPanel.Dock="Top" />
-            <TextBlock Text="Priorytet" DockPanel.Dock="Top" />
-            <ComboBox x:Name="PriorityCB" SelectedValue="{Binding Priority, Mode=TwoWay}"
-                      SelectedValuePath="Value" DisplayMemberPath="Name" DockPanel.Dock="Top" />
-            <TextBlock Text="Informacje dodatkowe" DockPanel.Dock="Top" />
-            <TextBox Text="{Binding Information, Mode=TwoWay}" AcceptsReturn="True" />
+        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
+            <DockPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="HasName" DockPanel.Dock="Left"/>
+                <TextBlock Text="Nowa nazwa" />
+            </DockPanel>
+            <TextBox Text="{Binding Modifier.Name, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasName}" />
+
+            <DockPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="HasAddress" DockPanel.Dock="Left"/>
+                <TextBlock Text="Nowy adres" />
+            </DockPanel>
+            <TextBox Text="{Binding Modifier.Address, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasAddress}" />
+
+            <DockPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="HasRoom" DockPanel.Dock="Left" />
+                <TextBlock Text="Nowy pokój" />
+            </DockPanel>
+            <TextBox Text="{Binding Modifier.Room, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasRoom}" />
+
         </DockPanel>
 
         <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch">

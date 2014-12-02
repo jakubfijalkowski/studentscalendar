@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="StudentsCalendar.Desktop.ModifierViews.ModifyLecturerInfoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
+             xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock" BasedOn="{StaticResource ClassesEditLabelStyle}" />
+        <Style TargetType="TextBox" BasedOn="{StaticResource ClassesEditTextBoxStyle}" />
+        <Style TargetType="CheckBox" BasedOn="{StaticResource ClassesModifierCheckBoxStyle}" />
+        <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Zmodyfikuj dane prowadzącego" />
+
+        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
+            <DockPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="HasFirstName" DockPanel.Dock="Left"/>
+                <TextBlock Text="Nowe imie" />
+            </DockPanel>
+            <TextBox Text="{Binding Modifier.FirstName, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasFirstName}" />
+
+            <DockPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="HasLastName" DockPanel.Dock="Left"/>
+                <TextBlock Text="Nowe nazwisko" />
+            </DockPanel>
+            <TextBox Text="{Binding Modifier.LastName, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasLastName}" />
+
+            <DockPanel DockPanel.Dock="Top">
+                <CheckBox x:Name="HasPhoneNumber" DockPanel.Dock="Left" />
+                <TextBlock Text="Nowe dane kontaktowe" />
+            </DockPanel>
+            <TextBox Text="{Binding Modifier.PhoneNumber, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasPhoneNumber}" />
+
+        </DockPanel>
+
+        <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch">
+
+        </Grid>
+
+        <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
+            <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>
