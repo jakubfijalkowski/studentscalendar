@@ -66,8 +66,8 @@
 
         </DockPanel>
 
-        <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch">
-
+        <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
+            <ContentControl x:Name="ActivitySpan" />
         </Grid>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">

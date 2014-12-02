@@ -13,7 +13,7 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	public sealed class AvailableSpanDescription
 	{
 		private readonly IActivitySpan _Span;
-		private readonly string _Description;
+		private readonly string _Name;
 		private readonly object _View;
 
 		/// <summary>
@@ -25,11 +25,11 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		}
 
 		/// <summary>
-		/// Pobiera opis przedziału.
+		/// Pobiera nazwę przedziału.
 		/// </summary>
-		public string Description
+		public string Name
 		{
-			get { return this._Description; }
+			get { return this._Name; }
 		}
 
 		/// <summary>
@@ -44,12 +44,12 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		/// Inicjalizuje obiekt niezbędnymi danymi
 		/// </summary>
 		/// <param name="span"></param>
-		/// <param name="description"></param>
+		/// <param name="name"></param>
 		/// <param name="view"></param>
-		public AvailableSpanDescription(IActivitySpan span, string description, object view)
+		public AvailableSpanDescription(IActivitySpan span, string name, object view)
 		{
 			this._Span = span;
-			this._Description = description;
+			this._Name = name;
 			this._View = view;
 		}
 	}
@@ -61,7 +61,7 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		: PropertyChangedBase, IViewModel
 	{
 		private readonly IReadOnlyList<AvailableSpanDescription> _AvailableSpans;
-		private IActivitySpan _SelectedSpan;
+		private AvailableSpanDescription _SelectedSpan;
 
 		/// <summary>
 		/// Pobiera listę dostępnych przedziałów aktywności.
@@ -74,7 +74,7 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		/// <summary>
 		/// Wybrany przedział aktywności.
 		/// </summary>
-		public IActivitySpan SelectedSpan
+		public AvailableSpanDescription SelectedSpan
 		{
 			get { return this._SelectedSpan; }
 			set
@@ -126,7 +126,7 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		private ActivitySpanEditViewModel(IReadOnlyList<AvailableSpanDescription> descs, IActivitySpan selectedSpan)
 		{
 			this._AvailableSpans = descs;
-			this._SelectedSpan = selectedSpan;
+			this._SelectedSpan = descs.First(d => d.Span == selectedSpan);
 		}
 
 		private static ActivitySpanEditViewModel Create<TType>(

@@ -19,7 +19,7 @@
         <TextBlock Grid.Row="0" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Odwołaj zajęcia w całym tygodniu" />
 
         <Grid Grid.Row="1" HorizontalAlignment="Stretch">
-
+            <ContentControl x:Name="ActivitySpan" />
         </Grid>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">

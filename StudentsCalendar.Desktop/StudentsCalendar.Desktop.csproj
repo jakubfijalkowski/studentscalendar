@@ -136,6 +136,9 @@
       <DependentUpon>MonthView.xaml</DependentUpon>
     </Compile>
     <Compile Include="MetroWindowManager.cs" />
+    <Compile Include="ModifierViews\ActivitySpanEditView.xaml.cs">
+      <DependentUpon>ActivitySpanEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModifierViews\AddTestToClassesView.xaml.cs">
       <DependentUpon>AddTestToClassesView.xaml</DependentUpon>
     </Compile>
@@ -259,6 +262,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Main\MonthView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\ActivitySpanEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

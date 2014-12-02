@@ -1,4 +1,5 @@
-﻿using StudentsCalendar.Core.Modifiers;
+﻿using StudentsCalendar.Core.ActivitySpans;
+using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.UI.ModifierViewModels
@@ -73,6 +74,18 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		/// </summary>
 		public virtual void Save()
 		{
+			if (this.Modifier is IClassesModifier)
+			{
+				((IClassesModifier)this.Modifier).ActivitySpan = (IDailyActivitySpan)this.ActivitySpan.SelectedSpan.Span;
+			}
+			else if (this.Modifier is IDayModifier)
+			{
+				((IDayModifier)this.Modifier).ActivitySpan = (IDailyActivitySpan)this.ActivitySpan.SelectedSpan.Span;
+			}
+			else if (this.Modifier is IWeekModifier)
+			{
+				((IWeekModifier)this.Modifier).ActivitySpan = (IWeeklyActivitySpan)this.ActivitySpan.SelectedSpan.Span;
+			}
 			this.Close(true);
 		}
 
