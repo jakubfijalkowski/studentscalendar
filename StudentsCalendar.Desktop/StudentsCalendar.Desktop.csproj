@@ -92,6 +92,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ActivitySpanViewLocator.cs" />
+    <Compile Include="ActivitySpanViews\DateRangeActivitySpanView.xaml.cs">
+      <DependentUpon>DateRangeActivitySpanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivitySpanViews\EveryXWeeksActivitySpanView.xaml.cs">
+      <DependentUpon>EveryXWeeksActivitySpanView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ActivitySpanViews\EveryXMonthsActivitySpanView.xaml.cs">
       <DependentUpon>EveryXMonthsActivitySpanView.xaml</DependentUpon>
     </Compile>
@@ -233,6 +239,14 @@
     <Resource Include="Resources\WindowsIcons-license.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="ActivitySpanViews\DateRangeActivitySpanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivitySpanViews\EveryXWeeksActivitySpanView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="ActivitySpanViews\EveryXMonthsActivitySpanView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
