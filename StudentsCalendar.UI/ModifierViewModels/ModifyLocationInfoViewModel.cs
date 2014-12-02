@@ -1,4 +1,5 @@
 ﻿using StudentsCalendar.Core.Modifiers;
+using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.UI.ModifierViewModels
 {
@@ -13,6 +14,10 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		public bool HasAddress { get; set; }
 
 		public bool HasRoom { get; set; }
+
+		public ModifyLocationInfoViewModel(IDataProvider dataProvider, IActivitySpanRenderer spanRenderer)
+			: base(dataProvider, spanRenderer)
+		{ }
 
 		public override void Save()
 		{

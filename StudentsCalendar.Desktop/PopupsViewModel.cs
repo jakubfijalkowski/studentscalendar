@@ -13,5 +13,16 @@ namespace StudentsCalendar.Desktop
 		{
 			base.DeactivateItem(item, true);
 		}
+
+		/// <summary>
+		/// Zamyka wszystkie okna.
+		/// </summary>
+		public void CloseAll()
+		{
+			while (this.Items.Count > 0)
+			{
+				base.DeactivateItem(this.Items[0], true);
+			}
+		}
 	}
 }

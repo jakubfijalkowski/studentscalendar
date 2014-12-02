@@ -1,4 +1,5 @@
 ﻿using StudentsCalendar.Core.Modifiers;
+using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.UI.ModifierViewModels
 {
@@ -23,6 +24,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		: Popups.PopupBaseViewModel<bool>, IModifierViewModel
 		where TModifier : class, IModifier
 	{
+		private readonly IDataProvider DataProvider;
+		private readonly IActivitySpanRenderer ActivitySpanRenderer;
+
 		private EditableObject<TModifier> EditableObject;
 
 		/// <summary>
@@ -36,16 +40,32 @@ namespace StudentsCalendar.UI.ModifierViewModels
 				if (this.EditableObject == null || this.EditableObject.Data != value)
 				{
 					this.EditableObject = new EditableObject<TModifier>(value);
-					this.OnModifierChanged();
+					this.OnModifierChangedInternal();
 				}
 			}
 		}
-		
+
+		/// <summary>
+		/// Pobiera ViewModel odpowiedzialny za edycję przedziału aktywności.
+		/// </summary>
+		public ActivitySpanEditViewModel ActivitySpan { get; private set; }
+
 		/// <inheritdoc />
 		IModifier IModifierViewModel.Modifier
 		{
 			get { return this.Modifier; }
 			set { this.Modifier = (TModifier)value; }
+		}
+
+		/// <summary>
+		/// Inicjalizuje obiekt niezbędnymi zależnościami.
+		/// </summary>
+		/// <param name="dataProvider"></param>
+		/// <param name="spanRenderer"></param>
+		public BaseModifierViewModel(IDataProvider dataProvider, IActivitySpanRenderer spanRenderer)
+		{
+			this.DataProvider = dataProvider;
+			this.ActivitySpanRenderer = spanRenderer;
 		}
 
 		/// <summary>
@@ -71,6 +91,30 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		protected virtual void OnModifierChanged()
 		{
 			this.NotifyOfPropertyChange(() => this.Modifier);
+		}
+
+		private void OnModifierChangedInternal()
+		{
+			if (this.Modifier is IClassesModifier)
+			{
+				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanRenderer, (IClassesModifier)this.Modifier);
+			}
+			else if (this.Modifier is IDayModifier)
+			{
+				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanRenderer, (IDayModifier)this.Modifier);
+			}
+			else if (this.Modifier is IWeekModifier)
+			{
+				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanRenderer, (IWeekModifier)this.Modifier);
+			}
+			else
+			{
+				this.ActivitySpan = null;
+			}
+
+			this.NotifyOfPropertyChange(() => this.ActivitySpan);
+
+			this.OnModifierChanged();
 		}
 	}
 }

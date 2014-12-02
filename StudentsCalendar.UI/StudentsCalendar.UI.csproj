@@ -53,6 +53,7 @@
     <Compile Include="Main\CalendarsViewModel.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />
     <Compile Include="Main\MonthViewModel.cs" />
+    <Compile Include="ModifierViewModels\ActivitySpanEditViewModel.cs" />
     <Compile Include="ModifierViewModels\BaseModifierViewModel.cs" />
     <Compile Include="ModifierViewModels\DefaultModifierViewModels.cs" />
     <Compile Include="ModifierViewModels\ModifyClassesInfoViewModel.cs" />

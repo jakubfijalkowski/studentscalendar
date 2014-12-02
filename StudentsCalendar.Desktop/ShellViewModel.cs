@@ -99,8 +99,8 @@ namespace StudentsCalendar.Desktop
 		public void ShowMainScreen(Type viewModelType)
 		{
 			var model = this.ViewModelsFactory[viewModelType];
+			this.PopupsControl.CloseAll();
 			this.MainScreen.ActivateItem(model);
-			//TODO: remove all popups
 		}
 
 		/// <inheritdoc />
