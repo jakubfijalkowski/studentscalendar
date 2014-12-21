@@ -20,6 +20,11 @@ namespace StudentsCalendar.UI.Main
 		private readonly ILayoutArranger LayoutArranger;
 
 		/// <summary>
+		/// Wskazuje, czy aktualnie wybrany kalendarz jest prawidłowy i da się wyświetlić zawartość tego ViewModelu.
+		/// </summary>
+		public bool IsDataValid { get; private set; }
+
+		/// <summary>
 		/// Pobiera listę tygodni załadowanych do ViewModelu.
 		/// </summary>
 		public IReadOnlyList<ArrangedWeek> Weeks { get; private set; }
@@ -44,25 +49,45 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			var generated = this.CurrentCalendar.Calendar;
+			this.IsDataValid = true;
+			do
+			{
+				if (this.CurrentCalendar == null)
+				{
+					this.IsDataValid = false;
+					break;
+				}
 
-			var today = DateHelper.Today;
-			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
+				var generated = this.CurrentCalendar.Calendar;
 
-			var weekIndex = generated.Weeks.Select((w, i) => Tuple.Create(w, i)).First(w => w.Item1.Date == thisWeek).Item2;
+				var today = DateHelper.Today;
+				var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
 
-			int startWeekIndex = Math.Max(weekIndex - MaxWeeks, 0);
-			int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count - 1);
+				var currentWeek = generated.Weeks
+					.Select((w, i) => new { Week = w, Index = i })
+					.FirstOrDefault(w => w.Week.Date == thisWeek);
 
-			this.Weeks = generated.Weeks
-				.Skip(startWeekIndex)
-				.Take(endWeekIndex - startWeekIndex)
-				.Select(this.LayoutArranger.Arrange)
-				.ToArray();
-			this.CurrentWeek = this.Weeks[weekIndex - startWeekIndex];
+				if (currentWeek == null)
+				{
+					this.IsDataValid = false;
+					break;
+				}
 
-			this.NotifyOfPropertyChange(() => CurrentWeek);
-			this.NotifyOfPropertyChange(() => Weeks);
+				var weekIndex = currentWeek.Index;
+
+				int startWeekIndex = Math.Max(weekIndex - MaxWeeks, 0);
+				int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count - 1);
+
+				this.Weeks = generated.Weeks
+					.Skip(startWeekIndex)
+					.Take(endWeekIndex - startWeekIndex)
+					.Select(this.LayoutArranger.Arrange)
+					.ToArray();
+				this.CurrentWeek = this.Weeks[weekIndex - startWeekIndex];
+
+			} while (false);
+
+			this.Refresh();
 		}
 	}
 }

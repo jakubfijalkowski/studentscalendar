@@ -3,6 +3,7 @@ using System.Linq;
 using Caliburn.Micro;
 using NodaTime;
 using StudentsCalendar.Core;
+using StudentsCalendar.Core.Finals;
 using StudentsCalendar.UI.Services;
 
 namespace StudentsCalendar.UI.Main
@@ -17,6 +18,11 @@ namespace StudentsCalendar.UI.Main
 		private readonly ILayoutArranger LayoutArranger;
 
 		private ArrangedWeek Week;
+
+		/// <summary>
+		/// Wskazuje, czy aktualnie wybrany kalendarz jest prawidłowy i da się wyświetlić zawartość tego ViewModelu.
+		/// </summary>
+		public bool IsDataValid { get; private set; }
 
 		/// <summary>
 		/// Pobiera ułożony plan tygodniowy.
@@ -49,14 +55,24 @@ namespace StudentsCalendar.UI.Main
 		{
 			base.OnInitialize();
 
-			var today = DateHelper.Today;
-			var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
-			var week = this.CurrentCalendar.Calendar.Weeks.First(w => w.Date == thisWeek);
-			this.Week = this.LayoutArranger.Arrange(week);
-			this.Today = this.Week.Days.First(d => d.Day.Date == today);
+			FinalWeek currentWeek = null;
 
-			this.NotifyOfPropertyChange(() => Days);
-			this.NotifyOfPropertyChange(() => Today);
+			var today = DateHelper.Today;
+
+			if (this.CurrentCalendar.Calendar != null)
+			{
+				var thisWeek = today.IsoDayOfWeek != IsoDayOfWeek.Monday ? today.Previous(IsoDayOfWeek.Monday) : today;
+				currentWeek = this.CurrentCalendar.Calendar.Weeks.FirstOrDefault(w => w.Date == thisWeek);
+			}
+
+			this.IsDataValid = currentWeek != null;
+			if (this.IsDataValid)
+			{
+				this.Week = this.LayoutArranger.Arrange(currentWeek);
+				this.Today = this.Week.Days.First(d => d.Day.Date == today);
+			}
+
+			this.Refresh();
 		}
 	}
 }
