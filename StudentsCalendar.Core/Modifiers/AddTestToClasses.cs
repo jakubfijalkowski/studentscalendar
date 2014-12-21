@@ -22,13 +22,6 @@ namespace StudentsCalendar.Core.Modifiers
 		: IClassesModifier
 	{
 		/// <summary>
-		/// Pobiera lub zmienia tzw. "catch phrase", czyli przetłumaczony
-		/// tekst dodawany przed tytułem, ustawiany wewnątrz aplikacji.
-		/// </summary>
-		/// TODO: consider moving retrieving this to separate "translation service".
-		public string CatchPhrase { get; set; }
-
-		/// <summary>
 		/// Pobiera lub zmienia tytuł sprawdzianu.
 		/// </summary>
 		public string Title { get; set; }
@@ -68,18 +61,15 @@ namespace StudentsCalendar.Core.Modifiers
 			switch (this.Priority)
 			{
 				case TestPriority.Low:
-					notes += this.CatchPhrase + this.Title + Environment.NewLine;
-					notes += this.Information;
+					notes += this.Title + Environment.NewLine + this.Information;
 					break;
 				case TestPriority.Normal:
-					notes =
-						this.CatchPhrase + this.Title + Environment.NewLine +
+					notes = this.Title + Environment.NewLine +
 						this.Information + Environment.NewLine +
 						notes;
 					break;
 				case TestPriority.High:
-					notes =
-						this.CatchPhrase.ToUpper() + this.Title.ToUpper() + Environment.NewLine +
+					notes = this.Title.ToUpper() + Environment.NewLine +
 						this.Information + Environment.NewLine +
 						notes;
 					break;
