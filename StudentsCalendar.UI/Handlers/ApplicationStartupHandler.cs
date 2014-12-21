@@ -70,6 +70,18 @@ namespace StudentsCalendar.UI.Handlers
 					destScreen = typeof(Main.CalendarsViewModel);
 					break;
 				}
+
+				if (!this.IsCurrentCalendarValid())
+				{
+					dialog = new InformationDialog
+					{
+						Title = "Kalendarz jest nieaktualny",
+						Message = "Wybrany kalendarz jest nieaktualny. Zaktualizuj go, lub stwórz nowy."
+					};
+					destScreen = typeof(Main.CalendarsViewModel);
+					break;
+				}
+
 				try
 				{
 					await this.CurrentCalendar.MakeActive(this.Calendars.ActiveEntry.Id);
@@ -86,6 +98,12 @@ namespace StudentsCalendar.UI.Handlers
 				}
 			} while (false);
 			return Tuple.Create(dialog, destScreen);
+		}
+
+		private bool IsCurrentCalendarValid()
+		{
+			var today = DateHelper.Today;
+			return this.Calendars.ActiveEntry.StartDate <= today && this.Calendars.ActiveEntry.EndDate >= today;
 		}
 	}
 }
