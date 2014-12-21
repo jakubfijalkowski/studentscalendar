@@ -7,73 +7,80 @@
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers"
              x:Name="Root">
     <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />
         <conv:WeekOffsetToStringConverter x:Key="WeekOffset" />
     </UserControl.Resources>
-    <metro:MetroAnimatedTabControl ItemsSource="{Binding Weeks}" SelectedValue="{Binding CurrentWeek}">
-        <TabControl.ItemTemplate>
-            <DataTemplate>
-                <TextBlock>
-                    <TextBlock.Text>
-                        <MultiBinding Converter="{StaticResource WeekOffset}">
-                            <Binding Path="DataContext.CurrentWeek.Week.Date" ElementName="Root" />
-                            <Binding Path="Week.Date" />
-                        </MultiBinding>
-                    </TextBlock.Text>
-                </TextBlock>
-            </DataTemplate>
-        </TabControl.ItemTemplate>
-        <TabControl.ContentTemplate>
-            <DataTemplate>
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="{StaticResource DayHeaderGridLength}" />
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{StaticResource SlotsColumnGridLength}" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource WeekRangeStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
-                            <TextBlock.Text>
-                                <help:MultiBindingWithCurrentCulture StringFormat="od {0:dd MMMM}&#x0a;do {1:dd MMMM}">
-                                    <Binding Path="Days[0].Day.Date" />
-                                    <Binding Path="Days[6].Day.Date" />
-                                </help:MultiBindingWithCurrentCulture>
-                            </TextBlock.Text>
-                        </TextBlock>
-                        <controls:SlotsView Grid.Row="1" Grid.Column="0" DataContext="{Binding Days[0].Slots}"
+    <Grid>
+        <metro:MetroAnimatedTabControl ItemsSource="{Binding Weeks}" SelectedValue="{Binding CurrentWeek}"
+                                       Visibility="{Binding IsDataValid, Converter={StaticResource BoolToVisibility}}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <TextBlock.Text>
+                            <MultiBinding Converter="{StaticResource WeekOffset}">
+                                <Binding Path="DataContext.CurrentWeek.Week.Date" ElementName="Root" />
+                                <Binding Path="Week.Date" />
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="{StaticResource DayHeaderGridLength}" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource SlotsColumnGridLength}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource WeekRangeStyle}" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock.Text>
+                                    <help:MultiBindingWithCurrentCulture StringFormat="od {0:dd MMMM}&#x0a;do {1:dd MMMM}">
+                                        <Binding Path="Days[0].Day.Date" />
+                                        <Binding Path="Days[6].Day.Date" />
+                                    </help:MultiBindingWithCurrentCulture>
+                                </TextBlock.Text>
+                            </TextBlock>
+                            <controls:SlotsView Grid.Row="1" Grid.Column="0" DataContext="{Binding Days[0].Slots}"
                                             Width="{StaticResource SlotsColumnWidth}"/>
-                        <Border Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource CalendarBackgroundBrush}" />
-                        <ItemsControl Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Days}">
-                            <ItemsControl.ItemTemplate>
-                                <DataTemplate>
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto" />
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-                                        <Border Grid.Column="0" Grid.RowSpan="2" Width="{StaticResource SeparatorSize}"
-                                                Background="{StaticResource CalendarDaySeparatorBrush}" />
-                                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DayHeaderStyle}" Padding="5,0"
-                                               Text="{help:BindingWithCurrentCulture Day.Date, StringFormat='{}{0:dddd}'}" />
-                                        <controls:DayView Grid.Row="1" Grid.Column="1" DataContext="{Binding}" />
-                                    </Grid>
-                                </DataTemplate>
-                            </ItemsControl.ItemTemplate>
-                            <ItemsControl.ItemsPanel>
-                                <ItemsPanelTemplate>
-                                    <UniformGrid Rows="1" MinWidth="{StaticResource MinWeekWidth}" />
-                                </ItemsPanelTemplate>
-                            </ItemsControl.ItemsPanel>
-                        </ItemsControl>
-                    </Grid>
-                </ScrollViewer>
-            </DataTemplate>
-        </TabControl.ContentTemplate>
-    </metro:MetroAnimatedTabControl>
+                            <Border Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource CalendarBackgroundBrush}" />
+                            <ItemsControl Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Days}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="*" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Border Grid.Column="0" Grid.RowSpan="2" Width="{StaticResource SeparatorSize}"
+                                                    Background="{StaticResource CalendarDaySeparatorBrush}" />
+                                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource DayHeaderStyle}" Padding="5,0"
+                                                       Text="{help:BindingWithCurrentCulture Day.Date, StringFormat='{}{0:dddd}'}" />
+                                            <controls:DayView Grid.Row="1" Grid.Column="1" DataContext="{Binding}" />
+                                        </Grid>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Rows="1" MinWidth="{StaticResource MinWeekWidth}" />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </metro:MetroAnimatedTabControl>
+        <Grid Visibility="{Binding IsDataValid, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
+            <TextBlock Style="{StaticResource InvalidDataMessageStyle}" />
+        </Grid>
+    </Grid>
 </UserControl>

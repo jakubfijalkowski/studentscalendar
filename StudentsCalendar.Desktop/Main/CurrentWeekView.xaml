@@ -5,25 +5,34 @@
              xmlns:controls="clr-namespace:StudentsCalendar.Desktop.Controls"
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
              xmlns:help="clr-namespace:StudentsCalendar.Desktop.Helpers">
-    <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Days}" SelectedValue="{Binding Today}">
-        <TabControl.ItemTemplate>
-            <DataTemplate>
-                <TextBlock Text="{help:BindingWithCurrentCulture Day.Date, StringFormat='{}{0:dddd}'}" />
-            </DataTemplate>
-        </TabControl.ItemTemplate>
-        <TabControl.ContentTemplate>
-            <DataTemplate>
-                <ScrollViewer>
-                    <Grid Background="{StaticResource CalendarBackgroundBrush}">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="{StaticResource SlotsColumnGridLength}" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <controls:SlotsView Grid.Column="0" DataContext="{Binding Slots}" />
-                        <controls:DayView Grid.Column="1" DataContext="{Binding}" />
-                    </Grid>
-                </ScrollViewer>
-            </DataTemplate>
-        </TabControl.ContentTemplate>
-    </metro:MetroAnimatedSingleRowTabControl>
+    <UserControl.Resources>
+        <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />
+    </UserControl.Resources>
+    <Grid>
+        <metro:MetroAnimatedSingleRowTabControl ItemsSource="{Binding Days}" SelectedValue="{Binding Today}"
+                                                Visibility="{Binding IsDataValid, Converter={StaticResource BoolToVisibility}}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{help:BindingWithCurrentCulture Day.Date, StringFormat='{}{0:dddd}'}" />
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ScrollViewer>
+                        <Grid Background="{StaticResource CalendarBackgroundBrush}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="{StaticResource SlotsColumnGridLength}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <controls:SlotsView Grid.Column="0" DataContext="{Binding Slots}" />
+                            <controls:DayView Grid.Column="1" DataContext="{Binding}" />
+                        </Grid>
+                    </ScrollViewer>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
+        </metro:MetroAnimatedSingleRowTabControl>
+        <Grid Visibility="{Binding IsDataValid, Converter={StaticResource BoolToVisibility}, ConverterParameter=true}">
+            <TextBlock Style="{StaticResource InvalidDataMessageStyle}" />
+        </Grid>
+    </Grid>
 </UserControl>

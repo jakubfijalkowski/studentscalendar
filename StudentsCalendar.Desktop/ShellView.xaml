@@ -8,7 +8,7 @@
                    x:Name="Root">
     <metro:MetroWindow.Resources>
         <conv:BoolToVisibilityConverter x:Key="BoolToVisibility" />
-        <conv:BoolToVisibilityConverter x:Key="RevBoolToVisibility" Reverse="true" />
+        <conv:BoolToVisibilityConverter x:Key="RevBoolToVisibility" Inverse="true" />
     </metro:MetroWindow.Resources>
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
