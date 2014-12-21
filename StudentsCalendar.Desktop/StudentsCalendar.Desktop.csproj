@@ -126,6 +126,9 @@
     <Compile Include="Converters\SlotToMarginConverter.cs" />
     <Compile Include="Converters\WeekOffsetToStringConverter.cs" />
     <Compile Include="Dialogs\BaseDialog.cs" />
+    <Compile Include="Dialogs\InformationDialogView.xaml.cs">
+      <DependentUpon>InformationDialogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\ErrorDialogView.xaml.cs">
       <DependentUpon>ErrorDialogView.xaml</DependentUpon>
     </Compile>
@@ -266,6 +269,10 @@
     <Page Include="Controls\SlotsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Dialogs\InformationDialogView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Dialogs\ErrorDialogView.xaml">
       <SubType>Designer</SubType>
