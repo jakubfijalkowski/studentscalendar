@@ -44,6 +44,7 @@
     <Compile Include="Dialogs\DialogAttribute.cs" />
     <Compile Include="Dialogs\ErrorDialog.cs" />
     <Compile Include="Dialogs\IDialogView.cs" />
+    <Compile Include="Dialogs\InformationDialog.cs" />
     <Compile Include="EditableObject.cs" />
     <Compile Include="Events\ApplicationStartedEvent.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />

@@ -1,5 +1,8 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Threading.Tasks;
+using Caliburn.Micro;
 using StudentsCalendar.Core;
+using StudentsCalendar.UI.Dialogs;
 using StudentsCalendar.UI.Events;
 
 namespace StudentsCalendar.UI.Handlers
@@ -27,11 +30,62 @@ namespace StudentsCalendar.UI.Handlers
 		{
 			using (this.Shell.ShowLoadingScreen())
 			{
-				await this.Calendars.Initialize();
-				await this.CurrentCalendar.MakeActive(this.Calendars.ActiveEntry.Id);
+				var initResult = await this.TryInitialize();
+				if (initResult.Item1 != null)
+				{
+					await this.Shell.ShowDialog(initResult.Item1);
+				}
+				Execute.OnUIThread(() => this.Shell.ShowMainScreen(initResult.Item2));
 			}
+		}
 
-			Execute.OnUIThread(() => this.Shell.ShowMainScreen(typeof(Main.CurrentWeekViewModel)));
+		private async Task<Tuple<object, Type>> TryInitialize()
+		{
+			object dialog = null;
+			Type destScreen = typeof(Main.CurrentWeekViewModel);
+			do
+			{
+				try
+				{
+					await this.Calendars.Initialize();
+				}
+				catch
+				{
+					dialog = new ErrorDialog
+					{
+						Title = "Wystąpił błąd",
+						Message = "Nie udało się wczytać istniejących kalendarzy(błąd systemowy). Jeśli nie chcesz stracić danych, zalecamy wyłącznie aplikacji i rozwiązanie błędu."
+					};
+					destScreen = typeof(Main.CalendarsViewModel);
+					break;
+				}
+
+				if (this.Calendars.ActiveEntry == null)
+				{
+					dialog = new InformationDialog
+					{
+						Title = "Brak aktywnego kalendarza",
+						Message = "Aktualny kalendarz nie został wybrany. Przed rozpoczęciem korzystania z aplikacji należy utworzyć szablon kalendarza i wskazać go jako aktualny."
+					};
+					destScreen = typeof(Main.CalendarsViewModel);
+					break;
+				}
+				try
+				{
+					await this.CurrentCalendar.MakeActive(this.Calendars.ActiveEntry.Id);
+				}
+				catch
+				{
+					dialog = new ErrorDialog
+					{
+						Title = "Wystąpił błąd",
+						Message = "Nie udało się wczytać aktywnego kalendarza(błąd systemowy). Jeśli nie chcesz stracić danych, zalecamy wyłącznie aplikacji i rozwiązanie błędu."
+					};
+					destScreen = typeof(Main.CalendarsViewModel);
+					break;
+				}
+			} while (false);
+			return Tuple.Create(dialog, destScreen);
 		}
 	}
 }
