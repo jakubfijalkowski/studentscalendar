@@ -46,9 +46,7 @@
     <Compile Include="Dialogs\IDialogView.cs" />
     <Compile Include="EditableObject.cs" />
     <Compile Include="Events\ApplicationStartedEvent.cs" />
-    <Compile Include="Events\NavigateRequestEvent.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />
-    <Compile Include="Handlers\NavigationRequestHandler.cs" />
     <Compile Include="IActivitySpanViewLocator.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="Main\CalendarsViewModel.cs" />

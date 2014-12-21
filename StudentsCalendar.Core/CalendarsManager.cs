@@ -47,9 +47,16 @@ namespace StudentsCalendar.Core
 			}
 			this.IsInitialized = true;
 
-			var loadedEntries = await this.ContentProvider.LoadCalendars();
-			this._Entries = new ObservableCollection<CalendarEntry>(loadedEntries ?? Enumerable.Empty<CalendarEntry>());
-			this.ActiveEntry = this.Entries.FirstOrDefault(e => e.IsActive);
+			IEnumerable<CalendarEntry> loadedEntries = null;
+			try
+			{
+				loadedEntries = await this.ContentProvider.LoadCalendars();
+			}
+			finally
+			{
+				this._Entries = new ObservableCollection<CalendarEntry>(loadedEntries ?? Enumerable.Empty<CalendarEntry>());
+				this.ActiveEntry = this.Entries.FirstOrDefault(e => e.IsActive);
+			}
 		}
 
 		/// <inheritdoc />

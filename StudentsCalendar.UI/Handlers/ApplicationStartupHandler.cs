@@ -14,15 +14,13 @@ namespace StudentsCalendar.UI.Handlers
 		private readonly ICalendarsManager Calendars;
 		private readonly ICurrentCalendar CurrentCalendar;
 		private readonly IShell Shell;
-		private readonly IEventAggregator EventAggregator;
 
 		public ApplicationStartupHandler(ICalendarsManager calendars, ICurrentCalendar currentCalendar,
-			IShell shell, IEventAggregator eventAggregator)
+			IShell shell)
 		{
 			this.Calendars = calendars;
 			this.CurrentCalendar = currentCalendar;
 			this.Shell = shell;
-			this.EventAggregator = eventAggregator;
 		}
 
 		public async void Handle(ApplicationStartedEvent message)
@@ -33,7 +31,7 @@ namespace StudentsCalendar.UI.Handlers
 				await this.CurrentCalendar.MakeActive(this.Calendars.ActiveEntry.Id);
 			}
 
-			this.EventAggregator.PublishOnUIThread(NavigateRequestEvent.Create<Main.CurrentWeekViewModel>());
+			Execute.OnUIThread(() => this.Shell.ShowMainScreen(typeof(Main.CurrentWeekViewModel)));
 		}
 	}
 }
