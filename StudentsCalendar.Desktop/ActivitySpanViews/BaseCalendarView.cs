@@ -13,6 +13,17 @@ namespace StudentsCalendar.Desktop.ActivitySpanViews
 		private bool PreventSelectionChange = false;
 		protected Calendar Calendar;
 
+		private bool IsViewModelCorrect
+		{
+			// DataContext may be set to "parent" DataContext - it will not implement IBaseDatesSpanViewModel
+			get { return this.DataContext is IBaseDatesSpanViewModel; }
+		}
+
+		private IBaseDatesSpanViewModel ViewModel
+		{
+			get { return (IBaseDatesSpanViewModel)this.DataContext; }
+		}
+
 		public BaseCalendarView()
 		{
 			this.DataContextChanged += this.OnDataContextChanged;
@@ -20,23 +31,19 @@ namespace StudentsCalendar.Desktop.ActivitySpanViews
 
 		public void OnSelectedDatesChanged(object sender, SelectionChangedEventArgs e)
 		{
-			// DataContext may be set to "parent" DataContext - it will not implement IBaseDatesSpanViewModel
-			if (this.DataContext is IBaseDatesSpanViewModel && !this.PreventSelectionChange)
+			if (this.IsViewModelCorrect && !this.PreventSelectionChange)
 			{
-				var vm = (IBaseDatesSpanViewModel)this.DataContext;
-				vm.Dates = ((Calendar)sender).SelectedDates;
+				this.ViewModel.Dates = ((Calendar)sender).SelectedDates;
 			}
 		}
 
 		private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-			if (this.DataContext is IBaseDatesSpanViewModel)
+			if (this.IsViewModelCorrect)
 			{
-				var vm = (IBaseDatesSpanViewModel)this.DataContext;
-
 				this.PreventSelectionChange = true;
 				this.Calendar.SelectedDates.Clear();
-				foreach (var date in vm.Dates)
+				foreach (var date in this.ViewModel.Dates)
 				{
 					this.Calendar.SelectedDates.Add(date);
 				}
