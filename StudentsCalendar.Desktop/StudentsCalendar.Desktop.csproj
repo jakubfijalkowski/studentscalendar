@@ -110,6 +110,9 @@
     <Compile Include="ActivitySpanViews\AlwaysExceptActivitySpanView.xaml.cs">
       <DependentUpon>AlwaysExceptActivitySpanView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ActivitySpanViews\SpecificWeeksActivitySpanView.xaml.cs">
+      <DependentUpon>SpecificWeeksActivitySpanView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ActivitySpanViews\SpecificDatesActivitySpanView.xaml.cs">
       <DependentUpon>SpecificDatesActivitySpanView.xaml</DependentUpon>
     </Compile>
@@ -275,6 +278,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ActivitySpanViews\AlwaysExceptActivitySpanView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ActivitySpanViews\SpecificWeeksActivitySpanView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

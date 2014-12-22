@@ -20,6 +20,14 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 			}
 		}
 
+		protected override bool IsWeeklyModel
+		{
+			get
+			{
+				return true;
+			}
+		}
+
 		public SpecificWeeksActivitySpanViewModel(IActivitySpanRenderer renderer)
 			: base(renderer)
 		{ }

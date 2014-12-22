@@ -13,9 +13,16 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 	public interface IBaseDatesSpanViewModel
 	{
 		/// <summary>
-		/// Pobiera lub zmienia kolekcję wybranych dat.
+		/// Pobiera listę wybranych dat.
 		/// </summary>
-		IEnumerable<DateTime> Dates { get; set; }
+		IEnumerable<DateTime> Dates { get; }
+
+		/// <summary>
+		/// Aktualizuje wybrane daty.
+		/// </summary>
+		/// <param name="dates"></param>
+		/// <returns>Zwraca <c>true</c>, jeśli kolekcja dat została zmieniona.</returns>
+		bool UpdateDates(IEnumerable<DateTime> dates);
 	}
 
 	/// <summary>
@@ -26,18 +33,19 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 		: BaseActivitySpanViewModel<TViewModel>, IBaseDatesSpanViewModel
 		where TViewModel : class, IActivitySpan
 	{
-		/// <summary>
-		/// Pobiera lub zmienia kolekcję wybranych dat(jako <see cref="DateTime"/>).
-		/// </summary>
+		/// <inheritdoc />
 		public IEnumerable<DateTime> Dates
 		{
 			get
 			{
-				return this.InternalDates.Select(d => new DateTime(d.Year, d.Month, d.Day));
-			}
-			set
-			{
-				this.InternalDates = value.Select(d => new LocalDate(d.Year, d.Month, d.Day)).ToList();
+				if (this.IsWeeklyModel)
+				{
+					return this.InternalDates.SelectMany(ToWholeWeek);
+				}
+				else
+				{
+					return this.InternalDates.Select(d => new DateTime(d.Year, d.Month, d.Day));
+				}
 			}
 		}
 
@@ -46,8 +54,42 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 		/// </summary>
 		protected abstract IList<LocalDate> InternalDates { get; set; }
 
+		/// <summary>
+		/// Określa, czy ViewModel pracuje na tygodniach, czy na pojedynczych dniach.
+		/// </summary>
+		protected virtual bool IsWeeklyModel
+		{
+			get { return false; }
+		}
+
 		protected BaseDatesSpanViewModel(IActivitySpanRenderer renderer)
 			: base(renderer)
 		{ }
+
+		public bool UpdateDates(IEnumerable<DateTime> dates)
+		{
+			var converted = dates
+				.Select(d => new LocalDate(d.Year, d.Month, d.Day));
+
+			if (this.IsWeeklyModel)
+			{
+				converted = converted
+					.Select(d => d.IsoDayOfWeek != IsoDayOfWeek.Monday ? d.Previous(IsoDayOfWeek.Monday) : d)
+					.Distinct();
+			}
+
+			this.InternalDates = converted.OrderBy(d => d).ToList();
+
+			return this.IsWeeklyModel;
+		}
+
+		private IEnumerable<DateTime> ToWholeWeek(LocalDate date)
+		{
+			for (int i = 0; i < 7; i++)
+			{
+				var d = date.PlusDays(i);
+				yield return new DateTime(d.Year, d.Month, d.Day);
+			}
+		}
 	}
 }

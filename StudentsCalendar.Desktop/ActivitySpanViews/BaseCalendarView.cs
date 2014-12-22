@@ -33,7 +33,12 @@ namespace StudentsCalendar.Desktop.ActivitySpanViews
 		{
 			if (this.IsViewModelCorrect && !this.PreventSelectionChange)
 			{
-				this.ViewModel.Dates = ((Calendar)sender).SelectedDates;
+				this.PreventSelectionChange = true;
+				if (this.ViewModel.UpdateDates(this.Calendar.SelectedDates))
+				{
+					this.UpdateDates();
+				}
+				this.PreventSelectionChange = false;
 			}
 		}
 
@@ -42,12 +47,17 @@ namespace StudentsCalendar.Desktop.ActivitySpanViews
 			if (this.IsViewModelCorrect)
 			{
 				this.PreventSelectionChange = true;
-				this.Calendar.SelectedDates.Clear();
-				foreach (var date in this.ViewModel.Dates)
-				{
-					this.Calendar.SelectedDates.Add(date);
-				}
+				this.UpdateDates();
 				this.PreventSelectionChange = false;
+			}
+		}
+
+		private void UpdateDates()
+		{
+			this.Calendar.SelectedDates.Clear();
+			foreach (var date in this.ViewModel.Dates)
+			{
+				this.Calendar.SelectedDates.Add(date);
 			}
 		}
 	}
