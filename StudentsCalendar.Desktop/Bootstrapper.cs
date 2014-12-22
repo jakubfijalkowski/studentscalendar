@@ -68,6 +68,7 @@ namespace StudentsCalendar.Desktop
 		private void ConfigureConventions()
 		{
 			ViewLocator.AddSubNamespaceMapping(".UI.ModifierViewModels", ".Desktop.ModifierViews");
+			ViewLocator.AddSubNamespaceMapping(".UI.ActivitySpanViewModels", ".Desktop.ActivitySpanViews");
 			ViewLocator.AddSubNamespaceMapping(".UI", ".Desktop");
 		}
 
@@ -157,7 +158,9 @@ namespace StudentsCalendar.Desktop
 				.AsSelf();
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
-				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel") && !c.IsInNamespaceOf<BaseModifierViewModel<IModifier>>())
+				.Where(c => !c.IsAbstract && c.Name.EndsWith("ViewModel") &&
+					!c.IsInNamespaceOf<BaseModifierViewModel<IModifier>>() &&
+					!c.IsInNamespaceOf<BaseActivitySpanViewModel<IActivitySpan>>())
 				.Keyed<IViewModel>(t => t)
 				.AsSelf();
 
@@ -168,7 +171,7 @@ namespace StudentsCalendar.Desktop
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<BaseActivitySpanViewModel<IActivitySpan>>())
-				.Keyed<IViewModel>(t => t.BaseType)
+				.Keyed<IActivitySpanViewModel>(t => t.BaseType)
 				.AsSelf();
 		}
 	}

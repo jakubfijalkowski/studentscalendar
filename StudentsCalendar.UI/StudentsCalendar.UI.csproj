@@ -41,8 +41,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpanViewModels\AlwaysExceptActivitySpanViewModel.cs" />
     <Compile Include="ActivitySpanViewModels\BaseActivitySpanViewModel.cs" />
+    <Compile Include="ActivitySpanViewModels\DefaultActivitySpanViewModels.cs" />
     <Compile Include="ActivitySpanViewModels\IActivitySpanViewModel.cs" />
+    <Compile Include="ActivitySpanViewModels\SpecificDatesActivitySpanViewModel.cs" />
+    <Compile Include="ActivitySpanViewModels\SpecificWeeksActivitySpanViewModel.cs" />
     <Compile Include="Dialogs\DialogAttribute.cs" />
     <Compile Include="Dialogs\ErrorDialog.cs" />
     <Compile Include="Dialogs\IDialogView.cs" />

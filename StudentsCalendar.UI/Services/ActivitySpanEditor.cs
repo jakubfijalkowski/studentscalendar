@@ -22,7 +22,9 @@ namespace StudentsCalendar.UI.Services
 		public IActivitySpanViewModel CreateModel(IActivitySpan activitySpan)
 		{
 			var type = typeof(BaseActivitySpanViewModel<>).MakeGenericType(activitySpan.GetType());
-			return this.ViewModelFactory[type];
+			var editor = this.ViewModelFactory[type];
+			editor.Span = activitySpan;
+			return editor;
 		}
 	}
 }
