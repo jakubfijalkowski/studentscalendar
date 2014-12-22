@@ -94,11 +94,17 @@
     <Compile Include="ActivitySpanViews\DateRangeActivitySpanView.xaml.cs">
       <DependentUpon>DateRangeActivitySpanView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ActivitySpanViews\EmptyActivitySpanView.xaml.cs">
+      <DependentUpon>EmptyActivitySpanView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ActivitySpanViews\EveryXWeeksActivitySpanView.xaml.cs">
       <DependentUpon>EveryXWeeksActivitySpanView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ActivitySpanViews\EveryXMonthsActivitySpanView.xaml.cs">
       <DependentUpon>EveryXMonthsActivitySpanView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ActivitySpanViews\FullActivitySpanView.xaml.cs">
+      <DependentUpon>FullActivitySpanView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -245,11 +251,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ActivitySpanViews\EmptyActivitySpanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ActivitySpanViews\EveryXWeeksActivitySpanView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ActivitySpanViews\EveryXMonthsActivitySpanView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ActivitySpanViews\FullActivitySpanView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -21,11 +21,11 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0" Text="Od" />
         <DatePicker x:Name="StartDatePicker" Grid.Column="1"
-                    SelectedDate="{Binding Beginning, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
+                    SelectedDate="{Binding Span.Beginning, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateEnd="{Binding SelectedDate, ElementName=EndDatePicker}" />
         <TextBlock Grid.Column="2" Text="Do" />
         <DatePicker x:Name="EndDatePicker" Grid.Column="3"
-                    SelectedDate="{Binding End, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
+                    SelectedDate="{Binding Span.End, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateStart="{Binding SelectedDate, ElementName=StartDatePicker}"/>
     </Grid>
 </UserControl>

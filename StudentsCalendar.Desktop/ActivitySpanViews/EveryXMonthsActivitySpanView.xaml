@@ -14,7 +14,7 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Column="0">co</TextBlock>
-        <TextBox Grid.Column="1" Text="{Binding Count}" />
+        <TextBox Grid.Column="1" Text="{Binding Span.Count}" />
         <TextBlock Grid.Column="2">miesięcy</TextBlock>
     </Grid>
 </UserControl>
