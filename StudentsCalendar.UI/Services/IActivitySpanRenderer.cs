@@ -15,12 +15,5 @@ namespace StudentsCalendar.UI.Services
 		/// <param name="shouldBeUniversal"></param>
 		/// <returns></returns>
 		string Describe(IActivitySpan span, bool shouldBeUniversal = false);
-
-		/// <summary>
-		/// Tworzy kontrolkę UI dla wskazanego przedziału aktywności.
-		/// </summary>
-		/// <param name="span"></param>
-		/// <returns></returns>
-		object Render(IActivitySpan span);
 	}
 }

@@ -18,8 +18,8 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		public bool HasFullName { get; set; }
 
 		public bool HasNotes { get; set; }
-		public ModifyClassesInfoViewModel(IDataProvider dataProvider, IActivitySpanRenderer spanRenderer)
-			: base(dataProvider, spanRenderer)
+		public ModifyClassesInfoViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
+			: base(dataProvider, editor)
 		{ }
 
 		public override void Save()

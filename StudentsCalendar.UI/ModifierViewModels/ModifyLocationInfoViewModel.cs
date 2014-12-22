@@ -15,8 +15,8 @@ namespace StudentsCalendar.UI.ModifierViewModels
 
 		public bool HasRoom { get; set; }
 
-		public ModifyLocationInfoViewModel(IDataProvider dataProvider, IActivitySpanRenderer spanRenderer)
-			: base(dataProvider, spanRenderer)
+		public ModifyLocationInfoViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
+			: base(dataProvider, editor)
 		{ }
 
 		public override void Save()

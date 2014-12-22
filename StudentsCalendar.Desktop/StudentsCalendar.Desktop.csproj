@@ -91,7 +91,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="ActivitySpanViewLocator.cs" />
     <Compile Include="ActivitySpanViews\DateRangeActivitySpanView.xaml.cs">
       <DependentUpon>DateRangeActivitySpanView.xaml</DependentUpon>
     </Compile>

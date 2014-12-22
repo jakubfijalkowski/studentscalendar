@@ -8,6 +8,7 @@ using StudentsCalendar.Core.Generation;
 using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI;
+using StudentsCalendar.UI.ActivitySpanViewModels;
 using StudentsCalendar.UI.Dialogs;
 using StudentsCalendar.UI.ModifierViewModels;
 
@@ -30,9 +31,7 @@ namespace StudentsCalendar.Desktop
 		protected override void Configure()
 		{
 			this.BuildContainer();
-
-			ViewLocator.AddSubNamespaceMapping(".UI.ModifierViewModels", ".Desktop.ModifierViews");
-			ViewLocator.AddSubNamespaceMapping(".UI", ".Desktop");
+			this.ConfigureConventions();
 		}
 
 		/// <inheritdoc />
@@ -65,6 +64,11 @@ namespace StudentsCalendar.Desktop
 		protected override void BuildUp(object instance)
 		{
 			this.Container.InjectProperties(instance);
+		}
+		private void ConfigureConventions()
+		{
+			ViewLocator.AddSubNamespaceMapping(".UI.ModifierViewModels", ".Desktop.ModifierViews");
+			ViewLocator.AddSubNamespaceMapping(".UI", ".Desktop");
 		}
 
 		private void BuildContainer()
@@ -99,9 +103,6 @@ namespace StudentsCalendar.Desktop
 
 			builder.RegisterType<Platform.UserStorage>()
 				.As<Core.Platform.IStorage>();
-
-			builder.RegisterType<ActivitySpanViewLocator>()
-				.AsImplementedInterfaces();
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<UI.Services.ILayoutArranger>())
@@ -162,6 +163,11 @@ namespace StudentsCalendar.Desktop
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<BaseModifierViewModel<IModifier>>())
+				.Keyed<IViewModel>(t => t.BaseType)
+				.AsSelf();
+
+			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
+				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<BaseActivitySpanViewModel<IActivitySpan>>())
 				.Keyed<IViewModel>(t => t.BaseType)
 				.AsSelf();
 		}

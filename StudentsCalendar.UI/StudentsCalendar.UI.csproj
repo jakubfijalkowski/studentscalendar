@@ -41,6 +41,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActivitySpanViewModels\BaseActivitySpanViewModel.cs" />
+    <Compile Include="ActivitySpanViewModels\IActivitySpanViewModel.cs" />
     <Compile Include="Dialogs\DialogAttribute.cs" />
     <Compile Include="Dialogs\ErrorDialog.cs" />
     <Compile Include="Dialogs\IDialogView.cs" />
@@ -48,7 +50,6 @@
     <Compile Include="EditableObject.cs" />
     <Compile Include="Events\ApplicationStartedEvent.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />
-    <Compile Include="IActivitySpanViewLocator.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="Main\CalendarsViewModel.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />
@@ -65,9 +66,11 @@
     <Compile Include="Popups\ClassesEditEventArgs.cs" />
     <Compile Include="Popups\ClassesEditViewModel.cs" />
     <Compile Include="Popups\PopupBaseViewModel.cs" />
+    <Compile Include="Services\ActivitySpanEditor.cs" />
     <Compile Include="Services\CoreDataProvider.cs" />
     <Compile Include="Services\DefaultActivitySpanRenderer.cs" />
     <Compile Include="Services\DefaultModifierRenderer.cs" />
+    <Compile Include="Services\IActivitySpanEditor.cs" />
     <Compile Include="Services\IActivitySpanRenderer.cs" />
     <Compile Include="Services\IDataProvider.cs" />
     <Compile Include="Services\ILayoutArranger.cs" />
@@ -78,6 +81,9 @@
     <Compile Include="ShellExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Caliburn.Micro">
       <HintPath>..\packages\Caliburn.Micro.Core.2.0.1\lib\portable-net45+win8+wp8+wpa81\Caliburn.Micro.dll</HintPath>
     </Reference>

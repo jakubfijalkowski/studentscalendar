@@ -26,7 +26,7 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		where TModifier : class, IModifier
 	{
 		private readonly IDataProvider DataProvider;
-		private readonly IActivitySpanRenderer ActivitySpanRenderer;
+		private readonly IActivitySpanEditor ActivitySpanEditor;
 
 		private EditableObject<TModifier> EditableObject;
 
@@ -62,11 +62,11 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
 		/// <param name="dataProvider"></param>
-		/// <param name="spanRenderer"></param>
-		public BaseModifierViewModel(IDataProvider dataProvider, IActivitySpanRenderer spanRenderer)
+		/// <param name="editor"></param>
+		public BaseModifierViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 		{
 			this.DataProvider = dataProvider;
-			this.ActivitySpanRenderer = spanRenderer;
+			this.ActivitySpanEditor = editor;
 		}
 
 		/// <summary>
@@ -110,15 +110,15 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		{
 			if (this.Modifier is IClassesModifier)
 			{
-				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanRenderer, (IClassesModifier)this.Modifier);
+				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanEditor, (IClassesModifier)this.Modifier);
 			}
 			else if (this.Modifier is IDayModifier)
 			{
-				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanRenderer, (IDayModifier)this.Modifier);
+				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanEditor, (IDayModifier)this.Modifier);
 			}
 			else if (this.Modifier is IWeekModifier)
 			{
-				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanRenderer, (IWeekModifier)this.Modifier);
+				this.ActivitySpan = ActivitySpanEditViewModel.Create(this.DataProvider, this.ActivitySpanEditor, (IWeekModifier)this.Modifier);
 			}
 			else
 			{

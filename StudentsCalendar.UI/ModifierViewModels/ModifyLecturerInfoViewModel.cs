@@ -14,8 +14,8 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		public bool HasLastName { get; set; }
 
 		public bool HasPhoneNumber { get; set; }
-		public ModifyLecturerInfoViewModel(IDataProvider dataProvider, IActivitySpanRenderer spanRenderer)
-			: base(dataProvider, spanRenderer)
+		public ModifyLecturerInfoViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
+			: base(dataProvider, editor)
 		{ }
 
 		public override void Save()
