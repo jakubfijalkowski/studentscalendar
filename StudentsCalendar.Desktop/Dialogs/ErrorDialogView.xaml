@@ -5,9 +5,6 @@
     <dialog:BaseDialog.DialogTop>
         <Rectangle Height="5" Fill="{StaticResource RedColorBrush}" />
     </dialog:BaseDialog.DialogTop>
-    <dialog:BaseDialog.DialogBottom>
-        <Rectangle Height="5" Fill="{StaticResource RedColorBrush}" />
-    </dialog:BaseDialog.DialogBottom>
 
     <Grid Margin="0,0,0,10">
         <Grid.RowDefinitions>
@@ -20,6 +17,6 @@
         <TextBlock Grid.Row="1" Style="{StaticResource DialogMessageStyle}" Text="{Binding Message}" TextWrapping="Wrap" />
         <Button Grid.Row="3" Style="{StaticResource SquareButtonStyle}" HorizontalAlignment="Right"
                 Background="{StaticResource RedColorBrush}" Foreground="White" Width="100"
-                Content="Ok" Click="CloseDialog" />
+                Content="Ok" IsDefault="True" IsCancel="True" Click="CloseDialog" />
     </Grid>
 </dialog:BaseDialog>
