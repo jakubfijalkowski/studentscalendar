@@ -171,8 +171,17 @@ namespace StudentsCalendar.Desktop
 
 			builder.RegisterAssemblyTypes(typeof(IShell).Assembly)
 				.Where(c => !c.IsAbstract && c.IsInNamespaceOf<BaseActivitySpanViewModel<IActivitySpan>>())
-				.Keyed<IActivitySpanViewModel>(t => t.BaseType)
+				.Keyed<IActivitySpanViewModel>(GetKeyOfActivitySpanViewModel)
 				.AsSelf();
+		}
+
+		private static Type GetKeyOfActivitySpanViewModel(Type t)
+		{
+			if(t.BaseType.IsGenericType && t.BaseType.GetGenericTypeDefinition() == typeof(BaseActivitySpanViewModel<>))
+			{
+				return t.BaseType;
+			}
+			return t.BaseType.BaseType;
 		}
 	}
 }
