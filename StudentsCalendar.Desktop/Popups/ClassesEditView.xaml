@@ -27,7 +27,7 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
-                    DataContext="{Binding Classes}">
+                    DataContext="{Binding Data}">
             <TextBlock Text="Godzina rozpoczęcia" />
             <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
                             Maximum="{Binding Value, ElementName=EndTime}"
@@ -61,7 +61,7 @@
             </Grid.RowDefinitions>
 
             <TextBlock Text="Notatki" />
-            <TextBox Grid.Row="1" Text="{Binding Classes.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
+            <TextBox Grid.Row="1" Text="{Binding Data.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
         </Grid>
 
         <ItemsControl Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Modifiers}">

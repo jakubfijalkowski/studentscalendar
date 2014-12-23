@@ -70,6 +70,7 @@
     <Compile Include="Popups\CalendarEntryEditViewModel.cs" />
     <Compile Include="Popups\ClassesEditEventArgs.cs" />
     <Compile Include="Popups\ClassesEditViewModel.cs" />
+    <Compile Include="Popups\ModifiersEditViewModelBase.cs" />
     <Compile Include="Popups\PopupBaseViewModel.cs" />
     <Compile Include="Services\ActivitySpanEditor.cs" />
     <Compile Include="Services\CoreDataProvider.cs" />
