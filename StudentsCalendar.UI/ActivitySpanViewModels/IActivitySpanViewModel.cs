@@ -17,5 +17,10 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 		/// Pobiera ogólną nazwę dla przedziału aktywności.
 		/// </summary>
 		string Name { get; }
+
+		/// <summary>
+		/// Wymusza zapis przedziału aktywności.
+		/// </summary>
+		void Save();
 	}
 }

@@ -45,6 +45,7 @@
     <Compile Include="ActivitySpanViewModels\BaseActivitySpanViewModel.cs" />
     <Compile Include="ActivitySpanViewModels\BaseDatesSpanViewModel.cs" />
     <Compile Include="ActivitySpanViewModels\DefaultActivitySpanViewModels.cs" />
+    <Compile Include="ActivitySpanViewModels\EveryXMonthsActivitySpanViewModel.cs" />
     <Compile Include="ActivitySpanViewModels\IActivitySpanViewModel.cs" />
     <Compile Include="ActivitySpanViewModels\SpecificDatesActivitySpanViewModel.cs" />
     <Compile Include="ActivitySpanViewModels\SpecificWeeksActivitySpanViewModel.cs" />

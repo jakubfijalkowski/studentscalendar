@@ -42,7 +42,7 @@ namespace StudentsCalendar.Desktop.Converters
 			else
 			{
 				var date = (DateTime)value;
-				if (targetType == typeof(LocalDate))
+				if (targetType == typeof(LocalDate) || targetType == typeof(LocalDate?))
 				{
 					return new LocalDate(date.Year, date.Month, date.Day);
 				}

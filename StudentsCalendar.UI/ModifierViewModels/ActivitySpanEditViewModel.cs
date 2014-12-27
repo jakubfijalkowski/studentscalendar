@@ -42,6 +42,14 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		}
 
 		/// <summary>
+		/// Wywoływane, gdy modyfikator jest zapisywany.
+		/// </summary>
+		public void Save()
+		{
+			this.SelectedSpan.Save();
+		}
+
+		/// <summary>
 		/// Tworzy ViewModel dla modyfikatora klas.
 		/// </summary>
 		/// <param name="dataProvider"></param>

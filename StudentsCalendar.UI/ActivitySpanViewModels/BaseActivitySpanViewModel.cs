@@ -8,7 +8,7 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 	/// Bazowa klasa dla ViewModeli do edycji <see cref="IActivitySpan"/>.
 	/// </summary>
 	public abstract class BaseActivitySpanViewModel<TActivitySpan>
-		: PropertyChangedBase, IViewModel, IActivitySpanViewModel
+		: Screen, IViewModel, IActivitySpanViewModel
 		where TActivitySpan : class, IActivitySpan
 	{
 		private IActivitySpanRenderer Renderer;
@@ -45,6 +45,10 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 
 		/// <inheritdoc />
 		public string Name { get; private set; }
+
+		/// <inheritdoc />
+		public virtual void Save()
+		{ }
 
 		protected BaseActivitySpanViewModel(IActivitySpanRenderer renderer)
 		{
