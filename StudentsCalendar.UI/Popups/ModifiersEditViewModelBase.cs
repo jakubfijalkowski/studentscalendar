@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
-using Caliburn.Micro;
+using System.Runtime.CompilerServices;
 using StudentsCalendar.Core.ActivitySpans;
 using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.UI.Services;
@@ -11,8 +13,12 @@ namespace StudentsCalendar.UI.Popups
 	/// <summary>
 	/// Opis dla modyfikatorów.
 	/// </summary>
+	/// <remarks>
+	/// Klasa dziedziczy z <see cref="EventArgs"/> tylko ze względu na Caliburn.Micro i to,
+	/// że lista modyfikatorów jest opakowana w osobną kontrolkę.
+	/// </remarks>
 	public sealed class ModifierDescription
-		: PropertyChangedBase
+		: EventArgs, INotifyPropertyChanged
 	{
 		private readonly IModifier _Modifier;
 		private string _Description;
@@ -58,6 +64,9 @@ namespace StudentsCalendar.UI.Popups
 			}
 		}
 
+		/// <inheritdoc />
+		public event PropertyChangedEventHandler PropertyChanged;
+
 		/// <summary>
 		/// Inicjalizuje klasę odpowiednim modyfikatorem.
 		/// </summary>
@@ -65,6 +74,38 @@ namespace StudentsCalendar.UI.Popups
 		public ModifierDescription(IModifier modifier)
 		{
 			this._Modifier = modifier;
+		}
+
+		private void NotifyOfPropertyChange([CallerMemberName] string propertyName = "")
+		{
+			var cp = this.PropertyChanged;
+			if (cp != null)
+			{
+				cp(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+
+	/// <summary>
+	/// Fix na ułomność Caliburn.Micro - opakowuje przekazywanie <see cref="BaseDescription{TModifier}"/>
+	/// jako <c>object</c> zawarty w <see cref="EventArgs"/>.
+	/// </summary>
+	public sealed class AddModifierEventArgs
+		: EventArgs
+	{
+		private readonly object _Description;
+
+		/// <summary>
+		/// Pobiera opis modyfikatora.
+		/// </summary>
+		public object Description
+		{
+			get { return this._Description; }
+		}
+
+		public AddModifierEventArgs(object desc)
+		{
+			this._Description = desc;
 		}
 	}
 
@@ -149,16 +190,18 @@ namespace StudentsCalendar.UI.Popups
 		/// Tworzy nowy modyfikator i wyświetla listę 
 		/// </summary>
 		/// <param name="desc"></param>
-		public async void AddModifier(ClassesModifierDescription desc)
+		public async void AddModifier(AddModifierEventArgs e)
 		{
+			var desc = e.Description as BaseDescription<TModifier>;
 			var mod = this.DataProvider.Create(desc);
 
 			if (await this.Shell.ShowModifierEditPopup(mod).CloseTask)
 			{
+				var span = ExtractActivitySpan(mod);
 				var description = new ModifierDescription(mod)
 				{
 					Description = this.ModifierRenderer.Describe(mod),
-					SpanDescription = this.ActivitySpanRenderer.Describe(mod.ActivitySpan)
+					SpanDescription = this.ActivitySpanRenderer.Describe(span)
 				};
 				this.DataModifiers.Add((TModifier)mod);
 				this._Modifiers.Add(description);

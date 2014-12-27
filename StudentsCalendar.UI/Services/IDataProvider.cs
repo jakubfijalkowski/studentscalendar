@@ -8,7 +8,12 @@ namespace StudentsCalendar.UI.Services
 	/// <summary>
 	/// Opisuje typ, który może być tworzony na żądanie przez użytkownika.
 	/// </summary>
+	/// <remarks>
+	/// Klasa dziedziczy z <see cref="EventArgs"/> tylko ze względu na Caliburn.Micro i to,
+	/// że lista modyfikatorów jest opakowana w osobną kontrolkę.
+	/// </remarks>
 	public abstract class BaseDescription<TType>
+		: EventArgs
 	{
 		private readonly string _Name;
 		private readonly Type _Type;

@@ -5,7 +5,7 @@
              xmlns:conv="clr-namespace:StudentsCalendar.Desktop.Converters"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:xcd="http://schemas.xceed.com/wpf/xaml/toolkit"
-             x:Name="Root">
+             xmlns:ctrl="clr-namespace:StudentsCalendar.Desktop.Controls">
     <UserControl.Resources>
         <conv:NodaToBclConverter x:Key="NodaToBcl" />
 
@@ -18,7 +18,6 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="300" />
@@ -26,7 +25,7 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
+        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
                     DataContext="{Binding Data}">
             <TextBlock Text="Godzina rozpoczęcia" />
             <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
@@ -54,7 +53,7 @@
             <TextBox Text="{Binding Location.Address, Mode=TwoWay}" />
         </StackPanel>
 
-        <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Stretch">
+        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -64,65 +63,10 @@
             <TextBox Grid.Row="1" Text="{Binding Data.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
         </Grid>
 
-        <ItemsControl Grid.Row="0" Grid.Column="2" ItemsSource="{Binding Modifiers}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <TextBlock Grid.RowSpan="2" Grid.Column="0" Style="{StaticResource ClassesModifierMarkerStyle}" />
-                        <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource ClassesModifierNameStyle}" Text="{Binding Description}" />
-                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource ClassesModifierSpanStyle}" Text="{Binding SpanDescription}" />
+        <ctrl:ModifierList Grid.Row="0" Grid.Column="3"
+                            cal:Message.Attach="[Event EditModifier] = [Action EditModifier($eventArgs)]; [Event DeleteModifier] = [Action DeleteModifier($eventArgs)]; [Event AddModifier] = [Action AddModifier($eventArgs)]" />
 
-                        <StackPanel Grid.RowSpan="2" Grid.Column="2" Orientation="Horizontal">
-                            <Button cal:Message.Attach="EditModifier($dataContext)" Style="{StaticResource ClassesModifierButtonStyle}">
-                                <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                                    <Rectangle.OpacityMask>
-                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                            </Button>
-                            <Button cal:Message.Attach="DeleteModifier($dataContext)" Style="{StaticResource ClassesModifierButtonStyle}">
-                                <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                                    <Rectangle.OpacityMask>
-                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-                            </Button>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-
-        <Button Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" Style="{StaticResource ClassesModifierButtonStyle}" Margin="10"
-                Click="OpenContextMenu">
-            <Button.ContextMenu>
-                <ContextMenu ItemsSource="{Binding AvailableModifiers}">
-                    <ContextMenu.ItemTemplate>
-                        <DataTemplate>
-                            <MenuItem Header="{Binding Name}"
-                                      cal:Message.Attach="AddModifier($dataContext)"
-                                      cal:Action.TargetWithoutContext="{Binding DataContext, Source={x:Reference Name=Root}}" />
-                        </DataTemplate>
-                    </ContextMenu.ItemTemplate>
-                </ContextMenu>
-            </Button.ContextMenu>
-            <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                <Rectangle.OpacityMask>
-                    <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
-                </Rectangle.OpacityMask>
-            </Rectangle>
-        </Button>
-
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
             <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
         </StackPanel>

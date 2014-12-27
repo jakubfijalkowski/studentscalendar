@@ -12,12 +12,5 @@ namespace StudentsCalendar.Desktop.Popups
 		{
 			InitializeComponent();
 		}
-
-		private void OpenContextMenu(object sender, RoutedEventArgs e)
-		{
-			var cm = ((Button)sender).ContextMenu;
-			cm.PlacementTarget = (Button)sender;
-			cm.IsOpen = !cm.IsOpen;
-		}
 	}
 }
