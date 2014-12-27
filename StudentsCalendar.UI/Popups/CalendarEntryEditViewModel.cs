@@ -167,6 +167,15 @@ namespace StudentsCalendar.UI.Popups
 			this.Template.WeekTemplate.Days[dayIdx].Classes.Remove(args.Template);
 		}
 
+		/// <summary>
+		/// Wyświetla popup z edycją modyfikatorów dziennych.
+		/// </summary>
+		/// <param name="day"></param>
+		public void EditDayModifiers(DayTemplate day)
+		{
+			this.Shell.ShowPopup<DayModifiersEditViewModel>().Data = day;
+		}
+
 		private static int SlotToIndex(IsoDayOfWeek day, ClassesTemplate classes)
 		{
 			return day.ToIndex() + classes.StartTime.Hour * 7;

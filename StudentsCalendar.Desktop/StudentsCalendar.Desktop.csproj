@@ -129,8 +129,8 @@
     <Compile Include="Controls\DayView.xaml.cs">
       <DependentUpon>DayView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ModifiersList.xaml.cs">
-      <DependentUpon>ModifiersList.xaml</DependentUpon>
+    <Compile Include="Controls\ModifierList.xaml.cs">
+      <DependentUpon>ModifierList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\SlotsView.xaml.cs">
       <DependentUpon>SlotsView.xaml</DependentUpon>
@@ -207,6 +207,9 @@
     </Compile>
     <Compile Include="Popups\ClassesEditView.xaml.cs">
       <DependentUpon>ClassesEditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Popups\DayModifiersEditView.xaml.cs">
+      <DependentUpon>DayModifiersEditView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShellViewModel.cs" />
     <Compile Include="ShellView.xaml.cs">
@@ -304,7 +307,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\ModifiersList.xaml">
+    <Page Include="Controls\ModifierList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +380,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Popups\ClassesEditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\DayModifiersEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

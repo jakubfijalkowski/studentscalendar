@@ -58,8 +58,12 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding DayOfWeek, Converter={StaticResource DayOfWeekToString}}"
-                                   Style="{StaticResource CalendarEditDayHeaderStyle}" />
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding DayOfWeek, Converter={StaticResource DayOfWeekToString}}"
+                                       Style="{StaticResource CalendarEditDayHeaderStyle}" />
+                            <Button Style="{StaticResource LinkButton}" HorizontalAlignment="Center" Content="modyfikatory"
+                                    cal:Message.Attach="EditDayModifiers($dataContext)"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -97,8 +101,8 @@
         </Grid>
 
         <StackPanel Grid.Row="2" Grid.ColumnSpan="7" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="Save" Content="Zapisz" />
-            <Button x:Name="Cancel" Content="Anuluj" />
+            <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
+            <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -64,7 +64,7 @@
         </Grid>
 
         <ctrl:ModifierList Grid.Row="0" Grid.Column="3"
-                            cal:Message.Attach="[Event EditModifier] = [Action EditModifier($eventArgs)]; [Event DeleteModifier] = [Action DeleteModifier($eventArgs)]; [Event AddModifier] = [Action AddModifier($eventArgs)]" />
+                           cal:Message.Attach="[Event EditModifier] = [Action EditModifier($eventArgs)]; [Event DeleteModifier] = [Action DeleteModifier($eventArgs)]; [Event AddModifier] = [Action AddModifier($eventArgs)]" />
 
         <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
