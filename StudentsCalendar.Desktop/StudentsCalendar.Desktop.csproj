@@ -211,6 +211,9 @@
     <Compile Include="Popups\ClassesEditView.xaml.cs">
       <DependentUpon>ClassesEditView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Popups\CalendarModifiersEditView.xaml.cs">
+      <DependentUpon>CalendarModifiersEditView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Popups\WeekModifiersEditView.xaml.cs">
       <DependentUpon>WeekModifiersEditView.xaml</DependentUpon>
     </Compile>
@@ -392,6 +395,10 @@
     <Page Include="Popups\ClassesEditView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Popups\CalendarModifiersEditView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Popups\WeekModifiersEditView.xaml">
       <Generator>MSBuild:Compile</Generator>

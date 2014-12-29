@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="StudentsCalendar.Desktop.Popups.CalendarModifiersEditView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:ctrl="clr-namespace:StudentsCalendar.Desktop.Controls">
+    <UserControl.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Style="{StaticResource CalendarsHeaderStyle}" Text="Modyfikatory:" />
+        <ctrl:ModifierList Grid.Row="1" Margin="5" DisplaySpanDescription="False"
+                           cal:Message.Attach="[Event EditModifier] = [Action EditModifier($eventArgs)]; [Event DeleteModifier] = [Action DeleteModifier($eventArgs)]; [Event AddModifier] = [Action AddModifier($eventArgs)]" />
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
+            <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>

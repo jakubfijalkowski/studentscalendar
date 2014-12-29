@@ -15,8 +15,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -26,21 +26,17 @@
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Odwołaj zajęcia" />
 
-        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch"
-                   DataContext="{Binding Modifier}">
-            <TextBlock Text="Od" DockPanel.Dock="Top" />
-            <DatePicker x:Name="StartDatePicker" DockPanel.Dock="Top"
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch"
+                    Orientation="Vertical" DataContext="{Binding Modifier}">
+            <TextBlock Text="Od" />
+            <DatePicker x:Name="StartDatePicker"
                     SelectedDate="{Binding StartDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateEnd="{Binding SelectedDate, ElementName=EndDatePicker}" />
-            <TextBlock Text="Do" DockPanel.Dock="Top" />
-            <DatePicker x:Name="EndDatePicker" DockPanel.Dock="Top"
+            <TextBlock Text="Do" />
+            <DatePicker x:Name="EndDatePicker"
                     SelectedDate="{Binding EndDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateStart="{Binding SelectedDate, ElementName=StartDatePicker}"/>
-        </DockPanel>
-
-        <Grid Grid.Row="2" Grid.Column="1" HorizontalAlignment="Stretch">
-
-        </Grid>
+        </StackPanel>
 
         <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />

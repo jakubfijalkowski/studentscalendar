@@ -43,6 +43,7 @@
                     SelectedDate="{Binding Template.EndDate, Mode=TwoWay, Converter={StaticResource NodaToBcl}}" SelectedDateFormat="Long"
                     DisplayDateStart="{Binding SelectedDate, ElementName=StartDatePicker}" />
         <Button x:Name="EditWeekModifiers" Grid.Column="6" Style="{StaticResource LinkButton}" Content="modyfikatory tygodnia" />
+        <Button x:Name="EditCalendarModifiers" Grid.Column="7" Style="{StaticResource LinkButton}" Content="modyfikatory kalendarza" />
         
         <Grid Grid.Row="1" Grid.ColumnSpan="9" Margin="5">
             <Grid.ColumnDefinitions>

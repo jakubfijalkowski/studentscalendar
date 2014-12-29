@@ -72,6 +72,7 @@
     <Compile Include="Popups\CalendarEntryEditViewModel.cs" />
     <Compile Include="Popups\ClassesEditEventArgs.cs" />
     <Compile Include="Popups\ClassesEditViewModel.cs" />
+    <Compile Include="Popups\CalendarModifiersEditViewModel.cs" />
     <Compile Include="Popups\WeekModifiersEditViewModel.cs" />
     <Compile Include="Popups\DayModifiersEditViewModel.cs" />
     <Compile Include="Popups\ModifiersEditViewModelBase.cs" />

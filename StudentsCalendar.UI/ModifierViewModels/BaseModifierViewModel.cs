@@ -87,7 +87,10 @@ namespace StudentsCalendar.UI.ModifierViewModels
 				((IWeekModifier)this.Modifier).ActivitySpan = (IWeeklyActivitySpan)this.ActivitySpan.SelectedSpan.Span;
 			}
 
-			this.ActivitySpan.Save();
+			if (this.ActivitySpan != null)
+			{
+				this.ActivitySpan.Save();
+			}
 			this.Close(true);
 		}
 

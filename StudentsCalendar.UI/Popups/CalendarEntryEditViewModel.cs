@@ -184,6 +184,14 @@ namespace StudentsCalendar.UI.Popups
 			this.Shell.ShowPopup<WeekModifiersEditViewModel>().Data = this.Template.WeekTemplate;
 		}
 
+		/// <summary>
+		/// Wyświetla popup z edycją modyfikatorów kalendarza.
+		/// </summary>
+		public void EditCalendarModifiers()
+		{
+			this.Shell.ShowPopup<CalendarModifiersEditViewModel>().Data = this.Template;
+		}
+
 		private static int SlotToIndex(IsoDayOfWeek day, ClassesTemplate classes)
 		{
 			return day.ToIndex() + classes.StartTime.Hour * 7;

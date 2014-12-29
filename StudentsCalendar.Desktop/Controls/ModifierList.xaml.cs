@@ -12,6 +12,18 @@ namespace StudentsCalendar.Desktop.Controls
 	public partial class ModifierList
 		: UserControl
 	{
+		public static readonly DependencyProperty DisplaySpanDescriptionProperty =
+			DependencyProperty.Register("DisplaySpanDescription", typeof(bool), typeof(ModifierList), new PropertyMetadata(true));
+
+		/// <summary>
+		/// Określa, czy kontrolka powinna wyświetlać opis przedziału aktywności.
+		/// </summary>
+		public bool DisplaySpanDescription
+		{
+			get { return (bool)this.GetValue(DisplaySpanDescriptionProperty); }
+			set { this.SetValue(DisplaySpanDescriptionProperty, value); }
+		}
+
 		/// <summary>
 		/// Użytkownik chce edytować wskazany modyfikator.
 		/// </summary>
