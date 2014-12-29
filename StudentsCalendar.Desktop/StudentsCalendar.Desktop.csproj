@@ -182,6 +182,9 @@
     <Compile Include="ModifierViews\CancelDayView.xaml.cs">
       <DependentUpon>CancelDayView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModifierViews\ChangeWeekdayView.xaml.cs">
+      <DependentUpon>ChangeWeekdayView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModifierViews\CancelWeekView.xaml.cs">
       <DependentUpon>CancelWeekView.xaml</DependentUpon>
     </Compile>
@@ -361,6 +364,10 @@
     <Page Include="ModifierViews\CancelDayView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\ChangeWeekdayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ModifierViews\CancelWeekView.xaml">
       <SubType>Designer</SubType>

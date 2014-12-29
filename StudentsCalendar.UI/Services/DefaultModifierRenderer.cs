@@ -14,6 +14,17 @@ namespace StudentsCalendar.UI.Services
 	public sealed class DefaultModifierRenderer
 		: IModifierRenderer
 	{
+		private static readonly IReadOnlyDictionary<IsoDayOfWeek, string> DayOfWeekToString = new Dictionary<IsoDayOfWeek, string>
+		{
+			{ IsoDayOfWeek.Monday, "poniedziałek" },
+			{ IsoDayOfWeek.Tuesday, "wtorek" },
+			{ IsoDayOfWeek.Wednesday, "środę" },
+			{ IsoDayOfWeek.Thursday, "czwartek" },
+			{ IsoDayOfWeek.Friday, "piątek" },
+			{ IsoDayOfWeek.Saturday, "sobotę" },
+			{ IsoDayOfWeek.Sunday, "niedzielę" },
+		};
+
 		private readonly Dictionary<Type, MethodInfo> Descriptions;
 
 		public DefaultModifierRenderer()
@@ -71,7 +82,7 @@ namespace StudentsCalendar.UI.Services
 			{
 				return "Zmień plan na inny dzień";
 			}
-			return string.Format(CultureInfo.CurrentCulture, "Zmień plan na {0:dddd}", new LocalDate().Next(mod.DayOfWeek));
+			return "Zmień plan na " + DayOfWeekToString[mod.DayOfWeek];
 		}
 
 		private static string Describe(ModifyClassesInfo mod, bool shouldBeUniversal)

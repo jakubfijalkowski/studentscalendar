@@ -19,14 +19,6 @@ namespace StudentsCalendar.UI.ActivitySpanViewModels
 		{ }
 	}
 
-	public sealed class EveryXWeeksActivitySpanViewModel
-		: BaseActivitySpanViewModel<EveryXWeeksActivitySpan>
-	{
-		public EveryXWeeksActivitySpanViewModel(IActivitySpanRenderer renderer)
-			: base(renderer)
-		{ }
-	}
-
 	public sealed class FullActivitySpanViewModel
 		: BaseActivitySpanViewModel<FullActivitySpan>
 	{
