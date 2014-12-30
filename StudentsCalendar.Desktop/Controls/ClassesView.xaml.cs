@@ -14,6 +14,7 @@ namespace StudentsCalendar.Desktop.Controls
 		private bool IsShort;
 		private bool IsLong;
 		private bool IsWide;
+		private bool IsSuperWide;
 
 		public ClassesView()
 		{
@@ -36,6 +37,7 @@ namespace StudentsCalendar.Desktop.Controls
 		private void OnSizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			this.IsWide = e.NewSize.Width >= this.MinColumnWidth * 2;
+			this.IsSuperWide = e.NewSize.Width >= this.MinColumnWidth * 4;
 			this.UpdateVisibility();
 		}
 
@@ -58,8 +60,22 @@ namespace StudentsCalendar.Desktop.Controls
 			this.FullHeader.Visibility = this.IsWide.ToVisibility();
 			this.FullNameDescription.Visibility = (this.IsLong && !this.IsWide).ToVisibility();
 			this.Lecturer.Visibility = (!this.IsShort).ToVisibility();
+			this.Location.Visibility = (!this.IsShort).ToVisibility();
 			this.Notes.Visibility = this.IsLong.ToVisibility();
-			this.SecondColumnNotes.Visibility = (!this.IsLong && this.IsWide).ToVisibility();
+			this.SecondColumnInfo.Visibility = (this.IsWide && this.IsShort).ToVisibility();
+			this.AdditionalColumnNotes.Visibility = (!this.IsLong && this.IsWide && !this.IsShort).ToVisibility();
+
+			if (this.IsSuperWide && !this.IsLong && this.IsShort)
+			{
+				this.AdditionalColumnNotes.Visibility = Visibility.Visible;
+				this.ThirdClumn.Width = new GridLength(1, GridUnitType.Star);
+				Grid.SetColumn(this.AdditionalColumnNotes, 2);
+			}
+			else
+			{
+				this.ThirdClumn.Width = new GridLength(0);
+				Grid.SetColumn(this.AdditionalColumnNotes, 1);
+			}
 		}
 	}
 }
