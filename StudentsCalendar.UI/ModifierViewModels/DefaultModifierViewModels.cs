@@ -62,4 +62,15 @@ namespace StudentsCalendar.UI.ModifierViewModels
 			this.DisplayName = "Zamień dzień tygodnia";
 		}
 	}
+
+	public sealed class AddBreaksViewModel
+		: BaseModifierViewModel<AddBreaks>
+	{
+		public AddBreaksViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
+			: base(dataProvider, editor)
+		{
+			this.DisplayName = "Dodaj przerwy";
+		}
+
+	}
 }

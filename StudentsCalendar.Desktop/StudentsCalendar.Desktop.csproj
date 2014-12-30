@@ -173,6 +173,9 @@
     <Compile Include="ModifierViews\AddTestToClassesView.xaml.cs">
       <DependentUpon>AddTestToClassesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModifierViews\AddBreaksView.xaml.cs">
+      <DependentUpon>AddBreaksView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ModifierViews\CancelClassesInRangeView.xaml.cs">
       <DependentUpon>CancelClassesInRangeView.xaml</DependentUpon>
     </Compile>
@@ -355,6 +358,10 @@
     <Page Include="ModifierViews\AddTestToClassesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ModifierViews\AddBreaksView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="ModifierViews\CancelClassesInRangeView.xaml">
       <SubType>Designer</SubType>

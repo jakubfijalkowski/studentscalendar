@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="StudentsCalendar.Desktop.ModifierViews.AddBreaksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>        
+        <Style TargetType="TextBlock" BasedOn="{StaticResource ClassesEditLabelStyle}" />
+        <Style TargetType="TextBox" BasedOn="{StaticResource ClassesEditTextBoxStyle}" />
+        <Style TargetType="ComboBox" BasedOn="{StaticResource ClassesEditComboBoxStyle}" />
+        <Style TargetType="Button" BasedOn="{StaticResource ClassesEditButtonStyle}" />
+        <Style TargetType="DatePicker" BasedOn="{StaticResource CalendarEditDatePickerBoxStyle}" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Dodaj przerwy" />
+
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="Godzina zajęć trwa" />
+        <TextBox Grid.Row="2" Grid.Column="1" Text="{Binding Modifier.ClassesDuration}" />
+        <TextBlock Grid.Row="2" Grid.Column="2" Text="minut" />
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="Przerwa trwa" />
+        <TextBox Grid.Row="4" Grid.Column="1" Text="{Binding Modifier.BreakDuration}" />
+        <TextBlock Grid.Row="5" Grid.Column="2" Text="minut" />
+        
+        <StackPanel Grid.Row="6" Grid.ColumnSpan="4" Orientation="Horizontal" Margin="10,0,0,0">
+            <CheckBox IsChecked="{Binding Modifier.AddAtBeginning}" />
+            <TextBlock Text="Dodaj przerwę na początku zajęć" />
+        </StackPanel> 
+
+        <StackPanel Grid.Row="8" Grid.ColumnSpan="4" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
+            <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
+        </StackPanel>
+    </Grid>
+</UserControl>

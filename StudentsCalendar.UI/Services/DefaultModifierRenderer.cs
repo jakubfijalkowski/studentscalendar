@@ -99,5 +99,10 @@ namespace StudentsCalendar.UI.Services
 		{
 			return "Zmień dane o lokalizacji";
 		}
+
+		private static string Describe(AddBreaks mod, bool shouldBeUniversal)
+		{
+			return "Dodaj przerwy";
+		}
 	}
 }
