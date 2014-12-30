@@ -41,6 +41,8 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="layoutArranger"></param>
 		public MonthViewModel(ICurrentCalendar calendar, ILayoutArranger layoutArranger)
 		{
+			this.DisplayName = "Widok miesiąca";
+
 			this.CurrentCalendar = calendar;
 			this.LayoutArranger = layoutArranger;
 		}

@@ -17,6 +17,12 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		private readonly IReadOnlyList<IActivitySpanViewModel> _AvailableSpans;
 		private IActivitySpanViewModel _SelectedSpan;
 
+		/// <inheritdoc />
+		public string DisplayName
+		{
+			get { return null; }
+		}
+
 		/// <summary>
 		/// Pobiera listę dostępnych przedziałów aktywności.
 		/// </summary>

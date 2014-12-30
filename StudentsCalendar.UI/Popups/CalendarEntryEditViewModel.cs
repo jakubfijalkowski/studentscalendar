@@ -50,6 +50,8 @@ namespace StudentsCalendar.UI.Popups
 		public CalendarEntryEditViewModel(IShell shell, IContentProvider contentProvider, ICalendarsManager calendars,
 			ICurrentCalendar currentCalendar)
 		{
+			this.DisplayName = "Edycja kalendarza";
+
 			this.Shell = shell;
 
 			this.ContentProvider = contentProvider;

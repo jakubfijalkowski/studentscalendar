@@ -35,6 +35,8 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="currentCalendar"></param>
 		public CalendarsViewModel(IShell shell, ICalendarsManager calendars, ICurrentCalendar currentCalendar)
 		{
+			this.DisplayName = "Lista kalendarzy";
+
 			this.Shell = shell;
 			this.Calendars = calendars;
 			this.CurrentCalendar = currentCalendar;

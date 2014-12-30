@@ -20,7 +20,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 		public bool HasNotes { get; set; }
 		public ModifyClassesInfoViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Zmień dane zajęć";
+		}
 
 		public override void Save()
 		{

@@ -26,7 +26,9 @@ namespace StudentsCalendar.UI.Popups
 		/// <param name="dataProvider"></param>
 		public ClassesEditViewModel(IShell shell, IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dataProvider)
 			: base(shell, modifierRenderer, activitySpanRenderer, dataProvider)
-		{ }
+		{
+			this.DisplayName = "Edycja zajęć";
+		}
 
 		/// <inheritdoc />
 		protected override IList<IClassesModifier> DataModifiers

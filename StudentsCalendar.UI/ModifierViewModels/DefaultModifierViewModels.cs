@@ -8,7 +8,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	{
 		public AddTestToClassesViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Dodaj test";
+		}
 	}
 
 	public sealed class CancelClassesViewModel
@@ -16,7 +18,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	{
 		public CancelClassesViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Odwołaj zajęcia";
+		}
 	}
 
 	public sealed class CancelClassesInRangeViewModel
@@ -24,7 +28,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	{
 		public CancelClassesInRangeViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Odwołaj zajęcia";
+		}
 	}
 
 	public sealed class CancelDayViewModel
@@ -32,7 +38,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	{
 		public CancelDayViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Odwołaj zajęcia w całym dniu";
+		}
 	}
 
 	public sealed class CancelWeekViewModel
@@ -40,7 +48,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	{
 		public CancelWeekViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Odwołaj zajęcia w całym tygodniu";
+		}
 	}
 
 	public sealed class ChangeWeekdayViewModel
@@ -48,6 +58,8 @@ namespace StudentsCalendar.UI.ModifierViewModels
 	{
 		public ChangeWeekdayViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Zamień dzień tygodnia";
+		}
 	}
 }

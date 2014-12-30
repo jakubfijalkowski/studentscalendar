@@ -68,6 +68,10 @@ namespace StudentsCalendar.Desktop
 
 			this.ActivateItem(mainScreen);
 			this.ActivateItem(popups);
+
+			this.UpdateName(null, new ActivationProcessedEventArgs { Success = true });
+			this.MainScreen.ActivationProcessed += this.UpdateName;
+			this.PopupsControl.ActivationProcessed += this.UpdateName;
 		}
 
 		/// <summary>
@@ -130,6 +134,24 @@ namespace StudentsCalendar.Desktop
 		{
 			//TODO: consider making it multithreaded and ref-counted
 			return new LoadingDisposable(this);
+		}
+
+		private void UpdateName(object sender, ActivationProcessedEventArgs e)
+		{
+			if (!e.Success)
+			{
+				return;
+			}
+
+			this.DisplayName = "Kalendarz Studencki";
+			if (this.MainScreen.ActiveItem != null && this.MainScreen.ActiveItem.DisplayName != null)
+			{
+				this.DisplayName += " - " + this.MainScreen.ActiveItem.DisplayName;
+			}
+			if (this.PopupsControl.ActiveItem != null && this.PopupsControl.ActiveItem.DisplayName != null)
+			{
+				this.DisplayName += " - " + this.PopupsControl.ActiveItem.DisplayName;
+			}
 		}
 
 		private sealed class LoadingDisposable

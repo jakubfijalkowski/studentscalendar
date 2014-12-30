@@ -17,7 +17,9 @@ namespace StudentsCalendar.UI.ModifierViewModels
 
 		public ModifyLocationInfoViewModel(IDataProvider dataProvider, IActivitySpanEditor editor)
 			: base(dataProvider, editor)
-		{ }
+		{
+			this.DisplayName = "Zmień dane lokalizacji";
+		}
 
 		public override void Save()
 		{

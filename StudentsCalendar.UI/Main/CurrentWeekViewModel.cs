@@ -47,6 +47,8 @@ namespace StudentsCalendar.UI.Main
 		/// <param name="layoutArranger"></param>
 		public CurrentWeekViewModel(ICurrentCalendar calendar, ILayoutArranger layoutArranger)
 		{
+			this.DisplayName = "Widok tygodnia";
+
 			this.CurrentCalendar = calendar;
 			this.LayoutArranger = layoutArranger;
 		}

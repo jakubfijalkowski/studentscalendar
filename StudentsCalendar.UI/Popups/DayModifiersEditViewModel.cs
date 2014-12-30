@@ -29,6 +29,8 @@ namespace StudentsCalendar.UI.Popups
 
 		public DayModifiersEditViewModel(IShell shell, IModifierRenderer modifierRenderer, IActivitySpanRenderer activitySpanRenderer, IDataProvider dataProvider)
 			: base(shell, modifierRenderer, activitySpanRenderer, dataProvider)
-		{ }
+		{
+			this.DisplayName = "Edycja modyfikatorów dziennych";
+		}
 	}
 }
