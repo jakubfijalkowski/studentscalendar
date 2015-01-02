@@ -4,11 +4,14 @@ using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core.Generation
 {
-
 	/// <summary>
-	/// Bazowy interfejs dla generatora dni.
+	/// Generator dni.
 	/// </summary>
+	/// <remarks>
+	/// Pełna dokumentacja jest dostępna w opisie interfejsu <see cref="IGenerator"/>.
+	/// </remarks>
 	public interface IDayGenerator
+		: IGenerator
 	{
 		/// <summary>
 		/// Przetwarza szablon, generując obiekt pośredniczący dla danej daty, generuje

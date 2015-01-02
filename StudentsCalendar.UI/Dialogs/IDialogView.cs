@@ -5,10 +5,6 @@ namespace StudentsCalendar.UI.Dialogs
 	/// <summary>
 	/// "Marker interface" dla widoków klas dialogów.
 	/// </summary>
-	/// <remarks>
-	/// <see cref="IShell"/> powinien ustawiać <c>DataContext</c>, jeśli
-	/// kontrolka udostępnia taką właściwość.
-	/// </remarks>
 	public interface IDialogView
 	{
 		/// <summary>

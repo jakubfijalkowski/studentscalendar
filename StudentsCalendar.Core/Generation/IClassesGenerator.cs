@@ -5,9 +5,13 @@ using StudentsCalendar.Core.Templates;
 namespace StudentsCalendar.Core.Generation
 {
 	/// <summary>
-	/// Bazowy interfejs dla generatora zajęć.
+	/// Generator zajęć.
 	/// </summary>
+	/// <remarks>
+	/// Pełna dokumentacja jest dostępna w opisie interfejsu <see cref="IGenerator"/>.
+	/// </remarks>
 	public interface IClassesGenerator
+		: IGenerator
 	{
 		/// <summary>
 		/// Przetwarza szablon, tworząc obiekt dla konkretnej daty, aplikuje odpowiednie

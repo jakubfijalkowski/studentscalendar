@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 namespace StudentsCalendar.UI
 {
 	/// <summary>
-	/// Główny obiekt aplikacji - obsługuje nawigację w ramach aplikacji.
+	/// Główny obiekt aplikacji okienkowej - obsługuje nawigację w ramach aplikacji.
 	/// </summary>
 	public interface IShell
 	{
@@ -17,10 +17,6 @@ namespace StudentsCalendar.UI
 		/// <summary>
 		/// Wyświetla "wyskakujące okienko".
 		/// </summary>
-		/// <remarks>
-		/// Metoda ta może zarówno podmieniać ekran(Windows Phone) jak i wyświetlać
-		/// ekran, przykrywający główny ekran aplikacji.
-		/// </remarks>
 		/// <typeparam name="TViewModel"></typeparam>
 		/// <returns>Utworzony ViewModel.</returns>
 		TViewModel ShowPopup<TViewModel>()
@@ -28,8 +24,11 @@ namespace StudentsCalendar.UI
 
 		/// <summary>
 		/// Wyświetla okno dialogowe o wskazanym typie modelu.
-		/// Zobacz <see cref="IDialogView"/> po więcej informacji na temat dialogów.
 		/// </summary>
+		/// <remarks>
+		/// Model powinien zostać ustawiony jako kontekst(<c>DataContext</c>) kontrolki
+		/// reprezentującej dialog.
+		/// </remarks>
 		/// <param name="model"></param>
 		/// <returns><see cref="Task"/>, który pozwala poczekać na zamknięcie okna.</returns>
 		Task ShowDialog(object model);

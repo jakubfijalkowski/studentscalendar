@@ -6,7 +6,7 @@ using StudentsCalendar.Core.Templates;
 namespace StudentsCalendar.Core
 {
 	/// <summary>
-	/// Odpowiada za wczytanie i generowanie właściwego kalendarza.
+	/// Odpowiada za wczytanie i generowanie aktywnego kalendarza.
 	/// </summary>
 	public interface ICurrentCalendar
 	{

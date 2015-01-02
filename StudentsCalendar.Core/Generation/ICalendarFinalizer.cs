@@ -4,7 +4,8 @@ using StudentsCalendar.Core.Intermediates;
 namespace StudentsCalendar.Core.Generation
 {
 	/// <summary>
-	/// Konwertuje kalendarz z formy pośredniej do finalnej.
+	/// Konwertuje kalendarz z formy pośredniej do finalnej. Służy tylko do zmapowania
+	/// obiektów pośrednich na obiekty finalne.
 	/// </summary>
 	public interface ICalendarFinalizer
 	{

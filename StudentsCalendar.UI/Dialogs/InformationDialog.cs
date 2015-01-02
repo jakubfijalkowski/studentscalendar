@@ -1,7 +1,7 @@
 ﻿namespace StudentsCalendar.UI.Dialogs
 {
 	/// <summary>
-	/// Dialog informacyjny
+	/// Dialog informacyjny.
 	/// </summary>
 	public sealed class InformationDialog
 	{

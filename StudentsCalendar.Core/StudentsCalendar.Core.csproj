@@ -53,6 +53,7 @@
     <Compile Include="Generation\DefaultClassesGenerator.cs" />
     <Compile Include="Generation\DefaultDayGenerator.cs" />
     <Compile Include="Generation\DefaultWeekGenerator.cs" />
+    <Compile Include="Generation\IGenerator.cs" />
     <Compile Include="Helpers\DateHelper.cs" />
     <Compile Include="Helpers\IsoDayOfWeekExtension.cs" />
     <Compile Include="Finals\FinalCalendar.cs" />

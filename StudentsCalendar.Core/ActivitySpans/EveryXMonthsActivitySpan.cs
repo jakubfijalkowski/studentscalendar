@@ -4,9 +4,13 @@ using NodaTime;
 namespace StudentsCalendar.Core.ActivitySpans
 {
 	/// <summary>
-	/// Przedział aktywności, który pozwala na wykonanie się danej akcji
-	/// tylko co kilka miesięcy.
+	/// Przedział aktywności, który jest aktywny tylko co X miesięcy od określonej daty.
 	/// </summary>
+	/// <remarks>
+	/// Klasa ta oblicza odległość między wskazaną datą i datą bazową(opisana w
+	/// <see cref="IDailyActivitySpan"/>). Datę bazową można nadpisać przez ustawienie
+	/// właściwości <see cref="StartDate"/>.
+	/// </remarks>
 	public sealed class EveryXMonthsActivitySpan
 		: IDailyActivitySpan, IWeeklyActivitySpan
 	{

@@ -7,6 +7,11 @@ namespace StudentsCalendar.Core.ActivitySpans
 	/// Przedział aktywności, który pozwala na wykonanie się danej akcji
 	/// tylko co kilka tygodni.
 	/// </summary>
+	/// <remarks>
+	/// Klasa ta oblicza odległość między wskazaną datą i datą bazową(opisana w
+	/// <see cref="IDailyActivitySpan"/>). Datę bazową można nadpisać przez ustawienie
+	/// właściwości <see cref="StartDate"/>.
+	/// </remarks>
 	public sealed class EveryXWeeksActivitySpan
 		: IDailyActivitySpan, IWeeklyActivitySpan
 	{

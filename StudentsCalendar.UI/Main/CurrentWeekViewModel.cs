@@ -9,7 +9,8 @@ using StudentsCalendar.UI.Services;
 namespace StudentsCalendar.UI.Main
 {
 	/// <summary>
-	/// Tygodniowy rozkład zajęć
+	/// Tygodniowy rozkład zajęć. Wyświetla odpowiednio zaaranżowane dni(pon - nd) z
+	/// aktualnego tygodnia.
 	/// </summary>
 	public sealed class CurrentWeekViewModel
 		: Screen, IViewModel

@@ -12,6 +12,7 @@ namespace StudentsCalendar.Core.Generation
 	/// kalendarz, by uzyskać formę niezmienną. Inaczej rzecz ujmując - spaja wszystkie
 	/// podsytemy aplikacji.
 	/// </remarks>
+	/// <seealso cref="IGenerator"/>
 	public interface IGenerationEngine
 	{
 		/// <summary>

@@ -3,10 +3,12 @@ using StudentsCalendar.Core.Templates;
 
 namespace StudentsCalendar.Core.Generation
 {
-
 	/// <summary>
-	/// Bazowy interfejs dla generatora kalendarza.
+	/// Generator kalendarza.
 	/// </summary>
+	/// <remarks>
+	/// Pełna dokumentacja jest dostępna w opisie interfejsu <see cref="IGenerator"/>.
+	/// </remarks>
 	public interface ICalendarGenerator
 	{
 		/// <summary>
