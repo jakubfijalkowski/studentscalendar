@@ -23,26 +23,26 @@
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Zmodyfikuj dane prowadzącego" />
 
-        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasFirstName" DockPanel.Dock="Left"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="HasFirstName"/>
                 <TextBlock Text="Nowe imie" />
-            </DockPanel>
-            <TextBox Text="{Binding Modifier.FirstName, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasFirstName}" />
+            </StackPanel>
+            <TextBox Text="{Binding Modifier.FirstName, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=HasFirstName}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasLastName" DockPanel.Dock="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="HasLastName"/>
                 <TextBlock Text="Nowe nazwisko" />
-            </DockPanel>
-            <TextBox Text="{Binding Modifier.LastName, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasLastName}" />
+            </StackPanel>
+            <TextBox Text="{Binding Modifier.LastName, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=HasLastName}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasPhoneNumber" DockPanel.Dock="Left" />
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="HasPhoneNumber" />
                 <TextBlock Text="Nowe dane kontaktowe" />
-            </DockPanel>
-            <TextBox Text="{Binding Modifier.PhoneNumber, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasPhoneNumber}" />
+            </StackPanel>
+            <TextBox Text="{Binding Modifier.PhoneNumber, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=HasPhoneNumber}" />
 
-        </DockPanel>
+        </StackPanel>
 
         <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
             <ContentControl x:Name="ActivitySpan" />

@@ -7,7 +7,8 @@
     </UserControl.Resources>
     <StackPanel Orientation="Vertical" HorizontalAlignment="Left">
         <TextBlock>Wybierz daty, w które modyfikator nie będzie aktywny.</TextBlock>
-        <TextBlock>przytrzymaj Control, by zaznaczyć kilka dat lub Shift, by zaznaczyć przedział.</TextBlock>
-        <Calendar x:Name="SelectedDates" DisplayMode="Month" SelectionMode="MultipleRange" SelectedDatesChanged="OnSelectedDatesChanged" />
+        <TextBlock>Przytrzymaj <Italic>Control</Italic>, by zaznaczyć kilka dat lub <Italic>Shift</Italic>, by zaznaczyć przedział.</TextBlock>
+        <Calendar x:Name="SelectedDates" DisplayMode="Month" SelectionMode="MultipleRange" SelectedDatesChanged="OnSelectedDatesChanged"
+                  HorizontalAlignment="Left" Margin="15,5" />
     </StackPanel>
 </ctrl:BaseCalendarView>

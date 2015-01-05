@@ -23,26 +23,26 @@
 
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Zmodyfikuj informacje o lokalizacji" />
 
-        <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasName" DockPanel.Dock="Left"/>
+        <StackPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="HasName"/>
                 <TextBlock Text="Nowa nazwa" />
-            </DockPanel>
-            <TextBox Text="{Binding Modifier.Name, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasName}" />
+            </StackPanel>
+            <TextBox Text="{Binding Modifier.Name, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=HasName}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasAddress" DockPanel.Dock="Left"/>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="HasAddress"/>
                 <TextBlock Text="Nowy adres" />
-            </DockPanel>
-            <TextBox Text="{Binding Modifier.Address, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasAddress}" />
+            </StackPanel>
+            <TextBox Text="{Binding Modifier.Address, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=HasAddress}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasRoom" DockPanel.Dock="Left" />
+            <StackPanel Orientation="Horizontal">
+                <CheckBox x:Name="HasRoom" />
                 <TextBlock Text="Nowy pokój" />
-            </DockPanel>
-            <TextBox Text="{Binding Modifier.Room, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasRoom}" />
+            </StackPanel>
+            <TextBox Text="{Binding Modifier.Room, Mode=TwoWay}" IsEnabled="{Binding IsChecked, ElementName=HasRoom}" />
 
-        </DockPanel>
+        </StackPanel>
 
         <Grid Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch">
             <ContentControl x:Name="ActivitySpan" />

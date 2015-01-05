@@ -28,40 +28,40 @@
         <TextBlock Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource ClassesModifierEditHeaderStyle}" Text="Zmodyfikuj dane zajęć" />
 
         <DockPanel Grid.Row="1" Grid.RowSpan="2" Grid.Column="0" HorizontalAlignment="Stretch">
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasStartTime" DockPanel.Dock="Left"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <CheckBox x:Name="HasStartTime"/>
                 <TextBlock Text="Nowa godzina rozpoczęcia"/>
-            </DockPanel>
+            </StackPanel>
             <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding Modifier.StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
                                 Maximum="{Binding Value, ElementName=EndTime}"
                                 ClipValueToMinMax="True" Format="ShortTime" DockPanel.Dock="Top"
                                 IsEnabled="{Binding IsChecked, ElementName=HasStartTime}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasEndTime" DockPanel.Dock="Left"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <CheckBox x:Name="HasEndTime"/>
                 <TextBlock Text="Nowa godzina zakończenia" />
-            </DockPanel>
+            </StackPanel>
             <xcd:DateTimeUpDown x:Name="EndTime" Value="{Binding Modifier.EndTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
                                 Minimum="{Binding Value, ElementName=StartTime}"
                                 ClipValueToMinMax="True" Format="ShortTime" DockPanel.Dock="Top"
                                 IsEnabled="{Binding IsChecked, ElementName=HasEndTime}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasShortName" DockPanel.Dock="Left"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <CheckBox x:Name="HasShortName"/>
                 <TextBlock Text="Nowa krótka nazwa" />
-            </DockPanel>
+            </StackPanel>
             <TextBox Text="{Binding Modifier.ShortName, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasShortName}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasFullName" DockPanel.Dock="Left"/>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <CheckBox x:Name="HasFullName"/>
                 <TextBlock Text="Nowa pełna nazwa" />
-            </DockPanel>
+            </StackPanel>
             <TextBox Text="{Binding Modifier.FullName, Mode=TwoWay}" DockPanel.Dock="Top" IsEnabled="{Binding IsChecked, ElementName=HasFullName}" />
 
-            <DockPanel DockPanel.Dock="Top">
-                <CheckBox x:Name="HasNotes" DockPanel.Dock="Left" />
-                <TextBlock Text="Nowa krótka nazwa" />
-            </DockPanel>
+            <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+                <CheckBox x:Name="HasNotes" />
+                <TextBlock Text="Nowe notatki" />
+            </StackPanel>
             <TextBox Text="{Binding Modifier.ShortName, Mode=TwoWay}" AcceptsReturn="True" IsEnabled="{Binding IsChecked, ElementName=HasNotes}" />
 
         </DockPanel>
