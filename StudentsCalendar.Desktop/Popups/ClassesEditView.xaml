@@ -36,9 +36,25 @@
                             Minimum="{Binding Value, ElementName=StartTime}"
                             ClipValueToMinMax="True" Format="ShortTime" />
             <TextBlock Text="Krótka nazwa" />
-            <TextBox Text="{Binding ShortName, Mode=TwoWay}" />
+            <TextBox x:Name="ShortName">
+                <TextBox.Text>
+                    <Binding Path="ShortName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <help:NotEmptyRule AllowWhitespaces="False" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Text="Pełna nazwa" />
-            <TextBox Text="{Binding FullName, Mode=TwoWay}" />
+            <TextBox x:Name="FullName">
+                <TextBox.Text>
+                    <Binding Path="FullName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <help:NotEmptyRule AllowWhitespaces="False" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
             <TextBlock Text="Imię prowadzącego" />
             <TextBox Text="{Binding Lecturer.FirstName, Mode=TwoWay}" />
             <TextBlock Text="Nazwisko prowadzącego" />

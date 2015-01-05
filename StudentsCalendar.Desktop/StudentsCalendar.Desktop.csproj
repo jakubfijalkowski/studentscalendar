@@ -154,6 +154,7 @@
     <Compile Include="FileTarget.cs" />
     <Compile Include="Helpers\BooleanExtensions.cs" />
     <Compile Include="Helpers\MarkupFixes.cs" />
+    <Compile Include="Helpers\NotEmptyRule.cs" />
     <Compile Include="Helpers\TypeExtensions.cs" />
     <Compile Include="MainScreenView.xaml.cs">
       <DependentUpon>MainScreenView.xaml</DependentUpon>

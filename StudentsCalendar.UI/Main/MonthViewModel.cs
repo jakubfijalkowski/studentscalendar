@@ -54,7 +54,7 @@ namespace StudentsCalendar.UI.Main
 			this.IsDataValid = true;
 			do
 			{
-				if (this.CurrentCalendar == null)
+				if (this.CurrentCalendar.Calendar == null)
 				{
 					this.IsDataValid = false;
 					break;
