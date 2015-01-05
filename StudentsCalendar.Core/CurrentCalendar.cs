@@ -1,6 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using StudentsCalendar.Core.Finals;
 using StudentsCalendar.Core.Generation;
+using StudentsCalendar.Core.Logging;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.Core.Templates;
 
@@ -14,6 +16,7 @@ namespace StudentsCalendar.Core
 	{
 		private readonly IContentProvider ContentProvider;
 		private readonly IGenerationEngine GenerationEngine;
+		private readonly ILogger Logger;
 
 		/// <inheritdoc />
 		public CalendarTemplate Template { get; private set; }
@@ -32,10 +35,11 @@ namespace StudentsCalendar.Core
 		/// </summary>
 		/// <param name="contentProvider"></param>
 		/// <param name="generationEngine"></param>
-		public CurrentCalendar(IContentProvider contentProvider, IGenerationEngine generationEngine)
+		public CurrentCalendar(IContentProvider contentProvider, IGenerationEngine generationEngine, ILogger logger)
 		{
 			this.ContentProvider = contentProvider;
 			this.GenerationEngine = generationEngine;
+			this.Logger = logger;
 		}
 
 		/// <inheritdoc />
@@ -56,8 +60,16 @@ namespace StudentsCalendar.Core
 
 		private async Task LoadAndGenerate(string calendarId)
 		{
-			this.Template = await this.ContentProvider.LoadTemplate(calendarId);
-			this.Results = await Task.Run(() => this.GenerationEngine.Generate(this.Template));
+			try
+			{
+				this.Template = await this.ContentProvider.LoadTemplate(calendarId);
+				this.Results = await Task.Run(() => this.GenerationEngine.Generate(this.Template));
+			}
+			catch (Exception ex)
+			{
+				this.Logger.Error(ex, "Cannot update calendar {0} in CurrentCalendar.", calendarId);
+				throw;
+			}
 		}
 	}
 }

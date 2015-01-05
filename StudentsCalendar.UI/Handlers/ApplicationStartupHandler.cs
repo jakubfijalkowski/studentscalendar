@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Caliburn.Micro;
 using StudentsCalendar.Core;
+using StudentsCalendar.Core.Logging;
 using StudentsCalendar.UI.Dialogs;
 using StudentsCalendar.UI.Events;
 
@@ -17,13 +18,15 @@ namespace StudentsCalendar.UI.Handlers
 		private readonly ICalendarsManager Calendars;
 		private readonly ICurrentCalendar CurrentCalendar;
 		private readonly IShell Shell;
+		private readonly ILogger Logger;
 
 		public ApplicationStartupHandler(ICalendarsManager calendars, ICurrentCalendar currentCalendar,
-			IShell shell)
+			IShell shell, ILogger logger)
 		{
 			this.Calendars = calendars;
 			this.CurrentCalendar = currentCalendar;
 			this.Shell = shell;
+			this.Logger = logger;
 		}
 
 		public async void Handle(ApplicationStartedEvent message)
@@ -49,8 +52,10 @@ namespace StudentsCalendar.UI.Handlers
 				{
 					await this.Calendars.Initialize();
 				}
-				catch
+				catch (Exception ex)
 				{
+					this.Logger.Error(ex, "Cannot initialize ICurrentCalendar.");
+
 					dialog = new ErrorDialog
 					{
 						Title = "Wystąpił błąd",
@@ -62,6 +67,8 @@ namespace StudentsCalendar.UI.Handlers
 
 				if (this.Calendars.ActiveEntry == null)
 				{
+					this.Logger.Error("There is no active calendar.");
+
 					dialog = new InformationDialog
 					{
 						Title = "Brak aktywnego kalendarza",
@@ -73,6 +80,8 @@ namespace StudentsCalendar.UI.Handlers
 
 				if (!this.IsCurrentCalendarValid())
 				{
+					this.Logger.Error("Current calendar is outdated.");
+
 					dialog = new InformationDialog
 					{
 						Title = "Kalendarz jest nieaktualny",
@@ -86,8 +95,10 @@ namespace StudentsCalendar.UI.Handlers
 				{
 					await this.CurrentCalendar.MakeActive(this.Calendars.ActiveEntry.Id);
 				}
-				catch
+				catch (Exception ex)
 				{
+					this.Logger.Error(ex, "Cannot make current calendar active.");
+
 					dialog = new ErrorDialog
 					{
 						Title = "Wystąpił błąd",

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using StudentsCalendar.Core.Logging;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.Core.Templates;
 
@@ -15,6 +16,7 @@ namespace StudentsCalendar.Core
 		: ICalendarsManager
 	{
 		private readonly IContentProvider ContentProvider;
+		private readonly ILogger Logger;
 
 		private ObservableCollection<CalendarEntry> _Entries;
 
@@ -33,9 +35,10 @@ namespace StudentsCalendar.Core
 		/// Inicjalizuje obiekt niezbędnymi zależnościami.
 		/// </summary>
 		/// <param name="contentProvider"></param>
-		public CalendarsManager(IContentProvider contentProvider)
+		public CalendarsManager(IContentProvider contentProvider, ILogger logger)
 		{
 			this.ContentProvider = contentProvider;
+			this.Logger = logger;
 		}
 
 		/// <inheritdoc />
@@ -51,6 +54,11 @@ namespace StudentsCalendar.Core
 			try
 			{
 				loadedEntries = await this.ContentProvider.LoadCalendars();
+			}
+			catch (Exception ex)
+			{
+				this.Logger.Error(ex, "Cannot load calendars in IContentProvider.");
+				throw;
 			}
 			finally
 			{
@@ -74,8 +82,16 @@ namespace StudentsCalendar.Core
 			entry.StartDate = template.StartDate;
 			entry.EndDate = template.EndDate;
 
-			await this.ContentProvider.StoreCalendar(template);
-			await this.ContentProvider.StoreCalendars(this.Entries);
+			try
+			{
+				await this.ContentProvider.StoreCalendar(template);
+				await this.ContentProvider.StoreCalendars(this.Entries);
+			}
+			catch (Exception ex)
+			{
+				this.Logger.Error(ex, "Cannot save changes to the calendar {0}.", template.Id);
+				throw;
+			}
 		}
 
 		/// <inheritdoc />
@@ -89,11 +105,19 @@ namespace StudentsCalendar.Core
 			// Try to remove the calendar from backing store first,
 			// if it fails - the list will stay intact.
 
-			var newList = this.Entries.Where(e => e != entry);
-			await this.ContentProvider.StoreCalendars(newList);
-			this._Entries.Remove(entry);
+			try
+			{
+				var newList = this.Entries.Where(e => e != entry);
+				await this.ContentProvider.StoreCalendars(newList);
+				this._Entries.Remove(entry);
 
-			this.ContentProvider.DeleteTemplate(entry.Id);
+				this.ContentProvider.DeleteTemplate(entry.Id);
+			}
+			catch (Exception ex)
+			{
+				this.Logger.Error(ex, "Cannot delete calendar {0}.", entry.Id);
+				throw;
+			}
 		}
 
 		/// <inheritdoc />
@@ -111,8 +135,10 @@ namespace StudentsCalendar.Core
 			{
 				await this.ContentProvider.StoreCalendars(this.Entries);
 			}
-			catch
+			catch (Exception ex)
 			{
+				this.Logger.Error(ex, "Cannot make calendar {0} active.", entry.Id);
+
 				entry.IsActive = false;
 				old.IsActive = true;
 				this.ActiveEntry = old;
