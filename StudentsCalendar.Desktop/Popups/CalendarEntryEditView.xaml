@@ -23,12 +23,11 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="250" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="250" />
-            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
@@ -45,7 +44,7 @@
         <Button x:Name="EditWeekModifiers" Grid.Column="6" Style="{StaticResource LinkButton}" Content="modyfikatory tygodnia" />
         <Button x:Name="EditCalendarModifiers" Grid.Column="7" Style="{StaticResource LinkButton}" Content="modyfikatory kalendarza" />
         
-        <Grid Grid.Row="1" Grid.ColumnSpan="9" Margin="5">
+        <Grid Grid.Row="1" Grid.ColumnSpan="8" Margin="5">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="{StaticResource EditSlotGridWidth}" />
                 <ColumnDefinition Width="*" />
@@ -104,7 +103,7 @@
             </ScrollViewer>
         </Grid>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="9" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="8" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
             <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
         </StackPanel>
