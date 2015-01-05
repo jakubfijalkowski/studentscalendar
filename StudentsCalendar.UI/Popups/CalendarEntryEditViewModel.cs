@@ -15,6 +15,10 @@ namespace StudentsCalendar.UI.Popups
 	public sealed class CalendarEntryEditViewModel
 		: PopupBaseViewModel<bool>, IViewModel
 	{
+		private readonly IReadOnlyList<LocalTime> _TimeSlots = Enumerable.Range(0, 24)
+			.Select(h => new LocalTime(h, 0))
+			.ToList();
+
 		private readonly IShell Shell;
 
 		private readonly IContentProvider ContentProvider;
@@ -35,7 +39,10 @@ namespace StudentsCalendar.UI.Popups
 		/// <summary>
 		/// Pobiera listę slotów wyświetlanych na ekranie.
 		/// </summary>
-		public IReadOnlyList<LocalTime> TimeSlots { get; private set; }
+		public IReadOnlyList<LocalTime> TimeSlots
+		{
+			get { return this._TimeSlots; }
+		}
 
 		/// <summary>
 		/// Pobiera listę slotów do edycji.
@@ -66,22 +73,25 @@ namespace StudentsCalendar.UI.Popups
 		public async void UseCalendar(string calendarId)
 		{
 			this.CalendarId = calendarId;
-			if (await this.LoadTemplate())
+			using (this.Shell.ShowLoadingScreen())
 			{
-				this.BuildEditTemplate();
+				if (await this.LoadTemplate())
+				{
+					await this.BuildEditTemplate();
+				}
 			}
 		}
 
 		/// <summary>
 		/// Edytuje nowy kalendarz.
 		/// </summary>
-		public void UseNewCalendar()
+		public async void UseNewCalendar()
 		{
 			this.EditableObject = new EditableObject<CalendarTemplate>(EmptyCalendar.Create());
 			this.CalendarId = this.EditableObject.Data.Id;
 
 			this.NotifyOfPropertyChange(() => this.Template);
-			this.BuildEditTemplate();
+			await this.BuildEditTemplate();
 		}
 
 		/// <summary>
@@ -220,27 +230,26 @@ namespace StudentsCalendar.UI.Popups
 			}
 		}
 
-		private void BuildEditTemplate()
+		private async Task BuildEditTemplate()
 		{
-			this.TimeSlots = Enumerable
-				.Range(0, 24)
-				.Select(h => new LocalTime(h, 0))
-				.ToList();
-			this.EditSlots =
-				(from i in Enumerable.Range(0, 24 * 7)
-				 let day = (i % 7).ToDayOfWeek()
-				 let hour = i / 7
-				 select new CalendarEditSlot(day, new LocalTime(hour, 0))
-				).ToList();
-
-			foreach (var day in this.Template.WeekTemplate.Days)
+			await Task.Run(() =>
 			{
-				foreach (var classes in day.Classes)
+				this.EditSlots =
+					(from i in Enumerable.Range(0, 24 * 7)
+					 let day = (i % 7).ToDayOfWeek()
+					 let hour = i / 7
+					 select new CalendarEditSlot(day, new LocalTime(hour, 0))
+					).ToList();
+
+				foreach (var day in this.Template.WeekTemplate.Days)
 				{
-					var idx = SlotToIndex(day.DayOfWeek, classes);
-					this.EditSlots[idx].Templates.Add(classes);
+					foreach (var classes in day.Classes)
+					{
+						var idx = SlotToIndex(day.DayOfWeek, classes);
+						this.EditSlots[idx].Templates.Add(classes);
+					}
 				}
-			}
+			});
 
 			this.NotifyOfPropertyChange(() => this.EditSlots);
 		}
