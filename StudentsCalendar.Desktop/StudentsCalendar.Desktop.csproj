@@ -150,6 +150,7 @@
     <Compile Include="Dialogs\ErrorDialogView.xaml.cs">
       <DependentUpon>ErrorDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="FileTarget.cs" />
     <Compile Include="Helpers\BooleanExtensions.cs" />
     <Compile Include="Helpers\MarkupFixes.cs" />
     <Compile Include="Helpers\TypeExtensions.cs" />

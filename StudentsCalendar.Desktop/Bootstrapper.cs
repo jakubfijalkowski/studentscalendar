@@ -10,6 +10,7 @@ using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI;
 using StudentsCalendar.UI.ActivitySpanViewModels;
 using StudentsCalendar.UI.Dialogs;
+using StudentsCalendar.UI.Logging;
 using StudentsCalendar.UI.ModifierViewModels;
 
 namespace StudentsCalendar.Desktop
@@ -75,11 +76,21 @@ namespace StudentsCalendar.Desktop
 		private void BuildContainer()
 		{
 			var builder = new ContainerBuilder();
+			this.InitializeLogger(builder);
 			this.RegisterCore(builder);
 			this.RegisterInfrastructure(builder);
 			this.RegisterHandlers(builder);
 			this.RegisterViewsAndViewModels(builder);
 			this.Container = builder.Build();
+		}
+
+		private void InitializeLogger(ContainerBuilder builder)
+		{
+			var config = new LoggerConfiguration();
+			config.Targets.Add(new FileTarget());
+
+			builder.RegisterInstance(config);
+			builder.RegisterType<Logger>().As<ILogger>();
 		}
 
 		private void RegisterInfrastructure(ContainerBuilder builder)
@@ -177,7 +188,7 @@ namespace StudentsCalendar.Desktop
 
 		private static Type GetKeyOfActivitySpanViewModel(Type t)
 		{
-			if(t.BaseType.IsGenericType && t.BaseType.GetGenericTypeDefinition() == typeof(BaseActivitySpanViewModel<>))
+			if (t.BaseType.IsGenericType && t.BaseType.GetGenericTypeDefinition() == typeof(BaseActivitySpanViewModel<>))
 			{
 				return t.BaseType;
 			}

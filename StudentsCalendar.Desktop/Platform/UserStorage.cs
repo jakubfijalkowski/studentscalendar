@@ -11,7 +11,7 @@ namespace StudentsCalendar.Desktop.Platform
 	sealed class UserStorage
 		: IStorage
 	{
-		private readonly string DataPath = Path.Combine(
+		public static readonly string DataPath = Path.Combine(
 			Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData),
 			"StudentsCalendar");
 
