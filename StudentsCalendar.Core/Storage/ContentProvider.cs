@@ -37,7 +37,7 @@ namespace StudentsCalendar.Core.Storage
 		/// <inheritdoc />
 		public async Task<IEnumerable<CalendarEntry>> LoadCalendars()
 		{
-			using (var stream = await this.Storage.OpenOrCreate(CalendarsEntryId))
+			var stream = await this.Storage.OpenOrCreate(CalendarsEntryId);
 			using (var reader = new JsonTextReader(new StreamReader(stream)))
 			{
 				return await Task.Run(() => this.Serializer.Deserialize<List<CalendarEntry>>(reader));
@@ -49,7 +49,7 @@ namespace StudentsCalendar.Core.Storage
 		{
 			try
 			{
-				using (var stream = await this.Storage.OpenRead(string.Format(TemplateEntryIdFormat, calendarId)))
+				var stream = await this.Storage.OpenRead(string.Format(TemplateEntryIdFormat, calendarId));
 				using (var reader = new JsonTextReader(new StreamReader(stream)))
 				{
 					return await Task.Run(() => this.Serializer.Deserialize<CalendarTemplate>(reader));
@@ -64,7 +64,7 @@ namespace StudentsCalendar.Core.Storage
 		/// <inheritdoc />
 		public async Task StoreCalendars(IEnumerable<CalendarEntry> entries)
 		{
-			using (var stream = await this.Storage.OpenWrite(CalendarsEntryId))
+			var stream = await this.Storage.OpenWrite(CalendarsEntryId);
 			using (var writer = new JsonTextWriter(new StreamWriter(stream)))
 			{
 				await Task.Run(() => this.Serializer.Serialize(writer, entries));
@@ -74,7 +74,7 @@ namespace StudentsCalendar.Core.Storage
 		/// <inheritdoc />
 		public async Task StoreCalendar(CalendarTemplate template)
 		{
-			using (var stream = await this.Storage.OpenWrite(string.Format(TemplateEntryIdFormat, template.Id)))
+			var stream = await this.Storage.OpenWrite(string.Format(TemplateEntryIdFormat, template.Id));
 			using (var writer = new JsonTextWriter(new StreamWriter(stream)))
 			{
 				await Task.Run(() => this.Serializer.Serialize(writer, template));

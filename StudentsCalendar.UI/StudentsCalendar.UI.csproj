@@ -32,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -56,6 +57,7 @@
     <Compile Include="Dialogs\InformationDialog.cs" />
     <Compile Include="EditableObject.cs" />
     <Compile Include="Events\ApplicationStartedEvent.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />
     <Compile Include="IViewModel.cs" />
     <Compile Include="Main\CalendarsViewModel.cs" />

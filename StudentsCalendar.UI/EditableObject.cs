@@ -32,12 +32,13 @@ namespace StudentsCalendar.UI
 			get { return this._Data; }
 		}
 
+		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2202:Do not dispose objects multiple times")]
 		public EditableObject(TData obj)
 		{
 			this._Data = obj;
 			using (var stream = new MemoryStream())
 			{
-				using (var writer = new BsonWriter(stream))
+				using (var writer = new BsonWriter(stream) { CloseOutput = false })
 				{
 					this.Serializer.Serialize(writer, obj);
 				}
@@ -50,8 +51,7 @@ namespace StudentsCalendar.UI
 		/// </summary>
 		public void Rollback()
 		{
-			using (var stream = new MemoryStream(this.OriginalData))
-			using (var reader = new BsonReader(stream))
+			using (var reader = new BsonReader(new MemoryStream(this.OriginalData)))
 			{
 				this.Serializer.Populate(reader, this.Data);
 			}
