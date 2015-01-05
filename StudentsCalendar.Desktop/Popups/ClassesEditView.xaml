@@ -19,70 +19,73 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="300" />
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical" HorizontalAlignment="Stretch"
                     DataContext="{Binding Data}">
-            <TextBlock Text="Godzina rozpoczęcia" />
-            <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
-                            Maximum="{Binding Value, ElementName=EndTime}"
-                            ClipValueToMinMax="True" Format="ShortTime" />
-            <TextBlock Text="Godzina zakończenia" />
-            <xcd:DateTimeUpDown x:Name="EndTime" Value="{Binding EndTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
-                            Minimum="{Binding Value, ElementName=StartTime}"
-                            ClipValueToMinMax="True" Format="ShortTime" />
-            <TextBlock Text="Krótka nazwa" />
-            <TextBox x:Name="ShortName">
-                <TextBox.Text>
-                    <Binding Path="ShortName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <help:NotEmptyRule AllowWhitespaces="False" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="Pełna nazwa" />
-            <TextBox x:Name="FullName">
-                <TextBox.Text>
-                    <Binding Path="FullName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
-                        <Binding.ValidationRules>
-                            <help:NotEmptyRule AllowWhitespaces="False" />
-                        </Binding.ValidationRules>
-                    </Binding>
-                </TextBox.Text>
-            </TextBox>
-            <TextBlock Text="Imię prowadzącego" />
-            <TextBox Text="{Binding Lecturer.FirstName, Mode=TwoWay}" />
-            <TextBlock Text="Nazwisko prowadzącego" />
-            <TextBox Text="{Binding Lecturer.LastName, Mode=TwoWay}" />
-            <TextBlock Text="Kontakt do prowadzącego" />
-            <TextBox Text="{Binding Lecturer.PhoneNumber, Mode=TwoWay}" />
-            <TextBlock Text="Lokalizacja" />
-            <TextBox Text="{Binding Location.Name, Mode=TwoWay}" />
-            <TextBlock Text="Pokój" />
-            <TextBox Text="{Binding Location.Room, Mode=TwoWay}" />
-            <TextBlock Text="Adres" />
-            <TextBox Text="{Binding Location.Address, Mode=TwoWay}" />
-        </StackPanel>
+                    <TextBlock Text="Godzina rozpoczęcia" />
+                    <xcd:DateTimeUpDown x:Name="StartTime" Value="{Binding StartTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
+                                        Maximum="{Binding Value, ElementName=EndTime}" ClipValueToMinMax="True" Format="ShortTime" />
+                    <TextBlock Text="Godzina zakończenia" />
+                    <xcd:DateTimeUpDown x:Name="EndTime" Value="{Binding EndTime, Converter={StaticResource NodaToBcl}, Mode=TwoWay}"
+                                        Minimum="{Binding Value, ElementName=StartTime}" ClipValueToMinMax="True" Format="ShortTime" />
+                    <TextBlock Text="Krótka nazwa" />
+                    <TextBox x:Name="ShortName">
+                        <TextBox.Text>
+                            <Binding Path="ShortName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <help:NotEmptyRule AllowWhitespaces="False" ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBlock Text="Pełna nazwa" />
+                    <TextBox x:Name="FullName">
+                        <TextBox.Text>
+                            <Binding Path="FullName" UpdateSourceTrigger="PropertyChanged" NotifyOnValidationError="True">
+                                <Binding.ValidationRules>
+                                    <help:NotEmptyRule AllowWhitespaces="False" ValidatesOnTargetUpdated="True" />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBlock Text="Imię prowadzącego" />
+                    <TextBox Text="{Binding Lecturer.FirstName, Mode=TwoWay}" />
+                    <TextBlock Text="Nazwisko prowadzącego" />
+                    <TextBox Text="{Binding Lecturer.LastName, Mode=TwoWay}" />
+                    <TextBlock Text="Kontakt do prowadzącego" />
+                    <TextBox Text="{Binding Lecturer.PhoneNumber, Mode=TwoWay}" />
+                    <TextBlock Text="Lokalizacja" />
+                    <TextBox Text="{Binding Location.Name, Mode=TwoWay}" />
+                    <TextBlock Text="Pokój" />
+                    <TextBox Text="{Binding Location.Room, Mode=TwoWay}" />
+                    <TextBlock Text="Adres" />
+                    <TextBox Text="{Binding Location.Address, Mode=TwoWay}" />
+                </StackPanel>
 
-        <Grid Grid.Row="0" Grid.Column="1" HorizontalAlignment="Stretch">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+                <Grid Grid.Column="1" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-            <TextBlock Text="Notatki" />
-            <TextBox Grid.Row="1" Text="{Binding Data.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
-        </Grid>
+                    <TextBlock Text="Notatki" />
+                    <TextBox Grid.Row="1" Text="{Binding Data.Notes, Mode=TwoWay}" AcceptsReturn="True" TextWrapping="Wrap" />
+                </Grid>
 
-        <ctrl:ModifierList Grid.Row="0" Grid.Column="3"
-                           cal:Message.Attach="[Event EditModifier] = [Action EditModifier($eventArgs)]; [Event DeleteModifier] = [Action DeleteModifier($eventArgs)]; [Event AddModifier] = [Action AddModifier($eventArgs)]" />
+                <ctrl:ModifierList Grid.Column="3"
+                                   cal:Message.Attach="[Event EditModifier] = [Action EditModifier($eventArgs)]; [Event DeleteModifier] = [Action DeleteModifier($eventArgs)]; [Event AddModifier] = [Action AddModifier($eventArgs)]" />
+            </Grid>
+        </ScrollViewer>
 
-        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="1"  Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="Save" Content="Zapisz" IsDefault="True" />
             <Button x:Name="Cancel" Content="Anuluj" IsCancel="True" />
         </StackPanel>

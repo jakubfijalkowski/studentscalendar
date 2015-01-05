@@ -14,7 +14,8 @@ namespace StudentsCalendar.Desktop.Popups
 		{
 			InitializeComponent();
 
-			// Lekki hak, ale tego się nie da normalnie w WPF'ie zrobić...
+			// Lekki hak, ale tego się nie da normalnie w WPF'ie zrobić,
+			// Nie jest to też zgodne z MVVM, ale cóż...
 			Validation.AddErrorHandler(this.ShortName, this.OnDataError);
 			Validation.AddErrorHandler(this.FullName, this.OnDataError);
 		}

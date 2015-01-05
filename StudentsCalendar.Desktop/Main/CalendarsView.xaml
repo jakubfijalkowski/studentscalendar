@@ -15,62 +15,64 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Style="{StaticResource CalendarsHeaderStyle}" Text="Twoje kalendarze:" />
-        <ItemsControl Grid.Row="1" ItemsSource="{Binding Entries}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <Grid Margin="10">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Name}" Style="{StaticResource CalendarNameStyle}" />
-                                <TextBlock Style="{StaticResource CalendarDescriptionStyle}">
-                                    <TextBlock.Text>
-                                        <help:MultiBindingWithCurrentCulture StringFormat="aktywny od {0:D} do {1:D}">
-                                            <Binding Path="StartDate" />
-                                            <Binding Path="EndDate" />
-                                        </help:MultiBindingWithCurrentCulture>
-                                    </TextBlock.Text>
-                                </TextBlock>
-                            </StackPanel>
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
-                                <Button cal:Message.Attach="EditEntry($dataContext)" Style="{StaticResource CalendarButtonStyle}">
-                                    <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                                        <Rectangle.OpacityMask>
-                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                </Button>
-                                <Button cal:Message.Attach="DeleteEntry($dataContext)" Style="{StaticResource CalendarButtonStyle}"
-                                        IsEnabled="{Binding IsActive, Converter={StaticResource BoolInverse}}">
-                                    <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                                        <Rectangle.OpacityMask>
-                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                </Button>
-                                <Button cal:Message.Attach="MakeActive($dataContext)" Style="{StaticResource ActivateCalendarButtonStyle}"
-                                        IsEnabled="{Binding IsActive, Converter={StaticResource BoolInverse}}">
-                                    <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                                        <Rectangle.OpacityMask>
-                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_heart}" />
-                                        </Rectangle.OpacityMask>
-                                    </Rectangle>
-                                </Button>
-                            </StackPanel>
-                        </Grid>
-                        <Separator Style="{StaticResource CalendarSeparatorStyle}" />
-                    </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <StackPanel Orientation="Vertical" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-        </ItemsControl>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <ItemsControl ItemsSource="{Binding Entries}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" Style="{StaticResource CalendarNameStyle}" />
+                                    <TextBlock Style="{StaticResource CalendarDescriptionStyle}">
+                                        <TextBlock.Text>
+                                            <help:MultiBindingWithCurrentCulture StringFormat="aktywny od {0:D} do {1:D}">
+                                                <Binding Path="StartDate" />
+                                                <Binding Path="EndDate" />
+                                            </help:MultiBindingWithCurrentCulture>
+                                        </TextBlock.Text>
+                                    </TextBlock>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center">
+                                    <Button cal:Message.Attach="EditEntry($dataContext)" Style="{StaticResource CalendarButtonStyle}">
+                                        <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_edit}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                    <Button cal:Message.Attach="DeleteEntry($dataContext)" Style="{StaticResource CalendarButtonStyle}"
+                                            IsEnabled="{Binding IsActive, Converter={StaticResource BoolInverse}}">
+                                        <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                    <Button cal:Message.Attach="MakeActive($dataContext)" Style="{StaticResource ActivateCalendarButtonStyle}"
+                                            IsEnabled="{Binding IsActive, Converter={StaticResource BoolInverse}}">
+                                        <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                                            <Rectangle.OpacityMask>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_heart}" />
+                                            </Rectangle.OpacityMask>
+                                        </Rectangle>
+                                    </Button>
+                                </StackPanel>
+                            </Grid>
+                            <Separator Style="{StaticResource CalendarSeparatorStyle}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
+        </ScrollViewer>
         <Button x:Name="AddNewCalendar" Grid.Row="2" HorizontalAlignment="Right" Style="{StaticResource CalendarButtonStyle}" Margin="10">
             <Rectangle Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                 <Rectangle.OpacityMask>
