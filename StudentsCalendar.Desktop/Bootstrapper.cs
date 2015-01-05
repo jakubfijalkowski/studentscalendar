@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Threading;
 using Autofac;
 using Caliburn.Micro;
 using StudentsCalendar.Core;
@@ -22,6 +23,7 @@ namespace StudentsCalendar.Desktop
 		: BootstrapperBase
 	{
 		private IContainer Container;
+		private ILogger Logger;
 
 		public Bootstrapper()
 		{
@@ -32,6 +34,10 @@ namespace StudentsCalendar.Desktop
 		protected override void Configure()
 		{
 			this.BuildContainer();
+
+			this.Logger = this.Container.Resolve<ILogger>();
+			AppDomain.CurrentDomain.UnhandledException += this.OnAppDomainUnhandledException;
+
 			this.ConfigureConventions();
 		}
 
@@ -66,6 +72,7 @@ namespace StudentsCalendar.Desktop
 		{
 			this.Container.InjectProperties(instance);
 		}
+
 		private void ConfigureConventions()
 		{
 			ViewLocator.AddSubNamespaceMapping(".UI.ModifierViewModels", ".Desktop.ModifierViews");
@@ -193,6 +200,17 @@ namespace StudentsCalendar.Desktop
 				return t.BaseType;
 			}
 			return t.BaseType.BaseType;
+		}
+
+
+		protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+		{
+			this.Logger.Fatal(e.Exception, "Unhandled exception was thrown from the dispatcher thread.");
+		}
+
+		private void OnAppDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
+		{
+			this.Logger.Fatal(e.ExceptionObject as Exception, "Unhandled exception occured somewhere in the AppDomain.");
 		}
 	}
 }
