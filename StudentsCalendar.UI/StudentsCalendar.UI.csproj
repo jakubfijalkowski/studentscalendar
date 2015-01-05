@@ -58,11 +58,6 @@
     <Compile Include="Events\ApplicationStartedEvent.cs" />
     <Compile Include="Handlers\ApplicationStartupHandler.cs" />
     <Compile Include="IViewModel.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Logging\Logger.cs" />
-    <Compile Include="Logging\ITarget.cs" />
-    <Compile Include="Logging\LoggerConfiguration.cs" />
-    <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Main\CalendarsViewModel.cs" />
     <Compile Include="Main\CurrentWeekViewModel.cs" />
     <Compile Include="Main\MonthViewModel.cs" />

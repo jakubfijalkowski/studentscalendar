@@ -5,12 +5,12 @@ using Caliburn.Micro;
 using StudentsCalendar.Core;
 using StudentsCalendar.Core.ActivitySpans;
 using StudentsCalendar.Core.Generation;
+using StudentsCalendar.Core.Logging;
 using StudentsCalendar.Core.Modifiers;
 using StudentsCalendar.Core.Storage;
 using StudentsCalendar.UI;
 using StudentsCalendar.UI.ActivitySpanViewModels;
 using StudentsCalendar.UI.Dialogs;
-using StudentsCalendar.UI.Logging;
 using StudentsCalendar.UI.ModifierViewModels;
 
 namespace StudentsCalendar.Desktop

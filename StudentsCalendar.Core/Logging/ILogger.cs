@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StudentsCalendar.UI.Logging
+namespace StudentsCalendar.Core.Logging
 {
 	/// <summary>
 	/// Logger

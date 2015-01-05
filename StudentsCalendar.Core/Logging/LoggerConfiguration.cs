@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StudentsCalendar.UI.Logging
+namespace StudentsCalendar.Core.Logging
 {
 	/// <summary>
 	/// Konfiguracja podsystemu logowania.

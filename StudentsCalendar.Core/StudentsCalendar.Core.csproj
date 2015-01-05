@@ -78,6 +78,11 @@
     <Compile Include="Intermediates\IntermediateLecturer.cs" />
     <Compile Include="Intermediates\IntermediateLocation.cs" />
     <Compile Include="Intermediates\IntermediateWeek.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ITarget.cs" />
+    <Compile Include="Logging\LogEntry.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LoggerConfiguration.cs" />
     <Compile Include="Modifiers\AddBreaks.cs" />
     <Compile Include="Modifiers\AddTestToClasses.cs" />
     <Compile Include="Modifiers\CancelClasses.cs" />

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using StudentsCalendar.UI.Logging;
+using StudentsCalendar.Core.Logging;
 
 namespace StudentsCalendar.Desktop
 {

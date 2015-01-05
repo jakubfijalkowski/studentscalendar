@@ -1,4 +1,4 @@
-﻿namespace StudentsCalendar.UI.Logging
+﻿namespace StudentsCalendar.Core.Logging
 {
 	/// <summary>
 	/// Cel loggera - miejsce, gdzie logi będą zapisywane.
