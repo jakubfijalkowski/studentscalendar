@@ -78,7 +78,7 @@ namespace StudentsCalendar.UI.Main
 				var weekIndex = currentWeek.Index;
 
 				int startWeekIndex = Math.Max(weekIndex - MaxWeeks, 0);
-				int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count - 1);
+				int endWeekIndex = Math.Min(weekIndex + MaxWeeks + 1, generated.Weeks.Count);
 
 				this.Weeks = generated.Weeks
 					.Skip(startWeekIndex)
