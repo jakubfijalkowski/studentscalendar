@@ -13,25 +13,13 @@
     <metro:MetroWindow.RightWindowCommands>
         <metro:WindowCommands>
             <Button cal:Message.Attach="ShowCurrentWeek" Visibility="{Binding IsLoading, Converter={StaticResource RevBoolToVisibility}}">
-                <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_calendar_week}" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
+                widok tygodnia
             </Button>
             <Button cal:Message.Attach="ShowMonth" Visibility="{Binding IsLoading, Converter={StaticResource RevBoolToVisibility}}">
-                <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_calendar_month}" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
+                widok miesiąca
             </Button>
             <Button cal:Message.Attach="ShowCalendars" Visibility="{Binding IsLoading, Converter={StaticResource RevBoolToVisibility}}">
-                <Rectangle Width="20" Height="20" Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
-                    <Rectangle.OpacityMask>
-                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_list}" />
-                    </Rectangle.OpacityMask>
-                </Rectangle>
+                lista kalendarzy
             </Button>
         </metro:WindowCommands>
     </metro:MetroWindow.RightWindowCommands>
