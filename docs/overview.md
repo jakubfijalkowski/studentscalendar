@@ -1,16 +1,15 @@
 # Kalendarz Studencki
 
-## Spis treści
+Dokumentacja projektu "Kalendarz Studencki" - opis ogólny
 
-<!-- MarkdownTOC -->
+## Spis treści
 
 - [Opis projektu](#opis-projektu)
     - [Cel](#cel)
-    - [Scenariusz użycia](#scenariusz-użycia)
+    - [Ogólny scenariusz użycia](#ogolny-scenariusz-uzycia)
+- [Aplikacja](#aplikacja)
+    - [Użyte biblioteki](#uzyte-biblioteki)
 - [Dokumentacja](#dokumentacja)
-- [Sposób użycia](#sposób-użycia)
-
-<!-- /MarkdownTOC -->
 
 ## Opis projektu
 
@@ -26,23 +25,15 @@ By nie ograniczać się do jednego, stałego szablonu, użytkownik będzie móg�
 dodawać tak zwane modyfikatory, które działają tylko przez ściśle określony
 czas(np. raz na miesiąc), i zmieniają główny szablon. Pozwala to np. na dodanie
 zastępstw, odwołanie określonych zajęć, zmianę podstawowych informacji czy też
-znane z Politechniki Warszawskiej „poniedziałki w piątki”, czyli użycie planu w
+znane z Politechniki Warszawskiej "poniedziałki w piątki", czyli użycie planu w
 danym dniu z innego dnia tygodnia.
 
-Każdy wpis będzie zawierał podstawowe informacji o zajęciach, tj. godzinę
-rozpoczęcia, zakończenia, dane prowadzącego, lokalizację, notatki itp. Będzie
-też mógł być rozszerzony o pola zdefiniowane przez użytkownika. Pozwoli to na
-zapewnienie pełnych informacji o każdych zajęciach, ale również umożliwi
-przejrzyste ukazanie planu tygodniowego.
-
-### Scenariusz użycia
+### Ogólny scenariusz użycia
 
 Użytkownik rozpoczyna użycie programu od zdefiniowania szablonu. Polega to na
 wprowadzeniu zajęć, które odbywają się cyklicznie. Przez zdefiniowanie zajęcia
 rozumiemy proces, w którym użytkownik określa, w które dni i w jakich godzinach
-odbywają się zajęcia oraz podaje podstawowe informacje na ich temat. Ze względu
-na możliwość występowania licznych modyfikatorów, na tym etapie nie jest
-przeprowadzana weryfikacja.
+odbywają się zajęcia oraz podaje podstawowe informacje na ich temat.
 
 Gdy użytkownik zdefiniuje kompletny szablon(na cały tydzień), następnym etapem
 jest generowanie właściwego kalendarza. Polega to na wygenerowaniu grafiku na
@@ -52,8 +43,50 @@ możliwości edycji konkretnych wpisów na gotowym grafiku. Gdy użytkownik chce
 dokonać modyfikacji, musi edytować szablon i generować kalendarz jeszcze raz.
 
 Gdy wygenerowany kalendarz się zdezaktualizuje, użytkownik będzie mógł edytować
-istniejący szablon i zmienić zakres dat, w którym jest ważny.
+istniejący szablon i zmienić zakres dat, w którym jest ważny, lub zdefiniować
+nowy kalendarz.
+
+## Aplikacja
+
+Aplikacja została oparta na wzorcu *MVVM* oraz technologii *WPF*.
+
+Projekt jest podzielony na trzy *assembly*:
+
+ * *Core* - główna część odpowiedzialna za zarządzanie właściwym szablonem,
+   szerzej opisana w pliku `core.md`. Odpowiada *model*owi.
+ * *UI* - część związana z zarządzaniem interfejsem użytkownika i powiązaniu
+   UI z częścią główną. Pełna dokumentacja znajduje się w pliku `ui.md`.
+   Odpowiada *view-model*owi.
+ * *Desktop* - widoki i *bootstrapping* aplikacji(m.in. stworzenie kontenera DI,
+   inicjalizacja zewnętrznych bibliotek) oraz implementacje interfejsów
+   zależnych od platformy uruchomieniowej. Nie posiada szerszego opisu ze
+   względu na brak logiki biznesowej w tej części projektu.
+
+Główne części są kompilowane jako *Portable Class Library* ze względu na to, że
+projekt w założeniu miał być wieloplatformowy(z czego zrezygnowałem).
+
+### Użyte biblioteki
+
+ * [NodaTime](http://nodatime.org/) - alternatywne API do dat, zamiennik dla
+   `System.DateTime`, który jawnie rozgranicza różne rodzaje dat i pozwala na
+   łatwiejsze zarządzanie nimi.
+ * [AutoFac](http://autofac.org/) - kontener IoC.
+ * [JSON.Net](http://james.newtonking.com/json) - biblioteka do obsługi
+   serializacji JSON - dużo bardziej elastyczna od wbudowanych mechanizmów .NET.
+ * [Caliburn.Micro](http://caliburnmicro.com/) - biblioteka wspomagająca pisanie
+   aplikacji z wykorzystaniem wzorca MVVM.
+ * [MahApps.Metro](http://mahapps.com/) - styl aplikacji a'la Modern(Metro).
+ * [Extended WPF Toolkit](http://wpftoolkit.codeplex.com/) - dodatkowe kontrolki
+   WPF.
 
 ## Dokumentacja
 
-## Sposób użycia
+Dokumentacja podzielona jest na kilka dokumentów:
+
+ * [overview.md](overview.html) - ogólny opis aplikacji, ten dokument.
+ * [core.md](core.html) - opis projektu głównego(*model*u).
+ * [ui.md](ui.html) - opis projektu UI(*view-model*u)
+ * [usage.docx](usage.docx) - opis sposobu użycia aplikacji wraz z przykładowymi grafikami.
+
+W/w pliki nie zawierają dokładnych opisów kodu - kod jest stosownie skomentowany
+i nie ma potrzeby powielać tych informacji.
