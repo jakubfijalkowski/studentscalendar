@@ -47,25 +47,12 @@ przeprowadzana weryfikacja.
 Gdy użytkownik zdefiniuje kompletny szablon(na cały tydzień), następnym etapem
 jest generowanie właściwego kalendarza. Polega to na wygenerowaniu grafiku na
 konkretny zakres dat(ustalony przez użytkownika), generując każdy dzień z
-osobna. Na tym etapie następuje walidacja poprawności kalendarza, jednakże
-dopuszcza się istnienie błędów, które nie powodują niespójności(np. zachodzenie
-na siebie wpisów). Daje się użytkownikowi możliwość przejrzenia listy błędów i
-decyzji, czy zaakceptować grafik w takiej postaci, w jakiej aplikacja była go
-w stanie wygenerować.
-
-Po wygenerowaniu właściwego kalendarza jest on niezmienny – nie ma możliwości
-edycji konkretnych wpisów na gotowym grafiku. Gdy użytkownik chce dokonać
-modyfikacji, musi edytować cały szablon i generować kalendarz jeszcze raz.
-Przewiduje się jednakże możliwość takiego skonstruowania interfejsu użytkownika,
-który pozwoli na skrócenie czasu potrzebnego na proste edycje. Nie przewiduje
-się w podstawowej wersji możliwości optymalizacji procesu regeneracji
-kalendarza.
+osobna. Po wygenerowaniu właściwego kalendarza jest on niezmienny – nie ma
+możliwości edycji konkretnych wpisów na gotowym grafiku. Gdy użytkownik chce
+dokonać modyfikacji, musi edytować szablon i generować kalendarz jeszcze raz.
 
 Gdy wygenerowany kalendarz się zdezaktualizuje, użytkownik będzie mógł edytować
-istniejący szablon i zmienić zakres dat, w którym jest ważny, lub wygenerować
-nowy(z możliwością przyjęcia istniejącego kalendarza, jako szkicu) i przejść
-przez cały proces od nowa.
-
+istniejący szablon i zmienić zakres dat, w którym jest ważny.
 
 ## Dokumentacja
 
