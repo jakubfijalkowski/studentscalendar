@@ -151,7 +151,7 @@ również przekazywanej jako parametr).
 
 ### Istniejące przedziały aktywności
 
-Przedziały oznaczone _*_ są również modtfikatorami tygodniowymi.
+Przedziały oznaczone _*_ są również modyfikatorami tygodniowymi.
 
  * Zawsze aktywny,
  * Zawsze nieaktywny,
@@ -236,8 +236,7 @@ odpowiednie pola obiektów pośrednich. Wyjątkiem jest ostatni z wymienionych.
 ### Dodanie przerw w blokach wielogodzinnych
 
 Modyfikator ten operuje na całym kalendarzu i modyfikuje każdy blok zajęciowy,
-który wpada w kryteria. Modyfikator jest opisywany następnującymi
-właściwościami:
+który wpada w kryteria. Modyfikator jest opisywany następującymi właściwościami:
 
  * `BreakDuration` - określa czas trwania przerwy, którą należy dodać,
  * `ClassesDuration` - określa, ile czasu trwa jedna godzina zajęć(bez przerwy),
@@ -255,7 +254,7 @@ algorytmów) oraz zakłada następujące rzeczy:
 
 Proces dodania polega na wyszukaniu wszystkich bloków zajęć, które spełniają w/w
 warunki, podzieleniu zajęć na odpowiednią ilość pojedynczych zajęć, dodanie
-przerw i podmienienie obiektów w kokretnych dniach.
+przerw i podmienienie obiektów w konkretnych dniach.
 
 Przykładowy scenariusz:
 
@@ -350,7 +349,7 @@ Wynikiem tego etapu będzie finalny kalendarz - reprezentowany przez
 
 Aplikacja do przechowywania kalendarzy używa formatu JSON - zapisuje do pliku
 zserializowany obiekt `CalendarTemplate`. Oprócz samych kalendarzy aplikacja
-przechowuje również **listę** istniejących kalendarzy wraz z dotawkowymi danymi
+przechowuje również **listę** istniejących kalendarzy wraz z dodawkowymi danymi
 (m.in. to, który kalendarz jest aktywny).
 
 Kalendarz jest identyfikowany przez unikalny identyfikator nadawany przez
