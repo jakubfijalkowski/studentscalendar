@@ -48,7 +48,10 @@ nowy kalendarz.
 
 ## Aplikacja
 
-Aplikacja została oparta na wzorcu *MVVM* oraz technologii *WPF*.
+Aplikacja została oparta na wzorcu *MVVM* oraz technologii *WPF*. Zaprojektowana
+jest zgodnie z wytycznymi *inversion of control*(dokładniej:
+*dependency injection*) i dość silnie wykorzystuje możliwości użytego kontenera
+IoC.
 
 Projekt jest podzielony na trzy *assembly*:
 
