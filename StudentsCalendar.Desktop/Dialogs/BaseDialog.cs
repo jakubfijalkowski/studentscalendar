@@ -38,9 +38,9 @@ namespace StudentsCalendar.Desktop.Dialogs
 
 		private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
 		{
-			if (this.DialogBody is FrameworkElement)
+			if (this.Content is FrameworkElement)
 			{
-				((FrameworkElement)this.DialogBody).DataContext = e.NewValue;
+				((FrameworkElement)this.Content).DataContext = e.NewValue;
 			}
 		}
 	}
