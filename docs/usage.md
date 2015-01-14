@@ -32,7 +32,7 @@ Po wybraniu odpowiedniego slotu ukaże się ekran edycji zajęć. Z jego poziomu
 Po zapisaniu powyższych zajęć slot na ekranie edycji kalendarza będzie zajęty.
 ![7](images/usage/7.png "7")
 
-Jak widać, mimo iż dodawaliśmy zajęcia do slotu o godzinie 8:00, to przez zmianę godziny rozpoczęcia na 7:30 pojawiły się one o godzine wcześniej. Dzieje się tak ponieważ aplikacja na szablonie siatki godzin wyświetla zajęcia tylko w slocie będącym godziną rozpoczęcia(obciętą do pełnych godzin, w tym wypadku do 7:00).
+Jak widać, mimo iż dodawaliśmy zajęcia do slotu o godzinie 8:00, to przez zmianę godziny rozpoczęcia na 7:30 pojawiły się one o godzinę wcześniej. Dzieje się tak ponieważ aplikacja na szablonie siatki godzin wyświetla zajęcia tylko w slocie będącym godziną rozpoczęcia(obciętą do pełnych godzin, w tym wypadku do 7:00).
 
 Dodajmy kolejne zajęcia, tym razem z modyfikatorem. Niech będą one w czwartek od 10:00 do 11:00. Znak `+` w prawym górnym rogu ekranu edycji zajęć pozwala na dodanie modyfikatorów - elementów, które zmieniają dane elementu tylko w określone dni. Po wciśnięciu go ukaże nam się lista dostępnych modyfikatorów:
 ![8](images/usage/8.png "8")
