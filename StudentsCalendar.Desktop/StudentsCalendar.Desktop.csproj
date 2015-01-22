@@ -129,6 +129,7 @@
     <Compile Include="Controls\ClassesView.xaml.cs">
       <DependentUpon>ClassesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CustomCanvas.cs" />
     <Compile Include="Controls\DayView.xaml.cs">
       <DependentUpon>DayView.xaml</DependentUpon>
     </Compile>

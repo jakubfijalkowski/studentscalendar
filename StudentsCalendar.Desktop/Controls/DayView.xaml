@@ -14,14 +14,14 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <controls:ClassesView DataContext="{Binding}"
-                                                  Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                  Width="{Binding CorrectActualWidth, RelativeSource={RelativeSource AncestorType=controls:CustomCanvas}}"
                                                   Height="{Binding Converter={StaticResource SlotToHeight}}"
                                                   Margin="{Binding Converter={StaticResource SlotToMargin}}" />
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <Canvas />
+                            <controls:CustomCanvas />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
@@ -29,7 +29,7 @@
         </ItemsControl.ItemTemplate>
         <ItemsControl.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel Orientation="Horizontal" />
+                <UniformGrid Rows="1" />
             </ItemsPanelTemplate>
         </ItemsControl.ItemsPanel>
     </ItemsControl>

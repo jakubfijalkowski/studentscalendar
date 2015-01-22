@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using NodaTime;
 using StudentsCalendar.Core;
@@ -16,21 +17,30 @@ namespace StudentsCalendar.UI.Services
 		private static readonly LocalTime MinEndTime = new LocalTime(16, 0);
 
 		/// <inheritdoc />
-		public ArrangedDay Arrange(FinalDay day)
+		public ArrangedDay Arrange(FinalDay day, FinalWeek fromWeek)
 		{
-			var startTime = day.Classes.Count > 0 ? DateHelper.Min(day.Classes.First().StartDate.TimeOfDay, MinStartTime) : MinStartTime;
-			var endTime = day.Classes.Count > 0 ? DateHelper.Max(day.Classes.Last().EndDate.TimeOfDay, MinEndTime) : MinEndTime;
-			return ArrangeDay(day, startTime, endTime);
+			var time = CalculateStartAndEndTime(fromWeek);
+			return ArrangeDay(day, time.Item1, time.Item2);
 		}
 
 		/// <inheritdoc />
 		public ArrangedWeek Arrange(FinalWeek week)
 		{
+			var time = CalculateStartAndEndTime(week);
+			return new ArrangedWeek(week, week.Days.Select(d => ArrangeDay(d, time.Item1, time.Item2)).ToArray());
+		}
+
+		private static Tuple<LocalTime, LocalTime> CalculateStartAndEndTime(FinalWeek week)
+		{
 			var startClasses = week.Days.Select(d => d.Classes.FirstOrDefault()).Where(d => d != null);
 			var endClasses = week.Days.Select(d => d.Classes.LastOrDefault()).Where(d => d != null);
 			var startTime = startClasses.Any() ? DateHelper.Min(startClasses.Min(c => c.StartDate.TimeOfDay), MinStartTime) : MinStartTime;
 			var endTime = endClasses.Any() ? DateHelper.Max(endClasses.Max(c => c.EndDate.TimeOfDay), MinEndTime) : MinEndTime;
-			return new ArrangedWeek(week, week.Days.Select(d => ArrangeDay(d, startTime, endTime)).ToArray());
+
+			startTime = new LocalTime(startTime.Hour, 0);
+			endTime = new LocalTime(endTime.Hour, 0);
+
+			return Tuple.Create(startTime, endTime);
 		}
 
 		private static ArrangedDay ArrangeDay(FinalDay day, LocalTime startTime, LocalTime endTime)

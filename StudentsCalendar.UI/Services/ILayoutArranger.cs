@@ -17,7 +17,8 @@ namespace StudentsCalendar.UI.Services
 		/// Układa zajęcia tak, by można je było bez przeszkód wyświetlić.
 		/// </summary>
 		/// <param name="day"></param>
-		ArrangedDay Arrange(FinalDay day);
+		/// <param name="fromWeek"></param>
+		ArrangedDay Arrange(FinalDay day, FinalWeek fromWeek);
 
 		/// <summary>
 		/// Układa tygodniowy rozkład zajęć tak, by można go było bez przeszkód

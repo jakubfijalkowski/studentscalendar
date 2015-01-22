@@ -46,7 +46,7 @@
                                 </TextBlock.Text>
                             </TextBlock>
                             <controls:SlotsView Grid.Row="1" Grid.Column="0" DataContext="{Binding Days[0].Slots}"
-                                            Width="{StaticResource SlotsColumnWidth}"/>
+                                                Width="{StaticResource SlotsColumnWidth}"/>
                             <Border Grid.Row="1" Grid.ColumnSpan="2" Background="{StaticResource CalendarBackgroundBrush}" />
                             <ItemsControl Grid.Column="1" Grid.RowSpan="2" ItemsSource="{Binding Days}">
                                 <ItemsControl.ItemTemplate>
